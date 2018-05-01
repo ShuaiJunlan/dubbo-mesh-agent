@@ -34,6 +34,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private HttpRequest request;
     /** Buffer that stores the response content */
     private final StringBuilder buf = new StringBuilder();
+    StringBuffer stringBuffer = new StringBuffer();
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
@@ -42,27 +43,39 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
+
         if (msg instanceof HttpRequest) {
+            buf.setLength(0);
             HttpRequest request = this.request = (HttpRequest) msg;
 
             if (HttpUtil.is100ContinueExpected(request)) {
                 send100Continue(ctx);
             }
 
-            buf.setLength(0);
-        }
 
+        }
         if (msg instanceof HttpContent) {
             HttpContent httpContent = (HttpContent) msg;
 
             ByteBuf content = httpContent.content();
             if (content.isReadable()) {
-                String[] tmp = content.toString(CharsetUtil.UTF_8).split("=");
-                String result = String.valueOf(tmp[tmp.length-1].hashCode());
-                buf.append(result);
+                String str = content.toString(CharsetUtil.UTF_8);
+                stringBuffer.append(str);
+//                String[] tmp = str.split("&parameter=");
+////                System.out.println(tmp.length + ":::::" + content.toString(CharsetUtil.UTF_8));
+//
+//                if (tmp.length == 2){
+//                    stringBuffer.append(tmp[1]);
+//                }else if (tmp.length == 1){
+//                    stringBuffer.append(tmp[0]);
+//                }
+
             }
 
             if (msg instanceof LastHttpContent) {
+//                System.out.println(stringBuffer.toString());
+                String[] tmp = stringBuffer.toString().split("&parameter=");
+                buf.append(tmp[1].hashCode());
 
                 LastHttpContent trailer = (LastHttpContent) msg;
 
@@ -70,6 +83,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                     // If keep-alive is off, close the connection once the content is fully written.
                     ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
                 }
+                stringBuffer = new StringBuffer();
             }
         }
     }

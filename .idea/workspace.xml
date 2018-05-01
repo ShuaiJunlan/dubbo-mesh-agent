@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="50fb9ed8-3e5a-4fd0-bc28-d4be94bb3287" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/X-Agent-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/X-Agent-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +56,8 @@
       <file leaf-file-name="HttpSnoopServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="34" />
+            <state relative-caret-position="308">
+              <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,22 +68,26 @@
       <file leaf-file-name="HttpSnoopServerInitializer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+            <state relative-caret-position="331">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="26" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#599#600#0" expanded="true" />
+                <element signature="e#635#636#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpSnoopServerHandler.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HttpSnoopServerHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="247">
+              <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1467#1468#0" expanded="true" />
+                <element signature="e#1494#1495#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,10 +117,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="136">
               <caret line="120" column="87" selection-start-line="120" selection-start-column="87" selection-end-line="120" selection-end-column="87" />
             </state>
           </provider>
@@ -137,8 +141,8 @@
       <file leaf-file-name="HttpServerBootstrapTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            <state relative-caret-position="218">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -159,6 +163,7 @@
     <findStrings>
       <find>Clien</find>
       <find>sendData</find>
+      <find>QT6wGTvEPdifdgD1e27uiRlWOqhbBbdotl2fwSszze8f29276syEVR9yZETWUNRphFw3Gf3RxZ8wkqKgrw160NNETdXCd5p9qAWEdo4cdrPeUelyLdu1M</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,15 +214,15 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java" />
         <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerBootstrap.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" />
       </list>
     </option>
   </component>
@@ -494,29 +499,6 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="AgentClientTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="X-Agent" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cn.shuaijunlan.xagent.transport.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.transport" />
-      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.transport.AgentClientTest" />
-      <option name="METHOD_NAME" value="start" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
     <configuration name="HttpServerBootstrapTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="X-Agent" />
       <extension name="coverage">
@@ -530,6 +512,29 @@
       <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.http" />
       <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.http.HttpServerBootstrapTest" />
       <option name="METHOD_NAME" value="start" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="HttpServerBootstrapTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="X-Agent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.http" />
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.http.HttpServerBootstrapTest" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -579,19 +584,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="JUnit.AgentClientTest.start" />
       <item itemvalue="JUnit.AgentClientTest.ss" />
       <item itemvalue="JUnit.HttpServerBootstrapTest.start" />
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.HttpSnoopServer" />
+      <item itemvalue="JUnit.HttpServerBootstrapTest.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.HttpSnoopServer" />
+        <item itemvalue="JUnit.HttpServerBootstrapTest.test" />
         <item itemvalue="JUnit.HttpServerBootstrapTest.start" />
         <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.AgentClientTest.ss" />
-        <item itemvalue="JUnit.AgentClientTest.start" />
       </list>
     </recent_temporary>
   </component>
@@ -616,14 +621,11 @@
       <workItem from="1525000633538" duration="674000" />
       <workItem from="1525079168095" duration="9577000" />
       <workItem from="1525094030350" duration="3038000" />
-      <workItem from="1525145202044" duration="950000" />
+      <workItem from="1525145202044" duration="6262000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 19h 37m 52s.xml">
-      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 19h 41m 49s.xml">
       <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
     </history-entry>
@@ -651,15 +653,20 @@
     <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 36m 33s.xml">
       <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="HttpServerBootstrapTest_test - 2018.05.01 at 13h 35m 52s.xml">
+      <configuration name="HttpServerBootstrapTest.test" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38963000" />
+    <option name="totallyTimeSpent" value="44275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.38283828" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -667,8 +674,8 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.13388805" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.16006601" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.78842974" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.09586777" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.14710744" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2677761" />
@@ -678,14 +685,13 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.34818482" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34710744" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.38283828" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,18 +711,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java</url>
-          <line>55</line>
+          <line>57</line>
           <properties />
-          <option name="timeStamp" value="18" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java</url>
-          <line>58</line>
+          <line>79</line>
           <properties />
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="22" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
@@ -975,47 +981,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1044,8 +1013,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="136">
           <caret line="120" column="87" selection-start-line="120" selection-start-column="87" selection-end-line="120" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="26" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1467#1468#0" expanded="true" />
+            <element signature="e#1494#1495#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
