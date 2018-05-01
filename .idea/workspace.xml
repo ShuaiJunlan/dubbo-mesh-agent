@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="50fb9ed8-3e5a-4fd0-bc28-d4be94bb3287" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AgentClientTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+              <folding>
+                <element signature="e#396#397#0" expanded="true" />
+                <element signature="e#455#456#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KryoCodecUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoCodecUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpSnoopServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="44" column="11" lean-forward="true" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpSnoopServerInitializer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpSnoopServerHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-525">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#440#441#0" expanded="true" />
+                <element signature="e#467#468#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpServerBootstrap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerBootstrap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="29" column="61" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpServerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1386">
+              <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpServerInitializer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpServerBootstrapTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Clien</find>
+      <find>sendData</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/CustomHeartbeatHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/Server.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/ClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/ClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/RpcSerialize.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/MessageCodecUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/RpcSerializeFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/MessageEncoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/RpcSerializeProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/MessageDecoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/KryoSerialize.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/MessageResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/MessageRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/KryoDecoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/KryoEncoder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/KryoCodecUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/ServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/KryoPoolFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/AgentClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/AgentClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/AgentServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/AgentServer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/AgentServerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/AgentClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/rpc/support/msgpack/TypeData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/msgpack/TypeData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageCodecUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerBootstrap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="E:/apache-maven-3.5.2" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="X-Agent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="X-Agent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="width" value="1378" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="httpserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="kryo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="E:/nodejs/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.shuaijunlan.xagent.transport.test" />
+      <recent name="cn.shuaijunlan.xagent.transport.test.support.kryo" />
+      <recent name="cn.shuaijunlan.xagent.transport" />
+      <recent name="cn.shuaijunlan.xagent.http" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.shuaijunlan.xagent.transport.test" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Aliyun\X-Agent\src\main\java\cn\shuaijunlan\xagent\transport\test\support\kryo" />
+      <recent name="F:\Aliyun\X-Agent\src\test\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.HttpSnoopServer">
+    <configuration name="HttpSnoopServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.httpserver.HttpSnoopServer" />
+      <module name="X-Agent" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.httpserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.httpserver.Server" />
+      <module name="X-Agent" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.httpserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="AgentClientTest.ss" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="X-Agent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.transport.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.transport" />
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.transport.AgentClientTest" />
+      <option name="METHOD_NAME" value="ss" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="AgentClientTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="X-Agent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.transport.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.transport" />
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.transport.AgentClientTest" />
+      <option name="METHOD_NAME" value="start" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="HttpServerBootstrapTest.start" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="X-Agent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.http" />
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.http.HttpServerBootstrapTest" />
+      <option name="METHOD_NAME" value="start" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.AgentClientTest.start" />
+      <item itemvalue="JUnit.AgentClientTest.ss" />
+      <item itemvalue="JUnit.HttpServerBootstrapTest.start" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.HttpSnoopServer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HttpSnoopServer" />
+        <item itemvalue="JUnit.HttpServerBootstrapTest.start" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.AgentClientTest.ss" />
+        <item itemvalue="JUnit.AgentClientTest.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50fb9ed8-3e5a-4fd0-bc28-d4be94bb3287" name="Default" comment="" />
+      <created>1524904123099</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1524904123099</updated>
+      <workItem from="1524904126021" duration="2566000" />
+      <workItem from="1524918409269" duration="4064000" />
+      <workItem from="1524922566971" duration="105000" />
+      <workItem from="1524922718464" duration="1719000" />
+      <workItem from="1524924475483" duration="69000" />
+      <workItem from="1524969333323" duration="2202000" />
+      <workItem from="1524971593849" duration="3718000" />
+      <workItem from="1524977218128" duration="10281000" />
+      <workItem from="1525000633538" duration="674000" />
+      <workItem from="1525079168095" duration="9577000" />
+      <workItem from="1525094030350" duration="3038000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 19h 37m 52s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 19h 41m 49s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 19h 48m 27s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 20h 05m 42s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 30m 53s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 31m 56s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 33m 47s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 34m 54s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 35m 18s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HttpServerBootstrapTest_start - 2018.04.30 at 21h 36m 33s.xml">
+      <configuration name="HttpServerBootstrapTest.start" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="38013000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.38283828" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.13388805" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.16006601" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.4290429" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26399395" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32928678" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34818482" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="22" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="f.isSuccess()" language="JAVA" />
+      </configuration>
+      <configuration name="Application">
+        <watch expression="content.toString(CharsetUtil.UTF_8)" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>content.toString(CharsetUtil.UTF_8)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>f.isSuccess()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/RpcSerializeFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/RpcSerializeProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/CustomHeartbeatHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/MessageDecoder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/MessageEncoder.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/NettyServerBootstrap.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/NettyServerHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/Server.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ServerHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/Client.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ClientHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ClientTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/test/support/kryo/ServerTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/msgpack/MsgPackEncode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/msgpack/MsgPackDecode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/msgpack/DeviceValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/NettyServerBootstrapTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/msgpack/TypeData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/RpcSerialize.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/ServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-109">
+          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/ServerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/ClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="62" column="53" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-125">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoSerialize.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-39">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoPoolFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="50" column="56" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageDecoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="17" column="66" selection-start-line="17" selection-start-column="66" selection-end-line="17" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageCodecUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1804">
+          <caret line="96" column="55" selection-start-line="96" selection-start-column="55" selection-end-line="96" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Java/jdk1.8.0_151/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32208">
+          <caret line="1464" column="15" selection-start-line="1464" selection-start-column="15" selection-end-line="1464" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentServerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoCodecUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerBootstrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="29" column="61" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="44" column="11" lean-forward="true" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-525">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>X-Agent</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.googlecode.json-simple:json-simple:1.1.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
