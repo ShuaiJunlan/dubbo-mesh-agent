@@ -51,8 +51,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
             if (HttpUtil.is100ContinueExpected(request)) {
                 send100Continue(ctx);
             }
-
-
         }
         if (msg instanceof HttpContent) {
             HttpContent httpContent = (HttpContent) msg;
@@ -61,19 +59,9 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
             if (content.isReadable()) {
                 String str = content.toString(CharsetUtil.UTF_8);
                 stringBuffer.append(str);
-//                String[] tmp = str.split("&parameter=");
-////                System.out.println(tmp.length + ":::::" + content.toString(CharsetUtil.UTF_8));
-//
-//                if (tmp.length == 2){
-//                    stringBuffer.append(tmp[1]);
-//                }else if (tmp.length == 1){
-//                    stringBuffer.append(tmp[0]);
-//                }
-
             }
 
             if (msg instanceof LastHttpContent) {
-//                System.out.println(stringBuffer.toString());
                 String[] tmp = stringBuffer.toString().split("&parameter=");
                 buf.append(tmp[1].hashCode());
 

@@ -8,11 +8,19 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
  * @date Created on 11:20 2018/4/29.
  */
 public class MessageRequest {
-
+    private Long id;
     private String interfaceName;
     private String method;
     private String parameterTypesString;
     private String parameter;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getInterfaceName() {
         return interfaceName;

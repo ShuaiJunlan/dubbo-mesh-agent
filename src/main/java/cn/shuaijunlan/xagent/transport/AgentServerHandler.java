@@ -10,19 +10,21 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @date Created on 21:47 2018/4/28.
  */
 public class AgentServerHandler extends SimpleChannelInboundHandler<MessageRequest> {
+    int i = 0;
 
     public AgentServerHandler() {
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageRequest messageRequest) throws Exception {
-        System.out.println("server 接收数据:"+messageRequest.toString());
-
-
+//        if (!messageRequest.getMethod().equals(String.valueOf((i++)))){
+//            return;
+//        }
+//        System.out.println("server 接收数据"+ messageRequest.getMethod() + "::" + (i++)+":"+messageRequest.toString());
         MessageResponse messageResponse = new MessageResponse();
         messageResponse.setHash(messageRequest.getParameter().hashCode());
         channelHandlerContext.writeAndFlush(messageResponse);
-        System.out.println("server 发送数据:"+messageResponse.toString());
+//        System.out.println("server 发送数据:" +messageResponse.toString());
     }
 
 }

@@ -1,6 +1,7 @@
 package cn.shuaijunlan.xagent.transport;
 
 import cn.shuaijunlan.xagent.transport.support.MessageRequest;
+import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoCodecUtil;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
@@ -13,6 +14,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -24,14 +26,19 @@ public class AgentClient {
     private NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
     private Channel channel;
     private Bootstrap bootstrap;
+    private AgentClientHandler agentClientHandler;
 
     private String host;
     private Integer port;
-    public AgentClient(String host, Integer port){
+    private LinkedList<MessageResponse> linkedList;
+    private Long length;
+    public AgentClient(String host, Integer port, LinkedList<MessageResponse> messageResponses, Long length){
         this.host = host;
         this.port = port;
+        this.linkedList = messageResponses;
+        this.length = length;
+        agentClientHandler = new AgentClientHandler(linkedList, this.length);
     }
-
 
     public void start() {
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
@@ -40,15 +47,17 @@ public class AgentClient {
             bootstrap
                     .group(workGroup)
                     .channel(NioSocketChannel.class)
+                    .option(ChannelOption.TCP_NODELAY, true)
+                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline p = socketChannel.pipeline();
-                            p.addLast(new IdleStateHandler(0, 0, 5));
+                            p.addLast(new IdleStateHandler(1, 1, 5));
 ///                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
                             p.addLast(new KryoEncoder(util));
                             p.addLast(new KryoDecoder(util));
-                            p.addLast(new AgentClientHandler());
+                            p.addLast(agentClientHandler);
                         }
                     });
             doConnect(this.host, this.port);
@@ -61,48 +70,55 @@ public class AgentClient {
     /**
      * 重连机制,每隔2s重新连接一次服务器
      */
-    private void doConnect(String host, Integer port) {
+    private void doConnect(String host, Integer port) throws InterruptedException {
         if (channel != null && channel.isActive()) {
             return;
         }
 
-        ChannelFuture future = bootstrap.connect(host, port);
+//        ChannelFuture future = bootstrap.connect(host, port).sync();
+        channel = bootstrap.connect(host, port).sync().channel();
 
-        future.addListener((ChannelFutureListener) futureListener -> {
-            if (futureListener.isSuccess()) {
-                channel = futureListener.channel();
-                System.out.println("Connect to server successfully!");
-            } else {
-                System.out.println("Failed to connect to server, try connect after 2s");
-
-                futureListener.channel().eventLoop().schedule(() -> doConnect(host, port), 2, TimeUnit.SECONDS);
-            }
-        });
+//        future.addListener((ChannelFutureListener) futureListener -> {
+//            if (futureListener.isSuccess()) {
+//                channel = futureListener.channel();
+//                System.out.println("Connect to server successfully!");
+//            } else {
+//                System.out.println("Failed to connect to server, try connect after 2s");
+//
+//                futureListener.channel().eventLoop().schedule(() -> {
+//                    try {
+//                        doConnect(host, port);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }, 2, TimeUnit.SECONDS);
+//            }
+//        });
     }
 
     /**
-     * 发送数据 每隔2秒发送一次
+     * 发送数据
      * @throws Exception
      */
-    public void sendData() throws Exception {
-        Random random = new Random(System.currentTimeMillis());
-        Thread.sleep(random.nextInt(2000));
-
-        for (int i = 0; i < 1000; i++) {
-            if (channel != null && channel.isActive()) {
-
+    public void sendData(Integer start, Integer end) throws Exception {
+        if (channel == null || (!channel.isActive())){
+            System.out.println("channel get error");
+        }else {
+            for (; start < end; start++) {
                 MessageRequest messageRequest = new MessageRequest();
                 messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
-                messageRequest.setMethod("hash");
+                messageRequest.setMethod("" + start);
                 messageRequest.setParameterTypesString("Ljava/lang/String;");
                 messageRequest.setParameter(RandomStringUtils.randomAlphanumeric(10));
                 channel.writeAndFlush(messageRequest);
-                System.out.println("client 发送数据:"+messageRequest.toString());
+//                System.out.println("client 发送数据" + start + ":"+messageRequest.toString());
             }
         }
-        //获取接受数据
-        Thread.sleep(2000);
+//        while (channel == null || !channel.isActive()){}
+
+        for (;agentClientHandler.atomicLong.get() > 0;) {
+//            System.out.println(agentClientHandler.atomicLong.get());
+        }
+//        channel.closeFuture();
     }
-
-
 }
