@@ -64,7 +64,13 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
             if (msg instanceof LastHttpContent) {
                 String[] tmp = stringBuffer.toString().split("&parameter=");
-                buf.append(tmp[1].hashCode());
+                try {
+                    buf.append(tmp[1].hashCode());
+                }catch (ArrayIndexOutOfBoundsException e){
+                    e.printStackTrace();
+                    System.out.println("StringBuffer:" + stringBuffer.toString() + ":::" + tmp[0]);
+                    System.exit(1);
+                }
 
                 LastHttpContent trailer = (LastHttpContent) msg;
 
