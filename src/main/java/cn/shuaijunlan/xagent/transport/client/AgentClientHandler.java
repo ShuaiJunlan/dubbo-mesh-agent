@@ -40,8 +40,7 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
         synchronized (lock){
             value = messageResponse.getHash();
-            lock.notifyAll();
+            lock.notify();
         }
-
     }
 }
