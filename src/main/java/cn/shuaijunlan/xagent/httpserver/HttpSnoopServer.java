@@ -16,8 +16,6 @@ public final class HttpSnoopServer {
     static final int PORT = 20000;
 
     public static void main(String[] args) throws Exception {
-
-
         // Configure the server.
         EventLoopGroup bossGroup = new NioEventLoopGroup(4);
         EventLoopGroup workerGroup = new NioEventLoopGroup(4);
@@ -42,7 +40,5 @@ public final class HttpSnoopServer {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-
-
     }
 }

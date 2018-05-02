@@ -29,6 +29,8 @@ public class AgentClient {
     private Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;
 
+    private Object lock = new Object();
+
     private String host;
     private Integer port;
     private LinkedList<MessageResponse> linkedList;
@@ -38,7 +40,8 @@ public class AgentClient {
         this.port = port;
         this.linkedList = messageResponses;
         this.length = length;
-        agentClientHandler = new AgentClientHandler(linkedList, this.length);
+//        agentClientHandler = new AgentClientHandler(linkedList, this.length);
+        agentClientHandler = new AgentClientHandler(lock);
     }
 
     public void setLength(Integer length){
@@ -125,19 +128,25 @@ public class AgentClient {
 //        channel.closeFuture();
     }
     public Integer sendData(String param) {
-        if (channel == null || (!channel.isActive())){
-            System.out.println("channel get error");
-        }else {
-            MessageRequest messageRequest = new MessageRequest();
-            messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
-            messageRequest.setMethod("hash");
-            messageRequest.setParameterTypesString("Ljava/lang/String;");
-            messageRequest.setParameter(param);
-            channel.writeAndFlush(messageRequest);
-        }
-        for (;agentClientHandler.atomicLong.get() > 0;) {
 
+        synchronized (lock){
+            if (channel == null || (!channel.isActive())){
+                System.out.println("channel get error");
+            }else {
+                MessageRequest messageRequest = new MessageRequest();
+                messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
+                messageRequest.setMethod("hash");
+                messageRequest.setParameterTypesString("Ljava/lang/String;");
+                messageRequest.setParameter(param);
+                channel.writeAndFlush(messageRequest);
+            }
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        return AgentClientHandler.responseLinkedList.pop().getHash();
+//        return AgentClientHandler.responseLinkedList.pop().getHash();
+        return agentClientHandler.value;
     }
 }

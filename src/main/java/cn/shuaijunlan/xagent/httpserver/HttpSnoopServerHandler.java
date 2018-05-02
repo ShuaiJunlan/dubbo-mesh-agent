@@ -43,10 +43,9 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
     private HttpRequest request;
     /** Buffer that stores the response content */
-    private final StringBuilder buf = new StringBuilder();
     StringBuffer stringBuffer = new StringBuffer();
 
-    AgentClient client;
+    private AgentClient client;
 
     public HttpSnoopServerHandler(){
         LinkedList<MessageResponse> messageResponses = new LinkedList<>();
@@ -61,10 +60,9 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws InterruptedException {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof HttpRequest) {
             client.setLength(1);
-            buf.setLength(0);
             stringBuffer.setLength(0);
             HttpRequest request = this.request = (HttpRequest) msg;
 
@@ -77,7 +75,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
             ByteBuf content = httpContent.content();
             if (content.isReadable()) {
-//                String str = content.toString(CharsetUtil.UTF_8);
                 stringBuffer.append(content.toString(CharsetUtil.UTF_8));
             }
             if (msg instanceof LastHttpContent) {
@@ -86,45 +83,20 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
                 //执行远程调用
                 String[] tmp = stringBuffer.toString().split("&parameter=");
-                Entry entry;
                 String str ;
                 if (tmp.length > 1){
                     str = tmp[1];
-//                    buf.append(tmp[1].hashCode());
-//                    entry = new Entry(ctx, buf.toString(), request, trailer);
                 }else {
                     str = "";
-//                    buf.append("".hashCode());
-//                    entry = new Entry(ctx, buf.toString(), request, trailer);
                 }
-//                MessageResponse messageResponse = AgentClientHandler.messageResponseBlockingQueue.take();
-//                if (atomicLong.get() < 1){
-//                    queue.put(entry);
-//                    atomicLong.incrementAndGet();
-//                    System.out.println(atomicLong.get());
-//                }else {
-//                    System.out.println(atomicLong.get());
-//                    queue.put(entry);
-//                    while (!queue.isEmpty()){
-//
-//                        Entry entry1 = queue.take();
-//                        writeResponse(entry1.getContent(), entry1.getContext(), entry1.getParameter(), entry1.getRequest());
-////                        writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
-//                    }
-//                }
-//                queue.put(entry);
-//                Entry entry1 = queue.take();
-                //from agent
-
                 Integer integer = client.sendData(str);
 
                 writeResponse(trailer, ctx, integer.toString(), request);
-//                writeResponse(entry.getContent(), entry.getContext(), integer.toString(), entry.getRequest());
             }
         }
     }
 
-    public static void writeResponse(HttpObject currentObj, ChannelHandlerContext ctx, String msg, HttpRequest request) {
+    public void writeResponse(HttpObject currentObj, ChannelHandlerContext ctx, String msg, HttpRequest request) {
         // Decide whether to close the connection or not.
         boolean keepAlive = HttpUtil.isKeepAlive(request);
         // Build the response object.
