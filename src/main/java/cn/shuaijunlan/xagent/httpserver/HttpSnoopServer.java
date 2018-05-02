@@ -17,18 +17,10 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
  */
 public final class HttpSnoopServer {
 
-    static final boolean SSL = System.getProperty("ssl") != null;
     static final int PORT = 20000;
 
     public static void main(String[] args) throws Exception {
-        // Configure SSL.
-        final SslContext sslCtx;
-        if (SSL) {
-            SelfSignedCertificate ssc = new SelfSignedCertificate();
-            sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
-        } else {
-            sslCtx = null;
-        }
+
 
         // Configure the server.
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -38,13 +30,12 @@ public final class HttpSnoopServer {
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
 //                    .handler(new LoggingHandler(LogLevel.ERROR))
-                    .childHandler(new HttpSnoopServerInitializer(sslCtx));
+                    .childHandler(new HttpSnoopServerInitializer());
 
             Channel ch = b.bind(PORT).sync().channel();
-//            new HttpServerConsumer(HttpSnoopServerHandler.queue).start();
 
             System.err.println("Open your web browser and navigate to " +
-                    (SSL? "https" : "http") + "://127.0.0.1:" + PORT + '/');
+                     "http" + "://127.0.0.1:" + PORT + '/');
 
             ch.closeFuture().sync();
         } finally {

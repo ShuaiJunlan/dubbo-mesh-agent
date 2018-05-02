@@ -21,7 +21,8 @@ public class HttpServerConsumer extends Thread {
         while(true){
             try{
                 HttpSnoopServerHandler.Entry entry = bq.take();
-                HttpSnoopServerHandler.writeResponse(entry.getContent(), entry.getContext(), entry.getParameter().hashCode()+"", entry.getRequest());
+                System.out.println("HttpServerConsumer:::" + entry.getParameter());
+                HttpSnoopServerHandler.writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
             }catch(Exception e){
                 e.printStackTrace();
             }

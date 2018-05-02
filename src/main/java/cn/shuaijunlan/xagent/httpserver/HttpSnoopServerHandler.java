@@ -51,13 +51,16 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
     AtomicLong atomicLong = new AtomicLong(0);
 
+    public HttpSnoopServerHandler(){
+    }
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws InterruptedException {
 
         if (msg instanceof HttpRequest) {
             buf.setLength(0);
@@ -84,15 +87,19 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 String[] tmp = stringBuffer.toString().split("&parameter=");
                 Entry entry;
                 if (tmp.length > 1){
-                    entry = new Entry(ctx, tmp[1], request, trailer);
                     buf.append(tmp[1].hashCode());
+                    entry = new Entry(ctx, buf.toString(), request, trailer);
                 }else {
-                    entry = new Entry(ctx, "", request, trailer);
                     buf.append("".hashCode());
+                    entry = new Entry(ctx, buf.toString(), request, trailer);
                 }
-//                queue.add(entry);
+                System.out.println(buf.toString());
 
-                writeResponse(trailer, ctx, buf.toString(), request);
+//                queue.put(entry);
+//                Entry entry1 = queue.take();
+//                writeResponse(entry1.getContent(), entry1.getContext(), entry1.getParameter(), entry1.getRequest());
+                writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
+//                writeResponse(trailer, ctx, buf.toString(), request);
             }
         }
     }

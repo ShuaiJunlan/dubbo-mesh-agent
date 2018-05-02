@@ -13,18 +13,13 @@ import io.netty.handler.ssl.SslContext;
  */
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
 
-    private final SslContext sslCtx;
 
-    public HttpSnoopServerInitializer(SslContext sslCtx) {
-        this.sslCtx = sslCtx;
+    public HttpSnoopServerInitializer( ) {
     }
 
     @Override
     public void initChannel(SocketChannel ch) {
         ChannelPipeline p = ch.pipeline();
-        if (sslCtx != null) {
-            p.addLast(sslCtx.newHandler(ch.alloc()));
-        }
         p.addLast(new HttpRequestDecoder());
         // Uncomment the following line if you don't want to handle HttpChunks.
         //p.addLast(new HttpObjectAggregator(1048576));
