@@ -52,6 +52,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
         LinkedList<MessageResponse> messageResponses = new LinkedList<>();
         Long length  = 1L;
         client = new AgentClient("127.0.0.1", 1234, messageResponses, length);
+        client.start();
     }
 
     @Override
@@ -115,7 +116,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 //                Entry entry1 = queue.take();
                 //from agent
 
-                client.start();
                 Integer integer = client.sendData(str);
 
                 writeResponse(trailer, ctx, integer.toString(), request);
