@@ -116,10 +116,8 @@ public class AgentClient {
                 messageRequest.setParameterTypesString("Ljava/lang/String;");
                 messageRequest.setParameter(RandomStringUtils.randomAlphanumeric(10));
                 channel.writeAndFlush(messageRequest);
-//                System.out.println("client 发送数据" + start + ":"+messageRequest.toString());
             }
         }
-//        while (channel == null || !channel.isActive()){}
 
         for (;agentClientHandler.atomicLong.get() > 0;) {
 //            System.out.println(agentClientHandler.atomicLong.get());

@@ -19,7 +19,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  */
 public class AgentServer {
     public void start(int port) {
-        NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        NioEventLoopGroup bossGroup = new NioEventLoopGroup(4);
         NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
         try {
