@@ -33,19 +33,10 @@ public class AgentClient {
 
     private String host;
     private Integer port;
-    private LinkedList<MessageResponse> linkedList;
-    private Long length;
-    public AgentClient(String host, Integer port, LinkedList<MessageResponse> messageResponses, Long length){
+    public AgentClient(String host, Integer port){
         this.host = host;
         this.port = port;
-        this.linkedList = messageResponses;
-        this.length = length;
-//        agentClientHandler = new AgentClientHandler(linkedList, this.length);
         agentClientHandler = new AgentClientHandler(lock);
-    }
-
-    public void setLength(Integer length){
-        agentClientHandler.setLength(length);
     }
 
     public void start() {

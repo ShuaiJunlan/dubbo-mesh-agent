@@ -50,7 +50,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     public HttpSnoopServerHandler(){
         LinkedList<MessageResponse> messageResponses = new LinkedList<>();
         Long length  = 1L;
-        client = new AgentClient("127.0.0.1", 1234, messageResponses, length);
+        client = new AgentClient("127.0.0.1", 1234);
         client.start();
     }
 
