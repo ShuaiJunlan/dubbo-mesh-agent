@@ -41,11 +41,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private final StringBuilder buf = new StringBuilder();
     StringBuffer stringBuffer = new StringBuffer();
 
-    /**
-     * 生产者，消费者模型
-     */
-    ConcurrentHashMap<ChannelHandlerContext, StringBuilder> concurrentHashMapConsumer = new ConcurrentHashMap();
-    ConcurrentHashMap<ChannelHandlerContext, String> concurrentHashMapProvider = new ConcurrentHashMap();
 
     public static BlockingQueue<Entry> queue = new ArrayBlockingQueue<>(20);
 
@@ -93,9 +88,12 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                     buf.append("".hashCode());
                     entry = new Entry(ctx, buf.toString(), request, trailer);
                 }
-                System.out.println(buf.toString());
+//                System.out.println(buf.toString());
 
-//                queue.put(entry);
+//                if (atomicLong.get() < 3){
+//                    queue.put(entry);
+//                    atomicLong.incrementAndGet();
+//                }
 //                Entry entry1 = queue.take();
 //                writeResponse(entry1.getContent(), entry1.getContext(), entry1.getParameter(), entry1.getRequest());
                 writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
