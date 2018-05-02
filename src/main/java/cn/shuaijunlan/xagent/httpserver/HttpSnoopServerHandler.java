@@ -46,6 +46,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
         if (msg instanceof HttpRequest) {
             buf.setLength(0);
+            stringBuffer.setLength(0);
             HttpRequest request = this.request = (HttpRequest) msg;
 
             if (HttpUtil.is100ContinueExpected(request)) {
@@ -71,7 +72,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                     // If keep-alive is off, close the connection once the content is fully written.
                     ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
                 }
-                stringBuffer = new StringBuffer();
             }
         }
     }
