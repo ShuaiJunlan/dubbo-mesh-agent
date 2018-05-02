@@ -1,11 +1,12 @@
-package cn.shuaijunlan.xagent.transport;
+package cn.shuaijunlan.xagent.transport.client;
 
 import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -13,8 +14,10 @@ import java.util.concurrent.atomic.AtomicLong;
  * @date Created on 21:46 2018/4/28.
  */
 public class AgentClientHandler extends SimpleChannelInboundHandler<MessageResponse> {
+
     public AtomicLong atomicLong ;
     public LinkedList<MessageResponse> arrayList;
+    public static BlockingQueue<MessageResponse> messageResponseBlockingQueue = new LinkedBlockingDeque<>();
     public AgentClientHandler() {
     }
 
@@ -25,6 +28,7 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
+        messageResponseBlockingQueue.put(messageResponse);
         arrayList.add(messageResponse);
         atomicLong.decrementAndGet();
         System.out.println(arrayList.size() + "::" + messageResponse.getHash());

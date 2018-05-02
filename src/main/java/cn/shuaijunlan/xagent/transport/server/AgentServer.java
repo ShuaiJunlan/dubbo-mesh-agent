@@ -1,4 +1,4 @@
-package cn.shuaijunlan.xagent.transport;
+package cn.shuaijunlan.xagent.transport.server;
 
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoCodecUtil;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;

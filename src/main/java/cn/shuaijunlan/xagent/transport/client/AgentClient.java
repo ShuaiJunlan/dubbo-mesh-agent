@@ -1,4 +1,4 @@
-package cn.shuaijunlan.xagent.transport;
+package cn.shuaijunlan.xagent.transport.client;
 
 import cn.shuaijunlan.xagent.transport.support.MessageRequest;
 import cn.shuaijunlan.xagent.transport.support.MessageResponse;
@@ -7,7 +7,10 @@ import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoPoolFactory;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.*;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -15,8 +18,6 @@ import io.netty.handler.timeout.IdleStateHandler;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.LinkedList;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -97,10 +98,10 @@ public class AgentClient {
     }
 
     /**
-     * 发送数据
+     * 测试发送数据
      * @throws Exception
      */
-    public void sendData(Integer start, Integer end) throws Exception {
+    public void sendDataTest(Integer start, Integer end) throws Exception {
         if (channel == null || (!channel.isActive())){
             System.out.println("channel get error");
         }else {
@@ -120,5 +121,20 @@ public class AgentClient {
 //            System.out.println(agentClientHandler.atomicLong.get());
         }
 //        channel.closeFuture();
+    }
+    public void sendData(String param) {
+        if (channel == null || (!channel.isActive())){
+            System.out.println("channel get error");
+        }else {
+            MessageRequest messageRequest = new MessageRequest();
+            messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
+            messageRequest.setMethod("hash");
+            messageRequest.setParameterTypesString("Ljava/lang/String;");
+            messageRequest.setParameter(param);
+            channel.writeAndFlush(messageRequest);
+        }
+        for (;agentClientHandler.atomicLong.get() > 0;) {
+
+        }
     }
 }

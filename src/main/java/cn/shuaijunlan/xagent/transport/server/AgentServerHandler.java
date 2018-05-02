@@ -1,4 +1,4 @@
-package cn.shuaijunlan.xagent.transport;
+package cn.shuaijunlan.xagent.transport.server;
 
 import cn.shuaijunlan.xagent.dubbo.RpcClient;
 import cn.shuaijunlan.xagent.transport.support.MessageRequest;
@@ -19,18 +19,19 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageRequest messageRequest) throws Exception {
-//        if (!messageRequest.getMethod().equals(String.valueOf((i++)))){
-//            return;
-//        }
-//        System.out.println("server 接收数据"+ messageRequest.getMethod() + "::" + (i++)+":"+messageRequest.toString());
-        RpcClient rpcClient = new RpcClient();
-//        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
-//        System.out.println(new String((byte[]) result));
+
         MessageResponse messageResponse = new MessageResponse();
-//        messageResponse.setHash(JSON.parseObject((byte[]) result, Integer.class));
-        messageResponse.setHash(messageRequest.getParameter().hashCode());
+
+        //test
+//        messageResponse.setHash(messageRequest.getParameter().hashCode());
+
+        //get from rpc client
+        RpcClient rpcClient = new RpcClient();
+        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
+        messageResponse.setHash(JSON.parseObject((byte[]) result, Integer.class));
+
         channelHandlerContext.writeAndFlush(messageResponse);
-//        System.out.println("server 发送数据:" +messageResponse.toString());
+
     }
 
 }

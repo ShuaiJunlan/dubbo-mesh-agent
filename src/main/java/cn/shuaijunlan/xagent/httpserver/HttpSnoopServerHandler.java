@@ -1,5 +1,7 @@
 package cn.shuaijunlan.xagent.httpserver;
 
+import cn.shuaijunlan.xagent.transport.client.AgentClientHandler;
+import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -71,8 +73,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
             ByteBuf content = httpContent.content();
             if (content.isReadable()) {
-                String str = content.toString(CharsetUtil.UTF_8);
-                stringBuffer.append(str);
+//                String str = content.toString(CharsetUtil.UTF_8);
+                stringBuffer.append(content.toString(CharsetUtil.UTF_8));
             }
             if (msg instanceof LastHttpContent) {
 
@@ -88,16 +90,25 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                     buf.append("".hashCode());
                     entry = new Entry(ctx, buf.toString(), request, trailer);
                 }
-//                System.out.println(buf.toString());
-
-//                if (atomicLong.get() < 3){
+//                MessageResponse messageResponse = AgentClientHandler.messageResponseBlockingQueue.take();
+//                if (atomicLong.get() < 1){
 //                    queue.put(entry);
 //                    atomicLong.incrementAndGet();
+//                    System.out.println(atomicLong.get());
+//                }else {
+//                    System.out.println(atomicLong.get());
+//                    queue.put(entry);
+//                    while (!queue.isEmpty()){
+//
+//                        Entry entry1 = queue.take();
+//                        writeResponse(entry1.getContent(), entry1.getContext(), entry1.getParameter(), entry1.getRequest());
+////                        writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
+//                    }
 //                }
+//                queue.put(entry);
 //                Entry entry1 = queue.take();
-//                writeResponse(entry1.getContent(), entry1.getContext(), entry1.getParameter(), entry1.getRequest());
+                System.out.println(ctx);
                 writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
-//                writeResponse(trailer, ctx, buf.toString(), request);
             }
         }
     }
