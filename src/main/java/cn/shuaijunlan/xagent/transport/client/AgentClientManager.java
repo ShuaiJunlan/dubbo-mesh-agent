@@ -12,22 +12,29 @@ public class AgentClientManager {
 
     private static LinkedList<AgentClient> agentClients = new LinkedList<>();
 
+    private static Object object = new Object();
+
     /**
      * 获取连接实例
      * @return
      */
     public synchronized static AgentClient getAgentClientInstance(){
-        if (agentClients.isEmpty()){
-            add();
+        synchronized (object){
+            if (agentClients.isEmpty()){
+                add();
+            }
         }
+
         return agentClients.pop();
     }
-    public synchronized static void putOne(AgentClient client){
-        agentClients.add(client);
+    public static void putOne(AgentClient client){
+        synchronized (object){
+            agentClients.add(client);
+        }
     }
 
     private static void add(){
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < 256; i++){
             AgentClient client = new AgentClient("127.0.0.1", 1234);
             client.start();
             agentClients.add(client);
