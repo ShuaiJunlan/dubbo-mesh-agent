@@ -33,9 +33,6 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
     public AgentClientHandler(Object lock) {
         this.lock = lock;
     }
-    public void setLength(Integer length){
-        atomicLong = new AtomicLong(length);
-    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
