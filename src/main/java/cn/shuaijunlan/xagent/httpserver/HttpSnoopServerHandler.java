@@ -2,6 +2,7 @@ package cn.shuaijunlan.xagent.httpserver;
 
 import cn.shuaijunlan.xagent.testnum.Test;
 import cn.shuaijunlan.xagent.transport.client.AgentClient;
+import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -35,8 +36,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private AgentClient client;
 
     public HttpSnoopServerHandler(){
-        client = new AgentClient("127.0.0.1", 1234);
-        client.start();
+//        client = new AgentClient("127.0.0.1", 1234);
+//        client.start();
     }
 
     @Override
@@ -71,13 +72,9 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-//                AgentClient client = AgentClientManager.getAgentClientInstance();
+                client = AgentClientManager.getAgentClientInstance();
                 Integer integer = client.sendData(str);
-//                AgentClientManager.putOne(client);
-                Test.agentClients.add(client);
-                Test.channelHandlerContexts.add(ctx);
-                System.out.println("Test.agentClients:" + Test.agentClients.size());
-                System.out.println("Test.channelHandlerContexts:" + Test.channelHandlerContexts.size());
+                AgentClientManager.putOne(client);
                 writeResponse(trailer, ctx, integer.toString(), request);
 
             }
