@@ -3,6 +3,7 @@ package cn.shuaijunlan.xagent.httpserver;
 import cn.shuaijunlan.xagent.dubbo.RpcClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientHandler;
+import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -48,8 +49,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private AgentClient client;
 
     public HttpSnoopServerHandler(){
-        client = new AgentClient("127.0.0.1", 1234);
-        client.start();
+//        client = new AgentClient("127.0.0.1", 1234);
+//        client.start();
     }
 
     @Override
@@ -80,13 +81,11 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
                 //执行远程调用
                 String[] tmp = stringBuffer.toString().split("&parameter=");
-                String str ;
+                String str = "";
                 if (tmp.length > 1){
                     str = tmp[1];
-                }else {
-                    str = "";
                 }
-                Integer integer = client.sendData(str);
+                Integer integer = AgentClientManager.getAgentClientInstance().sendData(str);
 
                 writeResponse(trailer, ctx, integer.toString(), request);
             }
