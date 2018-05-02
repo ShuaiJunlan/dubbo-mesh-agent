@@ -29,11 +29,9 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
     public AgentClientHandler(LinkedList<MessageResponse> messageResponses, Long length) {
         this.arrayList = messageResponses;
-//        this.atomicLong = new AtomicLong(length);
     }
     public AgentClientHandler(Object lock) {
         this.lock = lock;
-//        this.atomicLong = new AtomicLong(length);
     }
     public void setLength(Integer length){
         atomicLong = new AtomicLong(length);
@@ -43,11 +41,7 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
 
         synchronized (lock){
-            messageResponseBlockingQueue.put(messageResponse);
-            responseLinkedList.push(messageResponse);
             value = messageResponse.getHash();
-//            arrayList.add(messageResponse);
-//        atomicLong.decrementAndGet();
             lock.notify();
         }
 

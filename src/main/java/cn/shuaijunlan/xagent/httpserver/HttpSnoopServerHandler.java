@@ -48,8 +48,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private AgentClient client;
 
     public HttpSnoopServerHandler(){
-        LinkedList<MessageResponse> messageResponses = new LinkedList<>();
-        Long length  = 1L;
         client = new AgentClient("127.0.0.1", 1234);
         client.start();
     }
@@ -62,7 +60,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof HttpRequest) {
-//            client.setLength(1);
             stringBuffer.setLength(0);
             HttpRequest request = this.request = (HttpRequest) msg;
 

@@ -141,7 +141,6 @@ public class AgentClient {
                 e.printStackTrace();
             }
         }
-//        return AgentClientHandler.responseLinkedList.pop().getHash();
         return agentClientHandler.value;
     }
 }
