@@ -16,29 +16,34 @@ public final class HttpSnoopServer {
     static final int PORT = 20000;
 
     public static void main(String[] args) throws Exception {
-        // Configure the server.
-        EventLoopGroup bossGroup = new NioEventLoopGroup(4);
-        EventLoopGroup workerGroup = new NioEventLoopGroup(4);
-        try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
+        String type = System.getProperty("agent.type");
+        if (type.equals("client")){
+            // Configure the server.
+            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+            EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+            try {
+                ServerBootstrap b = new ServerBootstrap();
+                b.group(bossGroup, workerGroup)
+                        .channel(NioServerSocketChannel.class)
 //                    .handler(new LoggingHandler(LogLevel.ERROR))
-                    .childHandler(new HttpSnoopServerInitializer());
+                        .childHandler(new HttpSnoopServerInitializer());
 
-            Channel ch = b.bind(PORT).sync().channel();
+                Channel ch = b.bind(PORT).sync().channel();
 
-            System.err.println("Open your web browser and navigate to " +
-                     "http" + "://127.0.0.1:" + PORT + '/');
+                System.err.println("Open your web browser and navigate to " +
+                        "http" + "://127.0.0.1:" + PORT + '/');
 
+                ch.closeFuture().sync();
+            } finally {
+                bossGroup.shutdownGracefully();
+                workerGroup.shutdownGracefully();
+            }
+        }else if (type.equals("server")){
             //start agent server
+            int port = Integer.valueOf(System.getProperty("agent.port"));
             AgentServer server = new AgentServer();
-            server.start(1234);
-
-            ch.closeFuture().sync();
-        } finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
+            server.start(port);
         }
+
     }
 }

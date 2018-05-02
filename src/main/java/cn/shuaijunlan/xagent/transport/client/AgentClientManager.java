@@ -34,8 +34,18 @@ public class AgentClientManager {
     }
 
     private static void add(){
-        for (int i = 0; i < 256; i++){
+        for (int i = 0; i < 80; i++){
             AgentClient client = new AgentClient("127.0.0.1", 1234);
+            client.start();
+            agentClients.add(client);
+        }
+        for (int i = 0; i < 80; i++){
+            AgentClient client = new AgentClient("127.0.0.1", 1235);
+            client.start();
+            agentClients.add(client);
+        }
+        for (int i = 0; i < 80; i++){
+            AgentClient client = new AgentClient("127.0.0.1", 1236);
             client.start();
             agentClients.add(client);
         }
