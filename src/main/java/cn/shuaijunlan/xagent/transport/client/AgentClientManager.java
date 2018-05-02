@@ -20,7 +20,7 @@ public class AgentClientManager {
         if (agentClients.isEmpty()){
             add();
         }
-        return agentClients.pop();
+        return agentClients.peek();
     }
     private static void add(){
         AgentClient client = new AgentClient("127.0.0.1", 1234);
