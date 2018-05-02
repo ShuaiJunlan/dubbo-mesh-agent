@@ -25,7 +25,6 @@ hs_err_pid*
 # IDEA develoment enviroment
 .idea/
 *.iml
-/src/
 target/
 PLANS.md
 mvnw
