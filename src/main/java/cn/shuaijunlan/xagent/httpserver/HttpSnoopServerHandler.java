@@ -1,5 +1,7 @@
 package cn.shuaijunlan.xagent.httpserver;
 
+import cn.shuaijunlan.xagent.dubbo.RpcClient;
+import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientHandler;
 import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import io.netty.buffer.ByteBuf;
@@ -22,6 +24,7 @@ import io.netty.handler.codec.http.cookie.ServerCookieEncoder;
 import io.netty.util.CharsetUtil;
 
 
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingDeque;
@@ -83,10 +86,13 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 //执行远程调用
                 String[] tmp = stringBuffer.toString().split("&parameter=");
                 Entry entry;
+                String str ;
                 if (tmp.length > 1){
+                    str = tmp[1];
                     buf.append(tmp[1].hashCode());
                     entry = new Entry(ctx, buf.toString(), request, trailer);
                 }else {
+                    str = "";
                     buf.append("".hashCode());
                     entry = new Entry(ctx, buf.toString(), request, trailer);
                 }
@@ -107,8 +113,13 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 //                }
 //                queue.put(entry);
 //                Entry entry1 = queue.take();
-                System.out.println(ctx);
-                writeResponse(entry.getContent(), entry.getContext(), entry.getParameter(), entry.getRequest());
+                //from agent
+                LinkedList<MessageResponse> messageResponses = new LinkedList<>();
+                Long length  = 1L;
+                AgentClient client = new AgentClient("127.0.0.1", 1234, messageResponses, length);
+                client.start();
+                Integer integer = client.sendData(str);
+                writeResponse(entry.getContent(), entry.getContext(), integer+"", entry.getRequest());
             }
         }
     }

@@ -101,7 +101,7 @@ public class AgentClient {
      * 测试发送数据
      * @throws Exception
      */
-    public void sendDataTest(Integer start, Integer end) throws Exception {
+    public void sendDataTest(Integer start, Integer end) {
         if (channel == null || (!channel.isActive())){
             System.out.println("channel get error");
         }else {
@@ -122,7 +122,7 @@ public class AgentClient {
         }
 //        channel.closeFuture();
     }
-    public void sendData(String param) {
+    public Integer sendData(String param) {
         if (channel == null || (!channel.isActive())){
             System.out.println("channel get error");
         }else {
@@ -136,5 +136,6 @@ public class AgentClient {
         for (;agentClientHandler.atomicLong.get() > 0;) {
 
         }
+        return AgentClientHandler.responseLinkedList.pop().getHash();
     }
 }

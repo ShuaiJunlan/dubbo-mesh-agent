@@ -17,6 +17,7 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
     public AtomicLong atomicLong ;
     public LinkedList<MessageResponse> arrayList;
+    public static LinkedList<MessageResponse> responseLinkedList = new LinkedList<>();
     public static BlockingQueue<MessageResponse> messageResponseBlockingQueue = new LinkedBlockingDeque<>();
     public AgentClientHandler() {
     }
@@ -29,6 +30,7 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
         messageResponseBlockingQueue.put(messageResponse);
+        responseLinkedList.push(messageResponse);
         arrayList.add(messageResponse);
         atomicLong.decrementAndGet();
         System.out.println(arrayList.size() + "::" + messageResponse.getHash());

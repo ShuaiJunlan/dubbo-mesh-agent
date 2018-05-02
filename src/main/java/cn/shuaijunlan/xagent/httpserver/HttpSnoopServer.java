@@ -1,5 +1,6 @@
 package cn.shuaijunlan.xagent.httpserver;
 
+import cn.shuaijunlan.xagent.transport.server.AgentServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -37,10 +38,16 @@ public final class HttpSnoopServer {
             System.err.println("Open your web browser and navigate to " +
                      "http" + "://127.0.0.1:" + PORT + '/');
 
+            //start agent server
+            AgentServer server = new AgentServer();
+            server.start(1234);
+
             ch.closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
+
+
     }
 }
