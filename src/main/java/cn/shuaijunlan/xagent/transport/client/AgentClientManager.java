@@ -20,12 +20,18 @@ public class AgentClientManager {
         if (agentClients.isEmpty()){
             add();
         }
-        return agentClients.peek();
+        return agentClients.pop();
     }
-    private static void add(){
-        AgentClient client = new AgentClient("127.0.0.1", 1234);
-        client.start();
+    public synchronized static void putOne(AgentClient client){
         agentClients.add(client);
+    }
+
+    private static void add(){
+        for (int i = 0; i < 100; i++){
+            AgentClient client = new AgentClient("127.0.0.1", 1234);
+            client.start();
+            agentClients.add(client);
+        }
     }
 
 }
