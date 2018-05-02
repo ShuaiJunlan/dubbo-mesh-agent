@@ -41,6 +41,7 @@ public final class HttpSnoopServer {
                     .childHandler(new HttpSnoopServerInitializer(sslCtx));
 
             Channel ch = b.bind(PORT).sync().channel();
+//            new HttpServerConsumer(HttpSnoopServerHandler.queue).start();
 
             System.err.println("Open your web browser and navigate to " +
                     (SSL? "https" : "http") + "://127.0.0.1:" + PORT + '/');

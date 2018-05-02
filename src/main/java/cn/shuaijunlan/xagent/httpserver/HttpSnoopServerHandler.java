@@ -21,6 +21,11 @@ import io.netty.util.CharsetUtil;
 
 
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.*;
 import static io.netty.handler.codec.http.HttpVersion.*;
@@ -35,6 +40,16 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     /** Buffer that stores the response content */
     private final StringBuilder buf = new StringBuilder();
     StringBuffer stringBuffer = new StringBuffer();
+
+    /**
+     * 生产者，消费者模型
+     */
+    ConcurrentHashMap<ChannelHandlerContext, StringBuilder> concurrentHashMapConsumer = new ConcurrentHashMap();
+    ConcurrentHashMap<ChannelHandlerContext, String> concurrentHashMapProvider = new ConcurrentHashMap();
+
+    public static BlockingQueue<Entry> queue = new ArrayBlockingQueue<>(20);
+
+    AtomicLong atomicLong = new AtomicLong(0);
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
@@ -61,33 +76,34 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 String str = content.toString(CharsetUtil.UTF_8);
                 stringBuffer.append(str);
             }
-
             if (msg instanceof LastHttpContent) {
-                String[] tmp = stringBuffer.toString().split("&parameter=");
-                if (tmp.length > 1){
-                    buf.append(tmp[1].hashCode());
-                }else {
-                    buf.append("".hashCode());
-                }
 
                 LastHttpContent trailer = (LastHttpContent) msg;
 
-                if (!writeResponse(trailer, ctx)) {
-                    // If keep-alive is off, close the connection once the content is fully written.
-                    ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+                //执行远程调用
+                String[] tmp = stringBuffer.toString().split("&parameter=");
+                Entry entry;
+                if (tmp.length > 1){
+                    entry = new Entry(ctx, tmp[1], request, trailer);
+                    buf.append(tmp[1].hashCode());
+                }else {
+                    entry = new Entry(ctx, "", request, trailer);
+                    buf.append("".hashCode());
                 }
+//                queue.add(entry);
+
+                writeResponse(trailer, ctx, buf.toString(), request);
             }
         }
     }
 
-
-    private boolean writeResponse(HttpObject currentObj, ChannelHandlerContext ctx) {
+    public static void writeResponse(HttpObject currentObj, ChannelHandlerContext ctx, String msg, HttpRequest request) {
         // Decide whether to close the connection or not.
         boolean keepAlive = HttpUtil.isKeepAlive(request);
         // Build the response object.
         FullHttpResponse response = new DefaultFullHttpResponse(
                 HTTP_1_1, currentObj.decoderResult().isSuccess()? OK : BAD_REQUEST,
-                Unpooled.copiedBuffer(buf.toString(), CharsetUtil.UTF_8));
+                Unpooled.copiedBuffer(msg, CharsetUtil.UTF_8));
 
         response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
 
@@ -98,27 +114,12 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
             // - http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01.html#Connection
             response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
         }
-
-        // Encode the cookie.
-        String cookieString = request.headers().get(HttpHeaderNames.COOKIE);
-        if (cookieString != null) {
-            Set<Cookie> cookies = ServerCookieDecoder.STRICT.decode(cookieString);
-            if (!cookies.isEmpty()) {
-                // Reset the cookies if necessary.
-                for (Cookie cookie: cookies) {
-                    response.headers().add(HttpHeaderNames.SET_COOKIE, ServerCookieEncoder.STRICT.encode(cookie));
-                }
-            }
-        } else {
-            // Browser sent no cookie.  Add some.
-            response.headers().add(HttpHeaderNames.SET_COOKIE, ServerCookieEncoder.STRICT.encode("key1", "value1"));
-            response.headers().add(HttpHeaderNames.SET_COOKIE, ServerCookieEncoder.STRICT.encode("key2", "value2"));
-        }
-
         // Write the response.
         ctx.write(response);
 
-        return keepAlive;
+        if (!keepAlive){
+            ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+        }
     }
 
     private static void send100Continue(ChannelHandlerContext ctx) {
@@ -130,5 +131,34 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
+    }
+
+    public class Entry {
+        private ChannelHandlerContext context;
+        private String parameter;
+        private HttpRequest request;
+        private LastHttpContent content;
+        public Entry(ChannelHandlerContext context, String parameter, HttpRequest request, LastHttpContent content){
+            this.context = context;
+            this.parameter = parameter;
+            this.request = request;
+            this.content = content;
+        }
+
+        public ChannelHandlerContext getContext() {
+            return context;
+        }
+
+        public String getParameter() {
+            return parameter;
+        }
+
+        public HttpRequest getRequest() {
+            return request;
+        }
+
+        public LastHttpContent getContent() {
+            return content;
+        }
     }
 }
