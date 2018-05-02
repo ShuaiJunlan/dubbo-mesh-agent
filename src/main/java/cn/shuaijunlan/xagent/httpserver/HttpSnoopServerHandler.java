@@ -1,6 +1,7 @@
 package cn.shuaijunlan.xagent.httpserver;
 
 import cn.shuaijunlan.xagent.dubbo.RpcClient;
+import cn.shuaijunlan.xagent.test.Test;
 import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientHandler;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
@@ -49,8 +50,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private AgentClient client;
 
     public HttpSnoopServerHandler(){
-//        client = new AgentClient("127.0.0.1", 1234);
-//        client.start();
+        client = new AgentClient("127.0.0.1", 1234);
+        client.start();
     }
 
     @Override
@@ -85,10 +86,14 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-                AgentClient client = AgentClientManager.getAgentClientInstance();
+//                AgentClient client = AgentClientManager.getAgentClientInstance();
                 Integer integer = client.sendData(str);
-                AgentClientManager.putOne(client);
+//                AgentClientManager.putOne(client);
                 writeResponse(trailer, ctx, integer.toString(), request);
+                Test.agentClients.add(client);
+                Test.channelHandlerContexts.add(ctx);
+                System.out.println("Test.agentClients:" + Test.agentClients.size());
+                System.out.println("Test.channelHandlerContexts:" + Test.channelHandlerContexts.size());
             }
         }
     }
