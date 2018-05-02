@@ -89,12 +89,12 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 String str ;
                 if (tmp.length > 1){
                     str = tmp[1];
-                    buf.append(tmp[1].hashCode());
-                    entry = new Entry(ctx, buf.toString(), request, trailer);
+//                    buf.append(tmp[1].hashCode());
+//                    entry = new Entry(ctx, buf.toString(), request, trailer);
                 }else {
                     str = "";
-                    buf.append("".hashCode());
-                    entry = new Entry(ctx, buf.toString(), request, trailer);
+//                    buf.append("".hashCode());
+//                    entry = new Entry(ctx, buf.toString(), request, trailer);
                 }
 //                MessageResponse messageResponse = AgentClientHandler.messageResponseBlockingQueue.take();
 //                if (atomicLong.get() < 1){
@@ -118,7 +118,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 client.start();
                 Integer integer = client.sendData(str);
 
-                writeResponse(entry.getContent(), entry.getContext(), integer+"", entry.getRequest());
+                writeResponse(trailer, ctx, integer.toString(), request);
+//                writeResponse(entry.getContent(), entry.getContext(), integer.toString(), entry.getRequest());
             }
         }
     }
