@@ -27,6 +27,6 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
         arrayList.add(messageResponse);
         atomicLong.decrementAndGet();
-//        System.out.println(arrayList.size() + "::" + messageResponse.getHash());
+        System.out.println(arrayList.size() + "::" + messageResponse.getHash());
     }
 }

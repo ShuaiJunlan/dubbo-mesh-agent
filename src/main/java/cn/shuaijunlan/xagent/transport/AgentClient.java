@@ -107,7 +107,7 @@ public class AgentClient {
             for (; start < end; start++) {
                 MessageRequest messageRequest = new MessageRequest();
                 messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
-                messageRequest.setMethod("" + start);
+                messageRequest.setMethod("hash");
                 messageRequest.setParameterTypesString("Ljava/lang/String;");
                 messageRequest.setParameter(RandomStringUtils.randomAlphanumeric(10));
                 channel.writeAndFlush(messageRequest);

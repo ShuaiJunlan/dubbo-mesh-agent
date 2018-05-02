@@ -1,5 +1,6 @@
 package cn.shuaijunlan.xagent.dubbo;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,8 +15,10 @@ public class RpcClientTest {
     public void invoke() throws Exception {
         RpcClient rpcClient = new RpcClient();
         Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;","weqweqw");
-        System.out.println(new String((byte[]) result));
         System.out.println("weqweqw".hashCode());
+        Integer a = JSON.parseObject((byte[]) result, Integer.class);
+        System.out.println(a);
+//        System.out.println(Integer.valueOf(new String((byte[]) result).replaceAll("(\0|\\s*|\r|\n)", "")));
 //        return (byte[]) result;
     }
 }

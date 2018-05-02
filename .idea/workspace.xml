@@ -2,46 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50fb9ed8-3e5a-4fd0-bc28-d4be94bb3287" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/ConnecManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/DubboRpcDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/DubboRpcEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/RpcClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/RpcClientHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/RpcClientInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/Bytes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/JsonUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/RpcFuture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/RpcInvocation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/RpcRequestHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/RpcResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/Endpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/EtcdRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/IRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/IpHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentClient$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentServerHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/AgentServerHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/ClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/ServerHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/ServerHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/support/MessageRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/support/MessageRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/support/MessageResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/shuaijunlan/xagent/transport/support/MessageResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/cn/shuaijunlan/xagent/transport/AgentClientTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/cn/shuaijunlan/xagent/transport/AgentClientTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AgentClientTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AgentClientTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+            <state relative-caret-position="4">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,11 +44,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConnecManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/ConnecManager.java">
+      <file leaf-file-name="AgentServerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentServerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+            <state relative-caret-position="86">
+              <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgentClientHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpSnoopServerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,46 +74,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DubboRpcEncoder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/DubboRpcEncoder.java">
+      <file leaf-file-name="AgentClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-75">
+              <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RpcClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/RpcClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#541#542#0" expanded="true" />
-                <element signature="e#598#599#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RpcClientTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="16" column="56" lean-forward="true" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JsonUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/JsonUtils.java">
+      <file leaf-file-name="AgentServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+              <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+              <folding>
+                <element signature="e#1282#1933#0" expanded="true" />
+                <element signature="e#1932#1933#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgentServerHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="29" column="80" selection-start-line="29" selection-start-column="80" selection-end-line="29" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,44 +108,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RpcClientHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/RpcClientHandler.java">
+      <file leaf-file-name="RpcClientTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="269">
+              <caret line="18" column="68" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="HttpServerBootstrapTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IpHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/IpHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DubboRpcDecoder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/DubboRpcDecoder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="418">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -242,12 +188,8 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java" />
         <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/MessageResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/RpcFuture.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/DubboRpcDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/IRegistry.java" />
@@ -257,7 +199,11 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/RpcClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/ConnecManager.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java" />
       </list>
     </option>
   </component>
@@ -370,7 +316,46 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="httpserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
               <item name="registry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="X-Agent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xagent" type="462c0819:PsiDirectoryNode" />
+              <item name="transport" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
+              <item name="kryo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="X-Agent" type="b2602c69:ProjectViewProjectNode" />
@@ -486,20 +471,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RpcClientTest.invoke">
-    <configuration name="HttpSnoopServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.httpserver.HttpSnoopServer" />
-      <module name="X-Agent" />
+  <component name="RunManager" selected="JUnit.AgentClientTest.start">
+    <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="AgentClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="X-Agent" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.shuaijunlan.xagent.httpserver.*" />
+          <option name="PATTERN" value="cn.shuaijunlan.xagent.transport.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.shuaijunlan.xagent.transport" />
+      <option name="MAIN_CLASS_NAME" value="cn.shuaijunlan.xagent.transport.AgentClientTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="AgentClientTest.ss" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="X-Agent" />
@@ -632,19 +629,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.HttpSnoopServer" />
       <item itemvalue="JUnit.AgentServerTest.start" />
       <item itemvalue="JUnit.AgentClientTest.start" />
       <item itemvalue="JUnit.AgentClientTest.ss" />
       <item itemvalue="JUnit.RpcClientTest.invoke" />
+      <item itemvalue="JUnit.AgentClientTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RpcClientTest.invoke" />
         <item itemvalue="JUnit.AgentClientTest.start" />
         <item itemvalue="JUnit.AgentServerTest.start" />
+        <item itemvalue="JUnit.AgentClientTest" />
+        <item itemvalue="JUnit.RpcClientTest.invoke" />
         <item itemvalue="JUnit.AgentClientTest.ss" />
-        <item itemvalue="Application.HttpSnoopServer" />
       </list>
     </recent_temporary>
   </component>
@@ -669,44 +666,44 @@
       <workItem from="1525000633538" duration="674000" />
       <workItem from="1525079168095" duration="9577000" />
       <workItem from="1525094030350" duration="3038000" />
-      <workItem from="1525145202044" duration="28642000" />
+      <workItem from="1525145202044" duration="31341000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 22m 46s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 23m 00s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 23m 26s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 23m 37s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 26m 14s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 26m 36s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AgentClientTest_start - 2018.05.01 at 20h 26m 45s.xml">
-      <configuration name="AgentClientTest.start" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 16m 42s.xml">
+    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 42m 37s.xml">
       <configuration name="RpcClientTest.invoke" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 19m 27s.xml">
+    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 43m 05s.xml">
       <configuration name="RpcClientTest.invoke" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 23m 59s.xml">
+    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 46m 27s.xml">
       <configuration name="RpcClientTest.invoke" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AgentClientTest_start - 2018.05.01 at 21h 49m 01s.xml">
+      <configuration name="AgentClientTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 52m 24s.xml">
+      <configuration name="RpcClientTest.invoke" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 56m 42s.xml">
+      <configuration name="RpcClientTest.invoke" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RpcClientTest_invoke - 2018.05.01 at 21h 57m 18s.xml">
+      <configuration name="RpcClientTest.invoke" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AgentClientTest - 2018.05.01 at 22h 01m 00s.xml">
+      <configuration name="AgentClientTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AgentServerTest_start - 2018.05.01 at 22h 01m 29s.xml">
+      <configuration name="AgentServerTest.start" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AgentClientTest_start - 2018.05.01 at 22h 03m 52s.xml">
+      <configuration name="AgentClientTest.start" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66655000" />
+    <option name="totallyTimeSpent" value="69354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -721,7 +718,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.13388805" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36198348" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.9966942" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.14710744" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -776,7 +773,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java</url>
-          <line>16</line>
+          <line>20</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
@@ -871,16 +868,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/Server.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="948">
@@ -913,16 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoPoolFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -938,18 +915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1467#1468#0" expanded="true" />
-            <element signature="e#1494#1495#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -975,24 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentServerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-          <folding>
-            <element signature="e#1282#1933#0" expanded="true" />
-            <element signature="e#1932#1933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/support/kryo/KryoDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1007,13 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.12.Final/netty-all-4.1.12.Final-sources.jar!/io/netty/channel/ChannelFuture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -1025,16 +965,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="266" column="49" selection-start-line="266" selection-start-column="49" selection-end-line="266" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1064,24 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="30" selection-start-line="30" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="111" column="27" selection-start-line="111" selection-start-column="27" selection-end-line="111" selection-end-column="27" />
-          <folding>
-            <element signature="e#1547#2191#0" expanded="true" />
-            <element signature="e#2190#2191#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/dubbo/model/RpcResponse.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1101,23 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/Endpoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/EtcdRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1204,10 +1099,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/EtcdRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
-          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/registry/Endpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpServerInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/httpserver/HttpSnoopServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+          <folding>
+            <element signature="e#1282#1933#0" expanded="true" />
+            <element signature="e#1932#1933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/http/HttpServerBootstrapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="29" column="80" selection-start-line="29" selection-start-column="80" selection-end-line="29" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1216,8 +1183,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/dubbo/RpcClientTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="16" column="56" lean-forward="true" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        <state relative-caret-position="269">
+          <caret line="18" column="68" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/shuaijunlan/xagent/transport/AgentClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-75">
+          <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentServerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/shuaijunlan/xagent/transport/AgentClientTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

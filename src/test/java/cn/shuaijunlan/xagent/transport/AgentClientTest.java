@@ -15,10 +15,10 @@ public class AgentClientTest {
     public void start() throws Exception {
 //        for (int i = 0; i < 10; i++){
             LinkedList<MessageResponse> messageResponses = new LinkedList<>();
-            Long length  = 100000L;
+            Long length  = 1000L;
             AgentClient client = new AgentClient("127.0.0.1", 1234, messageResponses, length);
             client.start();
-            client.sendData(0,100000);
+            client.sendData(0,1000);
 //        }
 
     }
