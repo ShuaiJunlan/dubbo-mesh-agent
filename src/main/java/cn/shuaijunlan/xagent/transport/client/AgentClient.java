@@ -41,6 +41,10 @@ public class AgentClient {
         agentClientHandler = new AgentClientHandler(linkedList, this.length);
     }
 
+    public void setLength(Integer length){
+        agentClientHandler.setLength(length);
+    }
+
     public void start() {
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
         try {

@@ -46,12 +46,12 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     private final StringBuilder buf = new StringBuilder();
     StringBuffer stringBuffer = new StringBuffer();
 
-
-    public static BlockingQueue<Entry> queue = new ArrayBlockingQueue<>(20);
-
-    AtomicLong atomicLong = new AtomicLong(0);
+    AgentClient client;
 
     public HttpSnoopServerHandler(){
+        LinkedList<MessageResponse> messageResponses = new LinkedList<>();
+        Long length  = 1L;
+        client = new AgentClient("127.0.0.1", 1234, messageResponses, length);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws InterruptedException {
-
         if (msg instanceof HttpRequest) {
+            client.setLength(1);
             buf.setLength(0);
             stringBuffer.setLength(0);
             HttpRequest request = this.request = (HttpRequest) msg;
@@ -114,11 +114,10 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 //                queue.put(entry);
 //                Entry entry1 = queue.take();
                 //from agent
-                LinkedList<MessageResponse> messageResponses = new LinkedList<>();
-                Long length  = 1L;
-                AgentClient client = new AgentClient("127.0.0.1", 1234, messageResponses, length);
+
                 client.start();
                 Integer integer = client.sendData(str);
+
                 writeResponse(entry.getContent(), entry.getContext(), integer+"", entry.getRequest());
             }
         }

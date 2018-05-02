@@ -24,7 +24,10 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
     public AgentClientHandler(LinkedList<MessageResponse> messageResponses, Long length) {
         this.arrayList = messageResponses;
-        this.atomicLong = new AtomicLong(length);
+//        this.atomicLong = new AtomicLong(length);
+    }
+    public void setLength(Integer length){
+        atomicLong = new AtomicLong(length);
     }
 
     @Override
@@ -33,6 +36,5 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
         responseLinkedList.push(messageResponse);
         arrayList.add(messageResponse);
         atomicLong.decrementAndGet();
-        System.out.println(arrayList.size() + "::" + messageResponse.getHash());
     }
 }
