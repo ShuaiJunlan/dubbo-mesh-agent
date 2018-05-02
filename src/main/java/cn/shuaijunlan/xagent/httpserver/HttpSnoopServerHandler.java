@@ -62,7 +62,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof HttpRequest) {
-            client.setLength(1);
+//            client.setLength(1);
             stringBuffer.setLength(0);
             HttpRequest request = this.request = (HttpRequest) msg;
 
