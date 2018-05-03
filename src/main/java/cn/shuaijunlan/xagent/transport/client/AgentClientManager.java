@@ -30,10 +30,11 @@ public class AgentClientManager {
                 add();
             }
         }
+        AgentClient client = agentClients.pop();
         if (logger.isInfoEnabled()){
             logger.info("Execute getAgentClientInstance, AgentClientManager Size:{}", agentClients.size());
         }
-        return agentClients.pop();
+        return client;
     }
     public static void putOne(AgentClient client){
         synchronized (object){
