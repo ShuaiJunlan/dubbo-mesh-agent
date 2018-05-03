@@ -15,6 +15,7 @@ if [[ "$1" == "consumer" ]]; then
        -Dserver.port=20000\
        -Detcd.url=$ETCD_URL \
        -Dlogs.dir=/root/logs \
+       -Dagent.type=client \
        /root/dists/mesh-agent.jar
 elif [[ "$1" == "provider-small" ]]; then
   echo "Starting small provider agent..."
@@ -25,6 +26,8 @@ elif [[ "$1" == "provider-small" ]]; then
        -Dserver.port=30000\
        -Ddubbo.protocol.port=20889 \
        -Detcd.url=$ETCD_URL \
+       -Dagent.type=server \
+       -Dagent.port=1234 \
        -Dlogs.dir=/root/logs \
        /root/dists/mesh-agent.jar
 elif [[ "$1" == "provider-medium" ]]; then
@@ -36,6 +39,8 @@ elif [[ "$1" == "provider-medium" ]]; then
        -Dserver.port=30001\
        -Ddubbo.protocol.port=20890 \
        -Detcd.url=$ETCD_URL \
+       -Dagent.type=server \
+       -Dagent.port=1235 \
        -Dlogs.dir=/root/logs \
        /root/dists/mesh-agent.jar
 elif [[ "$1" == "provider-large" ]]; then
@@ -47,6 +52,8 @@ elif [[ "$1" == "provider-large" ]]; then
        -Dserver.port=30002\
        -Ddubbo.protocol.port=20891 \
        -Detcd.url=$ETCD_URL \
+       -Dagent.type=server \
+       -Dagent.port=1236 \
        -Dlogs.dir=/root/logs \
        /root/dists/mesh-agent.jar
 else
