@@ -25,16 +25,18 @@ public class AgentClientManager {
      * @return
      */
     public static AgentClient getAgentClientInstance(){
+        AgentClient agentClient;
         synchronized (object){
             if (agentClients.isEmpty()){
                 add();
             }
+            agentClient = agentClients.pop();
+            agentClients.add(agentClient);
         }
-        AgentClient client = agentClients.pop();
         if (logger.isInfoEnabled()){
             logger.info("Execute getAgentClientInstance, AgentClientManager Size:{}", agentClients.size());
         }
-        return client;
+        return agentClient;
     }
     public static void putOne(AgentClient client){
         synchronized (object){
