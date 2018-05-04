@@ -106,6 +106,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.1</version>
                 <configuration>
                     <outputDirectory>${project.build.directory}/lib</outputDirectory>
                     <excludeTransitive>false</excludeTransitive> <!-- 表示是否不包含间接依赖的包 -->
@@ -143,6 +144,8 @@
                     </archive>
                 </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 
