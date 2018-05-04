@@ -24,7 +24,7 @@ import java.util.LinkedList;
  * @date Created on 21:48 2018/4/28.
  */
 public class AgentClient {
-    private NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
+    private NioEventLoopGroup workGroup = new NioEventLoopGroup();
     private Channel channel;
     private Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;
@@ -52,7 +52,7 @@ public class AgentClient {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline p = socketChannel.pipeline();
-                            p.addLast(new IdleStateHandler(1, 1, 5));
+//                            p.addLast(new IdleStateHandler(1, 1, 5));
 ///                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
                             p.addLast(new KryoEncoder(util));
                             p.addLast(new KryoDecoder(util));
@@ -76,7 +76,7 @@ public class AgentClient {
         channel = bootstrap.connect(host, port).sync().channel();
     }
 
-    
+
     public Integer sendData(String param) {
         synchronized (lock){
             if (channel == null || (!channel.isActive())){
