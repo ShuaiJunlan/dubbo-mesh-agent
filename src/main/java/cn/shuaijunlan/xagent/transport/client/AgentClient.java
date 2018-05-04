@@ -73,51 +73,10 @@ public class AgentClient {
         if (channel != null && channel.isActive()) {
             return;
         }
-
-//        ChannelFuture future = bootstrap.connect(host, port).sync();
         channel = bootstrap.connect(host, port).sync().channel();
-
-//        future.addListener((ChannelFutureListener) futureListener -> {
-//            if (futureListener.isSuccess()) {
-//                channel = futureListener.channel();
-//                System.out.println("Connect to server successfully!");
-//            } else {
-//                System.out.println("Failed to connect to server, try connect after 2s");
-//
-//                futureListener.channel().eventLoop().schedule(() -> {
-//                    try {
-//                        doConnect(host, port);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }, 2, TimeUnit.SECONDS);
-//            }
-//        });
     }
 
-    /**
-     * 测试发送数据
-     * @throws Exception
-     */
-    public void sendDataTest(Integer start, Integer end) {
-        if (channel == null || (!channel.isActive())){
-            System.out.println("channel get error");
-        }else {
-            for (; start < end; start++) {
-                MessageRequest messageRequest = new MessageRequest();
-                messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
-                messageRequest.setMethod("hash");
-                messageRequest.setParameterTypesString("Ljava/lang/String;");
-                messageRequest.setParameter(RandomStringUtils.randomAlphanumeric(10));
-                channel.writeAndFlush(messageRequest);
-            }
-        }
-
-        for (;agentClientHandler.atomicLong.get() > 0;) {
-//            System.out.println(agentClientHandler.atomicLong.get());
-        }
-//        channel.closeFuture();
-    }
+    
     public Integer sendData(String param) {
         synchronized (lock){
             if (channel == null || (!channel.isActive())){
