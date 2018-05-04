@@ -19,8 +19,8 @@ public final class HttpSnoopServer {
         String type = System.getProperty("agent.type");
         if (type.equals("client")){
             // Configure the server.
-            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
-            EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+            EventLoopGroup bossGroup = new NioEventLoopGroup();
+            EventLoopGroup workerGroup = new NioEventLoopGroup();
             try {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)

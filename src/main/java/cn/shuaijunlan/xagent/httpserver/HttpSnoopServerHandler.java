@@ -5,6 +5,7 @@ import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -71,8 +72,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-                AgentClient client = AgentClientManager.getAgentClientInstance();
-                Integer integer = client.sendData(str);
+                Channel client = AgentClientManager.getAgentClientInstance();
+                Integer integer = AgentClientManager.agentClient.sendData(str, client);
                 writeResponse(trailer, ctx, integer.toString(), request);
 
             }
