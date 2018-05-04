@@ -28,13 +28,13 @@ public class AgentClientManager {
      */
     public static Channel getAgentClientInstance(){
         Channel channel;
-        synchronized (object){
-            if (channels.isEmpty()){
-                add();
-            }
+//        synchronized (object){
+//            if (channels.isEmpty()){
+//                add();
+//            }
             channel = channels.pop();
             channels.add(channel);
-        }
+//        }
         if (logger.isInfoEnabled()){
             logger.info("Execute getAgentClientInstance, channels Size:{}", channels.size());
         }

@@ -71,10 +71,16 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-                Channel client = AgentClientManager.getAgentClientInstance();
-                Integer integer = AgentClientManager.agentClient.sendData(str, client);
-                writeResponse(trailer, ctx, integer.toString(), request);
 
+                AgentClient agentClient = new AgentClient();
+                agentClient.init();
+                try {
+                    Channel channel = agentClient.doConnect("127.0.0.1", 1234);
+                    Integer integer = agentClient.sendData(str, channel);
+                    writeResponse(trailer, ctx, integer.toString(), request);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
