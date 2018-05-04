@@ -31,5 +31,5 @@ PLANS.md
 mvnw
 mvnw.cmd
 
-!target/lib
+!target/lib/
 
