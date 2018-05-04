@@ -53,7 +53,8 @@ public class AgentClientManager {
         for (int i = 0; i < 240; i++){
             Channel channel;
             try {
-                channel = agentClient.doConnect("127.0.0.1", 1234 + (i%3));
+//                channel = agentClient.doConnect("127.0.0.1", 1234 + (i%3));
+                channel = agentClient.doConnect("127.0.0.1", 1234);
                 if (channel == null){
                     continue;
                 }
