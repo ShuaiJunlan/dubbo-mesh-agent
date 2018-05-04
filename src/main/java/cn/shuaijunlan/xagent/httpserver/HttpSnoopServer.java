@@ -43,6 +43,5 @@ public final class HttpSnoopServer {
             AgentServer server = new AgentServer();
             server.start(port);
         }
-
     }
 }

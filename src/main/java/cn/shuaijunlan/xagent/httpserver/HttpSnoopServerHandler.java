@@ -36,8 +36,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
 
     public HttpSnoopServerHandler(){
-//        client = new AgentClient("127.0.0.1", 1234);
-//        client.start();
+
     }
 
     @Override
