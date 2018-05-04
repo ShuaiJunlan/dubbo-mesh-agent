@@ -34,9 +34,17 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     /** Buffer that stores the response content */
     StringBuffer stringBuffer = new StringBuffer();
 
+    AgentClient agentClient;
+    Channel channel;
 
     public HttpSnoopServerHandler(){
-
+        agentClient = new AgentClient();
+        agentClient.init();
+        try {
+            channel = agentClient.doConnect("127.0.0.1", 1234);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -72,15 +80,10 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                     str = tmp[1];
                 }
 
-                AgentClient agentClient = new AgentClient();
-                agentClient.init();
-                try {
-                    Channel channel = agentClient.doConnect("127.0.0.1", 1234);
-                    Integer integer = agentClient.sendData(str, channel);
-                    writeResponse(trailer, ctx, integer.toString(), request);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Integer integer = agentClient.sendData(str, channel);
+                writeResponse(trailer, ctx, integer.toString(), request);
+                Test.channelHandlerContexts.add(ctx);
+                System.out.println(Test.channelHandlerContexts.size());
             }
         }
     }
