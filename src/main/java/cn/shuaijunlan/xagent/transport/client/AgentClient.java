@@ -7,12 +7,17 @@ import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoPoolFactory;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.*;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.LinkedList;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -33,12 +38,8 @@ public class AgentClient {
         this.port = port;
         agentClientHandler = new AgentClientHandler(lock);
     }
-    public AgentClient(){
-        agentClientHandler = new AgentClientHandler(lock);
-    }
 
-
-    public void init() {
+    public void start() {
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
         try {
             bootstrap = new Bootstrap();
@@ -52,11 +53,13 @@ public class AgentClient {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline p = socketChannel.pipeline();
                             p.addLast(new IdleStateHandler(1, 1, 5));
+///                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
                             p.addLast(new KryoEncoder(util));
                             p.addLast(new KryoDecoder(util));
                             p.addLast(agentClientHandler);
                         }
                     });
+            doConnect(this.host, this.port);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -64,48 +67,58 @@ public class AgentClient {
     }
 
     /**
-     * 连接服务端
+     * 重连机制,每隔2s重新连接一次服务器
      */
-    public Channel doConnect() throws InterruptedException {
-        Channel channel = null;
-        ChannelFuture channelFuture = bootstrap.connect(this.host, this.port).sync();
-        if (channelFuture.isSuccess()){
-            channel = channelFuture.channel();
+    private void doConnect(String host, Integer port) throws InterruptedException {
+        if (channel != null && channel.isActive()) {
+            return;
         }
-        return channel;
+
+//        ChannelFuture future = bootstrap.connect(host, port).sync();
+        channel = bootstrap.connect(host, port).sync().channel();
+
+//        future.addListener((ChannelFutureListener) futureListener -> {
+//            if (futureListener.isSuccess()) {
+//                channel = futureListener.channel();
+//                System.out.println("Connect to server successfully!");
+//            } else {
+//                System.out.println("Failed to connect to server, try connect after 2s");
+//
+//                futureListener.channel().eventLoop().schedule(() -> {
+//                    try {
+//                        doConnect(host, port);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }, 2, TimeUnit.SECONDS);
+//            }
+//        });
     }
 
-    public Channel doConnect(String host, Integer port) throws InterruptedException {
-        Channel channel = null;
-        ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-        if (channelFuture.isSuccess()){
-            channel = channelFuture.channel();
-        }
-        return channel;
-    }
-
-    public Integer sendData(String param) {
-        synchronized (lock){
-            if (channel == null || (!channel.isActive())){
-                System.out.println("channel get error");
-            }else {
+    /**
+     * 测试发送数据
+     * @throws Exception
+     */
+    public void sendDataTest(Integer start, Integer end) {
+        if (channel == null || (!channel.isActive())){
+            System.out.println("channel get error");
+        }else {
+            for (; start < end; start++) {
                 MessageRequest messageRequest = new MessageRequest();
                 messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
                 messageRequest.setMethod("hash");
                 messageRequest.setParameterTypesString("Ljava/lang/String;");
-                messageRequest.setParameter(param);
+                messageRequest.setParameter(RandomStringUtils.randomAlphanumeric(10));
                 channel.writeAndFlush(messageRequest);
             }
-            try {
-                lock.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
-        return agentClientHandler.value;
-    }
 
-    public Integer sendData(String param, Channel channel) {
+        for (;agentClientHandler.atomicLong.get() > 0;) {
+//            System.out.println(agentClientHandler.atomicLong.get());
+        }
+//        channel.closeFuture();
+    }
+    public Integer sendData(String param) {
         synchronized (lock){
             if (channel == null || (!channel.isActive())){
                 System.out.println("channel get error");

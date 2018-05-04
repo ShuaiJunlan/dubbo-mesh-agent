@@ -1,7 +1,6 @@
 package cn.shuaijunlan.xagent.transport.client;
 
 import cn.shuaijunlan.xagent.transport.support.MessageResponse;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -16,7 +15,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 21:46 2018/4/28.
  */
-//@ChannelHandler.Sharable // ????
 public class AgentClientHandler extends SimpleChannelInboundHandler<MessageResponse> {
 
     public Object lock;

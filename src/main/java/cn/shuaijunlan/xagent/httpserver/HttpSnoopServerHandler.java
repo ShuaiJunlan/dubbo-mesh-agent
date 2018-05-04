@@ -5,7 +5,6 @@ import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -34,17 +33,10 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
     /** Buffer that stores the response content */
     StringBuffer stringBuffer = new StringBuffer();
 
-    AgentClient agentClient;
-    Channel channel;
 
     public HttpSnoopServerHandler(){
-        agentClient = new AgentClient();
-        agentClient.init();
-        try {
-            channel = agentClient.doConnect("127.0.0.1", 1234);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        client = new AgentClient("127.0.0.1", 1234);
+//        client.start();
     }
 
     @Override
@@ -79,11 +71,10 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-
-                Integer integer = agentClient.sendData(str, channel);
+                AgentClient client = AgentClientManager.getAgentClientInstance();
+                Integer integer = client.sendData(str);
                 writeResponse(trailer, ctx, integer.toString(), request);
-                Test.channelHandlerContexts.add(ctx);
-                System.out.println(Test.channelHandlerContexts.size());
+
             }
         }
     }
