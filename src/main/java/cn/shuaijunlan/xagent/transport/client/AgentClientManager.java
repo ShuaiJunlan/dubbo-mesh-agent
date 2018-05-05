@@ -51,14 +51,33 @@ public class AgentClientManager {
 //    }
 
     private static void add(){
-        for (int i = 0; i < 240; i++){
-            AgentClient client = new AgentClient("127.0.0.1", 1234 + (i%3));
-            client.start();
-            agentClients.put(i, client);
+        for (int i = 0; i < 80; i++){
+            AgentClient client1 = new AgentClient("127.0.0.1", 1234);
+            client1.start();
+            agentClients.put(i, client1);
+
+            AgentClient client2 = new AgentClient("127.0.0.1", 1235);
+            client2.start();
+            agentClients.put(i, client2);
+
+            AgentClient client3 = new AgentClient("127.0.0.1", 1235);
+            client3.start();
+            agentClients.put(i, client3);
+
+            AgentClient client4 = new AgentClient("127.0.0.1", 1236);
+            client4.start();
+            agentClients.put(i, client4);
+
+            AgentClient client5 = new AgentClient("127.0.0.1", 1236);
+            client5.start();
+            agentClients.put(i, client5);
+
+            AgentClient client6 = new AgentClient("127.0.0.1", 1236);
+            client6.start();
+            agentClients.put(i, client6);
+
+
         }
-//        if (logger.isInfoEnabled()){
-//            logger.info("Execute add(), AgentClientManager Size:{}", agentClients.size());
-//        }
     }
 
 }
