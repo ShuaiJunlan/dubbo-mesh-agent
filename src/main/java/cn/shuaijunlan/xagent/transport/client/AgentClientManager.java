@@ -29,7 +29,7 @@ public class AgentClientManager {
      */
     public static AgentClient getAgentClientInstance(){
 
-        AgentClient agentClient = agentClients.get(atomicInteger.incrementAndGet() % 240);
+        AgentClient agentClient = agentClients.get(atomicInteger.getAndIncrement() % 240);
         if (agentClient.channel != null && agentClient.channel.isActive()){
             return agentClient;
         }else {
