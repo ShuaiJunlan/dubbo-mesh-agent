@@ -117,32 +117,4 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
         ctx.close();
     }
 
-    public class Entry {
-        private ChannelHandlerContext context;
-        private String parameter;
-        private HttpRequest request;
-        private LastHttpContent content;
-        public Entry(ChannelHandlerContext context, String parameter, HttpRequest request, LastHttpContent content){
-            this.context = context;
-            this.parameter = parameter;
-            this.request = request;
-            this.content = content;
-        }
-
-        public ChannelHandlerContext getContext() {
-            return context;
-        }
-
-        public String getParameter() {
-            return parameter;
-        }
-
-        public HttpRequest getRequest() {
-            return request;
-        }
-
-        public LastHttpContent getContent() {
-            return content;
-        }
-    }
 }
