@@ -25,7 +25,7 @@ import java.util.LinkedList;
  */
 public class AgentClient {
     private NioEventLoopGroup workGroup = new NioEventLoopGroup();
-    private Channel channel;
+    public Channel channel;
     private Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;
 
