@@ -29,7 +29,7 @@ public class AgentClientManager {
      */
     public static AgentClient getAgentClientInstance(){
 
-        AgentClient agentClient = agentClients.get(atomicInteger.getAndIncrement() % 240);
+        AgentClient agentClient = agentClients.get(atomicInteger.getAndIncrement() % 480);
         if (agentClient.channel != null && agentClient.channel.isActive()){
             return agentClient;
         }else {
@@ -75,7 +75,6 @@ public class AgentClientManager {
             AgentClient client6 = new AgentClient("127.0.0.1", 1236);
             client6.start();
             agentClients.put(i, client6);
-
 
         }
     }
