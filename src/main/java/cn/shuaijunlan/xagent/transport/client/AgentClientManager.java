@@ -54,27 +54,27 @@ public class AgentClientManager {
         for (int i = 0; i < 80; i++){
             AgentClient client1 = new AgentClient("127.0.0.1", 1234);
             client1.start();
-            agentClients.put(i, client1);
+            agentClients.put(6*i + 0, client1);
 
             AgentClient client2 = new AgentClient("127.0.0.1", 1235);
             client2.start();
-            agentClients.put(i, client2);
+            agentClients.put(6*i + 1, client2);
 
             AgentClient client3 = new AgentClient("127.0.0.1", 1235);
             client3.start();
-            agentClients.put(i, client3);
+            agentClients.put(6*i + 2, client3);
 
             AgentClient client4 = new AgentClient("127.0.0.1", 1236);
             client4.start();
-            agentClients.put(i, client4);
+            agentClients.put(6*i + 3, client4);
 
             AgentClient client5 = new AgentClient("127.0.0.1", 1236);
             client5.start();
-            agentClients.put(i, client5);
+            agentClients.put(6*i + 4, client5);
 
             AgentClient client6 = new AgentClient("127.0.0.1", 1236);
             client6.start();
-            agentClients.put(i, client6);
+            agentClients.put(6*i + 5, client6);
 
         }
     }
