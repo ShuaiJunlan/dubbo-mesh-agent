@@ -18,36 +18,45 @@ public class KryoCodecUtil implements MessageCodecUtil {
     private KryoPool pool;
     private static Closer closer = Closer.create();
 
+    private Object lock1 = new Object();
+    private Object lock2 = new Object();
+
+
     public KryoCodecUtil(KryoPool pool) {
         this.pool = pool;
     }
 
     @Override
     public void encode(final ByteBuf out, final Object message) throws IOException {
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            closer.register(byteArrayOutputStream);
-            KryoSerialize kryoSerialization = new KryoSerialize(pool);
-            kryoSerialization.serialize(byteArrayOutputStream, message);
-            byte[] body = byteArrayOutputStream.toByteArray();
-            int dataLength = body.length;
-            out.writeInt(dataLength);
-            out.writeBytes(body);
-        } finally {
-            closer.close();
+        synchronized (lock1){
+            try {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                closer.register(byteArrayOutputStream);
+                KryoSerialize kryoSerialization = new KryoSerialize(pool);
+                kryoSerialization.serialize(byteArrayOutputStream, message);
+                byte[] body = byteArrayOutputStream.toByteArray();
+                int dataLength = body.length;
+                out.writeInt(dataLength);
+                out.writeBytes(body);
+            } finally {
+                closer.close();
+            }
         }
+
     }
 
     @Override
     public Object decode(byte[] body) throws IOException {
-        try {
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body);
-            closer.register(byteArrayInputStream);
-            KryoSerialize kryoSerialization = new KryoSerialize(pool);
-            Object obj = kryoSerialization.deserialize(byteArrayInputStream);
-            return obj;
-        } finally {
-            closer.close();
+        synchronized (lock2){
+            try {
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body);
+                closer.register(byteArrayInputStream);
+                KryoSerialize kryoSerialization = new KryoSerialize(pool);
+                Object obj = kryoSerialization.deserialize(byteArrayInputStream);
+                return obj;
+            } finally {
+                closer.close();
+            }
         }
     }
 }

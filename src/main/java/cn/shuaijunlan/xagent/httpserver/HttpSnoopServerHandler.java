@@ -73,6 +73,8 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 }
                 AgentClient client = AgentClientManager.getAgentClientInstance();
                 Integer integer = client.sendData(str);
+                Test.channelHandlerContexts.add(ctx);
+                System.out.println("channelHandlerContexts:" + Test.channelHandlerContexts.size());
                 writeResponse(trailer, ctx, integer.toString(), request);
 
             }

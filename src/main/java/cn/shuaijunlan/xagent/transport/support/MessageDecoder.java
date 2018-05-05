@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class MessageDecoder extends ByteToMessageDecoder {
 
     final public static int MESSAGE_LENGTH = MessageCodecUtil.MESSAGE_LENGTH;
-    private MessageCodecUtil util = null;
+    private MessageCodecUtil util;
 
     public MessageDecoder(final MessageCodecUtil util) {
         this.util = util;
