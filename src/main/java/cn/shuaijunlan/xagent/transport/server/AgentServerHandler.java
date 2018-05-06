@@ -23,12 +23,12 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
         MessageResponse messageResponse = new MessageResponse();
 
         //testnum
-        messageResponse.setHash(messageRequest.getParameter().hashCode());
+//        messageResponse.setHash(messageRequest.getParameter().hashCode());
 
         //get from rpc client
-//        RpcClient rpcClient = new RpcClient();
-//        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
-//        messageResponse.setHash(JSON.parseObject((byte[]) result, Integer.class));
+        RpcClient rpcClient = new RpcClient();
+        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
+        messageResponse.setHash(JSON.parseObject((byte[]) result, Integer.class));
 
         channelHandlerContext.writeAndFlush(messageResponse);
     }
