@@ -11,6 +11,7 @@ import io.netty.util.CharsetUtil;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.CONNECTION;
 import static io.netty.handler.codec.http.HttpHeaderValues.KEEP_ALIVE;
+import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
@@ -31,6 +32,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             if (content.isReadable()) {
                 //执行远程调用
                 String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+                content.release();//?
                 String str = "";
                 if (tmp.length > 1){
                     str = tmp[1];
@@ -54,7 +56,11 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 }
             }
         }else {
-            System.out.println("error");
+            FullHttpResponse response = new DefaultFullHttpResponse(
+                    HTTP_1_1,
+                    BAD_REQUEST
+            );
+            ctx.write(response).addListener(ChannelFutureListener.CLOSE);
         }
     }
     @Override
