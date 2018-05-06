@@ -19,7 +19,7 @@ public class DemoController {
                          @RequestParam("parameterTypesString") String parameterTypesString,
                          @RequestParam("parameter") String parameter) throws Exception {
 //        System.out.println(System.currentTimeMillis());
-//        Thread.sleep(10000);
+        Thread.sleep(50);
 //        System.out.println(System.currentTimeMillis());
         return provider(interfaceName,method,parameterTypesString,parameter);
 
