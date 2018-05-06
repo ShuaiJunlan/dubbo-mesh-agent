@@ -51,8 +51,8 @@ public final class HttpSnoopServer {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
                         .channel(EpollServerSocketChannel.class)
-//                        .channel(EpollServerSocketChannel.classNioServerSocketChannel.class)
-                        .childHandler(new HttpSnoopServerInitializer());
+                        .channel(NioServerSocketChannel.class);
+//                        .childHandler(new HttpSnoopServerInitializer());
 
                 Channel ch = b.bind(PORT).sync().channel();
 
