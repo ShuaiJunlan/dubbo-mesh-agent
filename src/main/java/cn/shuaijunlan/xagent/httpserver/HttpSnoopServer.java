@@ -4,6 +4,7 @@ import cn.shuaijunlan.xagent.transport.server.AgentServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -20,12 +21,12 @@ public final class HttpSnoopServer {
         String type = System.getProperty("agent.type");
         if (type != null && type.equals("client")){
             // Configure the server.
-            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
-            EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+            EventLoopGroup bossGroup = new EpollEventLoopGroup(4);
+            EventLoopGroup workerGroup = new EpollEventLoopGroup(8);
             try {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
-                        .channel(NioServerSocketChannel.class)
+                        .channel(EpollServerSocketChannel.class)
                         .childHandler(new HttpSnoopServerInitializer());
 
                 Channel ch = b.bind(PORT).sync().channel();
