@@ -16,7 +16,7 @@ import java.io.IOException;
 public class KryoCodecUtil implements MessageCodecUtil {
 
     private KryoPool pool;
-    private static Closer closer = Closer.create();
+//    private static Closer closer = Closer.create();
 
     private Object lock1 = new Object();
     private Object lock2 = new Object();
@@ -29,9 +29,9 @@ public class KryoCodecUtil implements MessageCodecUtil {
     @Override
     public void encode(final ByteBuf out, final Object message) throws IOException {
         synchronized (lock1){
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                closer.register(byteArrayOutputStream);
+//                closer.register(byteArrayOutputStream);
                 KryoSerialize kryoSerialization = new KryoSerialize(pool);
                 kryoSerialization.serialize(byteArrayOutputStream, message);
                 byte[] body = byteArrayOutputStream.toByteArray();
@@ -39,7 +39,7 @@ public class KryoCodecUtil implements MessageCodecUtil {
                 out.writeInt(dataLength);
                 out.writeBytes(body);
             } finally {
-                closer.close();
+                byteArrayOutputStream.close();
             }
         }
 
@@ -48,14 +48,16 @@ public class KryoCodecUtil implements MessageCodecUtil {
     @Override
     public Object decode(byte[] body) throws IOException {
         synchronized (lock2){
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body);
+
             try {
-                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body);
-                closer.register(byteArrayInputStream);
+//                closer.register(byteArrayInputStream);
                 KryoSerialize kryoSerialization = new KryoSerialize(pool);
                 Object obj = kryoSerialization.deserialize(byteArrayInputStream);
                 return obj;
             } finally {
-                closer.close();
+//                closer.close();
+                byteArrayInputStream.close();
             }
         }
     }
