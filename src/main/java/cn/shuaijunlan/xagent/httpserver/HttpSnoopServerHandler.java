@@ -35,8 +35,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
 
 
     public HttpSnoopServerHandler(){
-//        client = new AgentClient("127.0.0.1", 1234);
-//        client.start();
+
     }
 
     @Override
@@ -63,19 +62,24 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
             }
             if (msg instanceof LastHttpContent) {
 
-                LastHttpContent trailer = (LastHttpContent) msg;
 
-                //执行远程调用
-                String[] tmp = stringBuffer.toString().split("&parameter=");
-                String str = "";
-                if (tmp.length > 1){
-                    str = tmp[1];
-                }
-                AgentClient client = AgentClientManager.getAgentClientInstance();
-                Integer integer = client.sendData(str);
+
 //                Test.channelHandlerContexts.add(ctx);
 //                System.out.println("channelHandlerContexts:" + Test.channelHandlerContexts.size());
-                writeResponse(trailer, ctx, integer.toString(), request);
+                ctx.executor().execute(() -> {
+                    LastHttpContent trailer = (LastHttpContent) msg;
+
+                    //执行远程调用
+                    String[] tmp = stringBuffer.toString().split("&parameter=");
+                    String str = "";
+                    if (tmp.length > 1){
+                        str = tmp[1];
+                    }
+//                    AgentClient client = AgentClientManager.getAgentClientInstance();
+//                    Integer integer = client.sendData(str);
+                    writeResponse(trailer, ctx, String.valueOf(str.hashCode()), request);
+
+                });
 
             }
         }
