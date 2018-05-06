@@ -21,12 +21,12 @@ public final class HttpSnoopServer {
         String type = System.getProperty("agent.type");
         if (type != null && type.equals("client")){
             // Configure the server.
-            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
-            EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+            EventLoopGroup bossGroup = new EpollEventLoopGroup(4);
+            EventLoopGroup workerGroup = new EpollEventLoopGroup(4);
             try {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
-                        .channel(NioServerSocketChannel.class)
+                        .channel(EpollServerSocketChannel.class)
                         .childHandler(new HttpSnoopServerInitializer());
 
                 Channel ch = b.bind(PORT).sync().channel();
@@ -44,29 +44,27 @@ public final class HttpSnoopServer {
             int port = Integer.valueOf(System.getProperty("agent.port"));
             AgentServer server = new AgentServer();
             server.start(port);
+        } else {
+            // Configure the server.
+            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+            EventLoopGroup workerGroup = new NioEventLoopGroup(8);
+            try {
+                ServerBootstrap b = new ServerBootstrap();
+                b.group(bossGroup, workerGroup)
+                        .channel(NioServerSocketChannel.class)
+                        .childHandler(new HttpSnoopServerInitializer());
+
+                Channel ch = b.bind(PORT).sync().channel();
+
+                System.err.println("Open your web browser and navigate to " +
+                        "http" + "://127.0.0.1:" + PORT + '/');
+
+                ch.closeFuture().sync();
+            } finally {
+                bossGroup.shutdownGracefully();
+                workerGroup.shutdownGracefully();
+            }
         }
-//        }else {
-//            // Configure the server.
-//            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
-//            EventLoopGroup workerGroup = new NioEventLoopGroup(8);
-//            try {
-//                ServerBootstrap b = new ServerBootstrap();
-//                b.group(bossGroup, workerGroup)
-////                        .channel(EpollServerSocketChannel.class)
-//                        .channel(NioServerSocketChannel.class)
-//                        .childHandler(new HttpSnoopServerInitializer());
-//
-//                Channel ch = b.bind(PORT).sync().channel();
-//
-//                System.err.println("Open your web browser and navigate to " +
-//                        "http" + "://127.0.0.1:" + PORT + '/');
-//
-//                ch.closeFuture().sync();
-//            } finally {
-//                bossGroup.shutdownGracefully();
-//                workerGroup.shutdownGracefully();
-//            }
-//        }
 
     }
 }

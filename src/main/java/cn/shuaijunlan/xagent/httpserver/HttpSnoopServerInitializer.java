@@ -7,6 +7,8 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.ssl.SslContext;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.EventExecutorGroup;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -28,6 +30,9 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
         // Remove the following line if you don't want automatic content compression.
         //p.addLast(new HttpContentCompressor());
 //        p.addLast(new HttpSnoopServerHandler());
+
+//        EventExecutorGroup ex = new DefaultEventExecutorGroup(64);
+//        p.addLast(ex, new HttpServerHandler());
         p.addLast(new HttpServerHandler());
     }
 }

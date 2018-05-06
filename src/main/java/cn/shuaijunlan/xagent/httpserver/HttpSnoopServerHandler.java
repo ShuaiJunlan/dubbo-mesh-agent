@@ -61,9 +61,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 stringBuffer.append(content.toString(CharsetUtil.UTF_8));
             }
             if (msg instanceof LastHttpContent) {
-
-
-
 //                Test.channelHandlerContexts.add(ctx);
 //                System.out.println("channelHandlerContexts:" + Test.channelHandlerContexts.size());
 //                ctx.executor().execute(() -> {
@@ -84,7 +81,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
             }
         }
     }
-
     public void writeResponse(HttpObject currentObj, ChannelHandlerContext ctx, String msg, HttpRequest request) {
         // Decide whether to close the connection or not.
         boolean keepAlive = HttpUtil.isKeepAlive(request);
