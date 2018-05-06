@@ -45,9 +45,9 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 if (keepAlive) {
                     response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
                     response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                    ctx.write(response);
+                    ctx.writeAndFlush(response);
                 } else {
-                    ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 }
                 content.release();//?
             }
