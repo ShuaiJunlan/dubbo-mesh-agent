@@ -32,7 +32,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             if (content.isReadable()) {
                 //执行远程调用
                 String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
-                content.release();//?
                 String str = "";
                 if (tmp.length > 1){
                     str = tmp[1];
@@ -45,15 +44,15 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 );
 
                 response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-
                 boolean keepAlive = HttpUtil.isKeepAlive(req);
-                if (!keepAlive) {
-                    ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-                } else {
+                if (keepAlive) {
                     response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
                     response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
                     ctx.write(response);
+                } else {
+                    ctx.write(response).addListener(ChannelFutureListener.CLOSE);
                 }
+                content.release();//?
             }
         }else {
             FullHttpResponse response = new DefaultFullHttpResponse(
