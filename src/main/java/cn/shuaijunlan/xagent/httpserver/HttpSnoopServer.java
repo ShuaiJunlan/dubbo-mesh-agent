@@ -17,7 +17,7 @@ public final class HttpSnoopServer {
 
     public static void main(String[] args) throws Exception {
         String type = System.getProperty("agent.type");
-        if (type.equals("client")){
+        if (type != null && type.equals("client")){
             // Configure the server.
             EventLoopGroup bossGroup = new NioEventLoopGroup(4);
             EventLoopGroup workerGroup = new NioEventLoopGroup(4);
@@ -37,11 +37,31 @@ public final class HttpSnoopServer {
                 bossGroup.shutdownGracefully();
                 workerGroup.shutdownGracefully();
             }
-        }else if (type.equals("server")){
+        }else if (type != null && type.equals("server")){
             //start agent server
             int port = Integer.valueOf(System.getProperty("agent.port"));
             AgentServer server = new AgentServer();
             server.start(port);
+        }else {
+            // Configure the server.
+            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+            EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+            try {
+                ServerBootstrap b = new ServerBootstrap();
+                b.group(bossGroup, workerGroup)
+                        .channel(NioServerSocketChannel.class)
+                        .childHandler(new HttpSnoopServerInitializer());
+
+                Channel ch = b.bind(PORT).sync().channel();
+
+                System.err.println("Open your web browser and navigate to " +
+                        "http" + "://127.0.0.1:" + PORT + '/');
+
+                ch.closeFuture().sync();
+            } finally {
+                bossGroup.shutdownGracefully();
+                workerGroup.shutdownGracefully();
+            }
         }
 
     }
