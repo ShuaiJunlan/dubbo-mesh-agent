@@ -8,6 +8,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
+import java.util.concurrent.*;
+
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
@@ -17,6 +19,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @date Created on 14:27 2018/5/6.
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -49,7 +52,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 } else {
                     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 }
-                content.release();//?
+                content.release();
             }
         }else {
             FullHttpResponse response = new DefaultFullHttpResponse(
@@ -64,5 +67,4 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
-
 }
