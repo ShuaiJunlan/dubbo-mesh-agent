@@ -35,8 +35,8 @@ public class ConnecManager {
         if (null == channel) {
             synchronized (lock){
                 if (null == channel){
-                    int port = Integer.valueOf(20889);
-//                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
+//                    int port = Integer.valueOf(20889);
+                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
                     channel = bootstrap.connect("127.0.0.1", port).sync().channel();
                 }
             }
