@@ -8,10 +8,9 @@ import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoPoolFactory;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.ChannelPipeline;
+import io.netty.channel.*;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -25,7 +24,7 @@ import java.util.LinkedList;
  * @date Created on 21:48 2018/4/28.
  */
 public class AgentClient {
-    private NioEventLoopGroup workGroup = new NioEventLoopGroup();
+    private EventLoopGroup workGroup = new EpollEventLoopGroup(4);
     public Channel channel;
     private Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;
@@ -46,7 +45,7 @@ public class AgentClient {
             bootstrap = new Bootstrap();
             bootstrap
                     .group(workGroup)
-                    .channel(NioSocketChannel.class)
+                    .channel(EpollSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .handler(new ChannelInitializer<SocketChannel>() {

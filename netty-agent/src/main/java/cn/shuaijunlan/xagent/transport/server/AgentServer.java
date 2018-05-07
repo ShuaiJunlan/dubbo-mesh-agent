@@ -9,6 +9,9 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -20,14 +23,14 @@ import io.netty.handler.timeout.IdleStateHandler;
  */
 public class AgentServer {
     public void start(int port) {
-        NioEventLoopGroup bossGroup = new NioEventLoopGroup(4);
-        NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
+        EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
+        EventLoopGroup workGroup = new EpollEventLoopGroup(4);
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap
                     .group(bossGroup, workGroup)
-                    .channel(NioServerSocketChannel.class)
+                    .channel(EpollServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
