@@ -37,8 +37,8 @@ public class Client {
                 .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                 .channel(NioSocketChannel.class)
                 .handler(new ClientInitializer());
-//        int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
-        int port = 20889;
+        int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
+//        int port = 20889;
         try {
             channel = bootstrap.connect("127.0.0.1", port).sync().channel();
         } catch (InterruptedException e) {
