@@ -1,16 +1,16 @@
 package cn.shuaijunlan.xagent.dubbo;
 
-import cn.shuaijunlan.xagent.dubbo.RpcClientInitializer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class ConnecManager {
-    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
+    private EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(4);
 
     private Bootstrap bootstrap;
 
@@ -18,6 +18,7 @@ public class ConnecManager {
     private Object lock = new Object();
 
     public ConnecManager() {
+
     }
 
     public Channel getChannel() throws Exception {

@@ -16,7 +16,7 @@ public class AgentClientManager {
     private static Logger logger = LoggerFactory.getLogger(AgentClientManager.class);
     //考虑优先级队列
 
-    private static ConcurrentHashMap<Integer, cn.shuaijunlan.xagent.transport.client.AgentClient> agentClients = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Integer, AgentClient> agentClients = new ConcurrentHashMap<>();
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
 
     private static Object object = new Object();

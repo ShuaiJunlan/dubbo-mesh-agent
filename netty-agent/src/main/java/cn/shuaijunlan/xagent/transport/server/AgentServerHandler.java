@@ -1,6 +1,8 @@
 package cn.shuaijunlan.xagent.transport.server;
 
 import cn.shuaijunlan.xagent.dubbo.RpcClient;
+import cn.shuaijunlan.xagent.dubbo.client.ClientConnectionManager;
+import cn.shuaijunlan.xagent.dubbo.model.RpcResponse;
 import cn.shuaijunlan.xagent.transport.support.MessageRequest;
 import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import com.alibaba.fastjson.JSON;
@@ -23,13 +25,15 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
         MessageResponse messageResponse = new MessageResponse();
 
         //testnum
-        messageResponse.setHash(messageRequest.getParameter().hashCode());
-        Thread.sleep(50);
+//        messageResponse.setHash(messageRequest.getParameter().hashCode());
+//        Thread.sleep(50);
 
         //get from rpc client
 //        RpcClient rpcClient = new RpcClient();
 //        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
-//        messageResponse.setHash(JSON.parseObject((byte[]) result, Integer.class));
+        RpcResponse result = ClientConnectionManager.getClientInstance().invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
+
+        messageResponse.setHash(JSON.parseObject(result.getBytes(), Integer.class));
 
         channelHandlerContext.writeAndFlush(messageResponse);
     }
