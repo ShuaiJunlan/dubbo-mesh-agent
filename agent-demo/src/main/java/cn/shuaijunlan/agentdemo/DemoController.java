@@ -1,9 +1,7 @@
 package cn.shuaijunlan.agentdemo;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -29,6 +27,16 @@ public class DemoController {
 
         return parameter.hashCode();
 //        return (byte[]) result;
+    }
+
+    @PostMapping(value = "test1")
+    public Integer invoke(@RequestBody RequestParams requestParams) {
+        return requestParams.getParameters().hashCode();
+    }
+
+    @PostMapping(value = "test2")
+    public Integer getHashCode(@RequestParam("parameters") String parameters){
+        return parameters.hashCode();
     }
 
 }

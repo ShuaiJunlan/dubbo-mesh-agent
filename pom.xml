@@ -10,7 +10,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>netty-agent</module>
+        <!--<module>netty-agent</module>-->
+        <module>webflux-agent</module>
+        <module>webflux-agent-server</module>
     </modules>
 
     <dependencyManagement>
