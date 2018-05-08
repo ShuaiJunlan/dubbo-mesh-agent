@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RestController
 @Scope("prototype")
 public class Demo {
-    private AtomicInteger atomicInteger = new AtomicInteger(0);
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
     @RequestMapping(value = "")
     public Integer invoke(@RequestParam("interface") String interfaceName,
                           @RequestParam("method") String method,
