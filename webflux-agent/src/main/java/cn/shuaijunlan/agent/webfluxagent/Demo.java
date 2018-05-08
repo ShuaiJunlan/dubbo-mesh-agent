@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @RestController
 public class Demo {
-    static AtomicInteger atomicInteger = new AtomicInteger(0);
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
     @RequestMapping(value = "")
     public Integer invoke(@RequestParam("interface") String interfaceName,
                           @RequestParam("method") String method,
@@ -26,6 +26,7 @@ public class Demo {
         return getValue(parameter);
     }
     public Integer getValue(String parameter){
+        System.out.println(this.getClass().getName() + "-----------"+ atomicInteger.get());
         WebClient client = WebClient.create("http://localhost:3000" + (atomicInteger.getAndIncrement() % 3));
         Mono<Integer> re = client.get().uri("/" + parameter).retrieve().bodyToMono(Integer.class);
         return re.block();
