@@ -1,6 +1,7 @@
 package cn.shuaijunlan.agent.webfluxagent;
 
 import javafx.beans.binding.IntegerBinding;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date Created on 19:25 2018/5/7.
  */
 @RestController
+@Scope("prototype")
 public class Demo {
     private AtomicInteger atomicInteger = new AtomicInteger(0);
     @RequestMapping(value = "")
@@ -26,7 +28,7 @@ public class Demo {
         return getValue(parameter);
     }
     public Integer getValue(String parameter){
-        System.out.println(this.getClass().getName() + "-----------"+ atomicInteger.get());
+        System.out.println(this + "-----------"+ atomicInteger.get());
         WebClient client = WebClient.create("http://localhost:3000" + (atomicInteger.getAndIncrement() % 3));
         Mono<Integer> re = client.get().uri("/" + parameter).retrieve().bodyToMono(Integer.class);
         return re.block();
