@@ -16,9 +16,7 @@ public class DemoController {
                          @RequestParam("method") String method,
                          @RequestParam("parameterTypesString") String parameterTypesString,
                          @RequestParam("parameter") String parameter) throws Exception {
-//        System.out.println(System.currentTimeMillis());
         Thread.sleep(50);
-//        System.out.println(System.currentTimeMillis());
         return provider(interfaceName,method,parameterTypesString,parameter);
 
     }
@@ -27,16 +25,6 @@ public class DemoController {
 
         return parameter.hashCode();
 //        return (byte[]) result;
-    }
-
-    @PostMapping(value = "test1")
-    public Integer invoke(@RequestBody RequestParams requestParams) {
-        return requestParams.getParameters().hashCode();
-    }
-
-    @PostMapping(value = "test2")
-    public Integer getHashCode(@RequestParam("parameters") String parameters){
-        return parameters.hashCode();
     }
 
 }
