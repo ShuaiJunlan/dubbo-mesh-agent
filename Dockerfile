@@ -13,6 +13,7 @@ COPY --from=builder /root/workspace/services/mesh-provider/target/mesh-provider-
 COPY --from=builder /root/workspace/services/mesh-consumer/target/mesh-consumer-1.0-SNAPSHOT.jar /root/dists/mesh-consumer.jar
 # COPY --from=builder /root/workspace/agent/agent-demo/target/agent-demo-0.0.1-SNAPSHOT.jar /root/dists/mesh-agent.jar
 COPY --from=builder /root/workspace/agent/webflux-agent/target/webflux-agent-0.0.1-SNAPSHOT.jar /root/dists/mesh-agent.jar
+COPY --from=builder /root/workspace/agent/webflux-agent-server/target/webflux-agent-server-0.0.1-SNAPSHOT.jar /root/dists/mesh-agent-server.jar
 # COPY --from=builder /root/workspace/agent/netty-agent/target/netty-agent-1.0.0.jar /root/dists/mesh-agent.jar
 # COPY --from=builder /root/workspace/agent/netty-agent/target/lib /root/dists/lib
 

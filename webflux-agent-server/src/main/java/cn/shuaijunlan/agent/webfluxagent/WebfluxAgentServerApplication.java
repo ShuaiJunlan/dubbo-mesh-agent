@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebfluxAgentApplication {
+public class WebfluxAgentServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebfluxAgentApplication.class, args);
+		SpringApplication.run(WebfluxAgentServerApplication.class, args);
 	}
 }

@@ -29,7 +29,7 @@ elif [[ "$1" == "provider-small" ]]; then
        -Dagent.type=server \
        -Dagent.port=1234 \
        -Dlogs.dir=/root/logs \
-       /root/dists/mesh-agent.jar
+       /root/dists/mesh-agent-server.jar
 elif [[ "$1" == "provider-medium" ]]; then
   echo "Starting medium provider agent..."
   java -jar \
@@ -42,7 +42,7 @@ elif [[ "$1" == "provider-medium" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=1235 \
-       /root/dists/mesh-agent.jar
+       /root/dists/mesh-agent-server.jar
 elif [[ "$1" == "provider-large" ]]; then
   echo "Starting large provider agent..."
   java -jar \
@@ -55,7 +55,7 @@ elif [[ "$1" == "provider-large" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=1236 \
-       /root/dists/mesh-agent.jar
+       /root/dists/mesh-agent-server.jar
 else
   echo "Unrecognized arguments, exit."
   exit 1
