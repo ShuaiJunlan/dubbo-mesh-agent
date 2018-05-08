@@ -11,8 +11,9 @@
 
     <modules>
         <!--<module>netty-agent</module>-->
-        <module>webflux-agent</module>
-        <module>webflux-agent-server</module>
+        <!--<module>webflux-agent</module>-->
+        <!--<module>webflux-agent-server</module>-->
+        <module>agent-demo</module>
     </modules>
 
     <dependencyManagement>
