@@ -26,14 +26,15 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
 
         //testnum
 //        messageResponse.setHash(messageRequest.getParameter().hashCode());
-//        Thread.sleep(50);
+        Thread.sleep(50);
 
         //get from rpc client
 //        RpcClient rpcClient = new RpcClient();
 //        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
-        RpcResponse result = ClientConnectionManager.getClientInstance().invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
+//        RpcResponse result = ClientConnectionManager.getClientInstance().invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
 
-        messageResponse.setHash(JSON.parseObject(result.getBytes(), Integer.class));
+//        messageResponse.setHash(JSON.parseObject(result.getBytes(), Integer.class));
+        messageResponse.setHash(messageRequest.getParameter().hashCode());
 
         channelHandlerContext.writeAndFlush(messageResponse);
     }
