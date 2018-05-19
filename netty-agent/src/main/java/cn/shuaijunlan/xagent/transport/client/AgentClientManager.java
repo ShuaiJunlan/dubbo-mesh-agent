@@ -25,7 +25,7 @@ public class AgentClientManager {
     private static Object object = new Object();
     static{
         try {
-            endpoints = registry.find("");
+            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
         } catch (Exception e) {
             e.printStackTrace();
         }
