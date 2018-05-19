@@ -1,9 +1,9 @@
 package cn.shuaijunlan.xagent.httpserver;
 
 import cn.shuaijunlan.xagent.httpserver.HttpSnoopServerInitializer;
+import cn.shuaijunlan.xagent.registry.EtcdRegistry;
+import cn.shuaijunlan.xagent.registry.IRegistry;
 import cn.shuaijunlan.xagent.transport.server.AgentServer;
-import com.alibaba.dubbo.performance.demo.agent.registry.EtcdRegistry;
-import com.alibaba.dubbo.performance.demo.agent.registry.IRegistry;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;

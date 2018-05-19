@@ -1,10 +1,8 @@
 package cn.shuaijunlan.xagent.transport.client;
 
-import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,9 +26,9 @@ public class AgentClientManager {
      * 获取连接实例
      * @return
      */
-    public static cn.shuaijunlan.xagent.transport.client.AgentClient getAgentClientInstance(){
+    public static AgentClient getAgentClientInstance(){
 
-        cn.shuaijunlan.xagent.transport.client.AgentClient agentClient = agentClients.get(atomicInteger.getAndIncrement() % 480);
+        AgentClient agentClient = agentClients.get(atomicInteger.getAndIncrement() % 480);
         if (agentClient.channel != null && agentClient.channel.isActive()){
             return agentClient;
         }else {

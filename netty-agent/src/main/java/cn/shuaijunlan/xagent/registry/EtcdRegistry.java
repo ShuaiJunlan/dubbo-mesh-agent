@@ -40,12 +40,12 @@ public class EtcdRegistry implements IRegistry {
         }
 
         keepAlive();
-
-        String type = System.getProperty("type");   // 获取type参数
-        if ("provider".equals(type)){
+        // 获取type参数
+        String type = System.getProperty("agent.type");
+        if ("server".equals(type)){
             // 如果是provider，去etcd注册服务
             try {
-                int port = Integer.valueOf(System.getProperty("server.port"));
+                int port = Integer.valueOf(System.getProperty("agent.port"));
                 register("com.alibaba.dubbo.performance.demo.provider.IHelloService",port);
             } catch (Exception e) {
                 e.printStackTrace();
