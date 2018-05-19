@@ -11,17 +11,16 @@ FROM registry.cn-hangzhou.aliyuncs.com/aliware2018/debian-jdk8
 
 COPY --from=builder /root/workspace/services/mesh-provider/target/mesh-provider-1.0-SNAPSHOT.jar /root/dists/mesh-provider.jar
 COPY --from=builder /root/workspace/services/mesh-consumer/target/mesh-consumer-1.0-SNAPSHOT.jar /root/dists/mesh-consumer.jar
-# COPY --from=builder /root/workspace/agent/agent-demo/target/agent-demo-0.0.1-SNAPSHOT.jar /root/dists/mesh-agent.jar
-# webflux
-# COPY --from=builder /root/workspace/agent/webflux-agent/target/webflux-agent-0.0.1-SNAPSHOT.jar /root/dists/mesh-agent.jar
-# COPY --from=builder /root/workspace/agent/webflux-agent-server/target/webflux-agent-server-0.0.1-SNAPSHOT.jar /root/dists/mesh-agent-server.jar
-# netty-agent
-COPY --from=builder /root/workspace/agent/netty-agent/target/netty-agent-1.0.0.jar /root/dists/mesh-agent.jar
-COPY --from=builder /root/workspace/agent/netty-agent/target/lib /root/dists/lib
+COPY --from=builder /root/workspace/agent/agent-demo/mesh-agent/target/mesh-agent-1.0-SNAPSHOT.jar /root/dists/mesh-agent.jar
+COPY --from=builder /root/workspace/agent/agent-demo/mesh-agent/target/mesh-agent-1.0-SNAPSHOT.jar /root/dists/mesh-agent-consumer.jar
 
 COPY --from=builder /usr/local/bin/docker-entrypoint.sh /usr/local/bin
 COPY start-agent.sh /usr/local/bin
 
-RUN set -ex && mkdir -p /root/logs
+RUN set -ex \
+ && chmod a+x /usr/local/bin/start-agent.sh \
+ && mkdir -p /root/logs
+
+EXPOSE 8087
 
 ENTRYPOINT ["docker-entrypoint.sh"]

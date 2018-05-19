@@ -1,0 +1,6 @@
+com\alibaba\meshagentprovider\registry\IRegistry.class
+com\alibaba\meshagentprovider\registry\Endpoint.class
+com\alibaba\meshagentprovider\MeshAgentConsumerApplication.class
+com\alibaba\meshagentprovider\registry\IpHelper.class
+com\alibaba\meshagentprovider\AgentConsumer.class
+com\alibaba\meshagentprovider\registry\EtcdRegistry.class
