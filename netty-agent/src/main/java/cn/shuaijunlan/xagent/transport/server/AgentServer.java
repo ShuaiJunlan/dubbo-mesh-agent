@@ -1,6 +1,5 @@
 package cn.shuaijunlan.xagent.transport.server;
 
-import cn.shuaijunlan.xagent.transport.server.AgentServerHandler;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoCodecUtil;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
@@ -9,9 +8,7 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
-import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
