@@ -25,7 +25,6 @@ hs_err_pid*
 .idea/
 *.iml
 target/*
-!target/lib/
 test/
 PLANS.md
 mvnw
