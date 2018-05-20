@@ -24,7 +24,7 @@ import java.util.LinkedList;
  * @date Created on 21:48 2018/4/28.
  */
 public class AgentClient {
-    private EventLoopGroup workGroup = new EpollEventLoopGroup(4);
+    private EventLoopGroup workGroup = new EpollEventLoopGroup();
     public Channel channel;
     private Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;

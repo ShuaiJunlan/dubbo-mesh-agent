@@ -21,22 +21,28 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageRequest messageRequest) throws Exception {
+        channelHandlerContext.executor().execute(() -> {
+            MessageResponse messageResponse = new MessageResponse();
 
-        MessageResponse messageResponse = new MessageResponse();
-
-        //testnum
+            //testnum
 //        messageResponse.setHash(messageRequest.getParameter().hashCode());
-        Thread.sleep(50);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        //get from rpc client
+            //get from rpc client
 //        RpcClient rpcClient = new RpcClient();
 //        Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
 //        RpcResponse result = ClientConnectionManager.getClientInstance().invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService","hash","Ljava/lang/String;",messageRequest.getParameter());
 
 //        messageResponse.setHash(JSON.parseObject(result.getBytes(), Integer.class));
-        messageResponse.setHash(messageRequest.getParameter().hashCode());
+            messageResponse.setHash(messageRequest.getParameter().hashCode());
 
-        channelHandlerContext.writeAndFlush(messageResponse);
+            channelHandlerContext.writeAndFlush(messageResponse);
+        });
+
     }
 
 }

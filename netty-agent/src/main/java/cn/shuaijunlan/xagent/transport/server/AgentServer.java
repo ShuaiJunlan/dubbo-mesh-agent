@@ -13,6 +13,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.EventExecutorGroup;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -21,8 +23,9 @@ import io.netty.handler.timeout.IdleStateHandler;
 public class AgentServer {
     public void start(int port) {
         EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
-        EventLoopGroup workGroup = new EpollEventLoopGroup(4);
+        EventLoopGroup workGroup = new EpollEventLoopGroup(8);
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
+        EventExecutorGroup group = new DefaultEventExecutorGroup(16);
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap
@@ -40,7 +43,7 @@ public class AgentServer {
 ///                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
                             p.addLast(new KryoDecoder(util));
                             p.addLast(new KryoEncoder(util));
-                            p.addLast(new AgentServerHandler());
+                            p.addLast(group, "handler", new AgentServerHandler());
                         }
                     });
 

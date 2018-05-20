@@ -53,7 +53,6 @@ public class AgentClientManager {
             AgentClient client1 = new AgentClient(endpoints.get(i).getHost(), endpoints.get(i).getPort());
             client1.start();
             agentClients.put(i, client1);
-
         }
     }
 
