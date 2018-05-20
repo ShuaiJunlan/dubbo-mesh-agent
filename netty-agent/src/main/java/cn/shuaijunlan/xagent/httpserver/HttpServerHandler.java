@@ -39,9 +39,14 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-                AgentClient client = AgentClientManager.getAgentClientInstance();
-                Integer integer = client.sendData(str);
-//                Integer integer = str.hashCode();
+//                AgentClient client = AgentClientManager.getAgentClientInstance();
+//                Integer integer = client.sendData(str);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Integer integer = str.hashCode();
                 FullHttpResponse response = new DefaultFullHttpResponse(
                         HTTP_1_1,
                         OK,

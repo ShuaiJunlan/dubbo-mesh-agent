@@ -1,15 +1,12 @@
 package cn.shuaijunlan.xagent.httpserver;
 
-import cn.shuaijunlan.xagent.httpserver.HttpServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
-import io.netty.handler.ssl.SslContext;
-import io.netty.util.concurrent.DefaultEventExecutorGroup;
-import io.netty.util.concurrent.EventExecutorGroup;
+
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
