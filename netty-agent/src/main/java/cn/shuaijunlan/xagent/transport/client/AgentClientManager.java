@@ -38,7 +38,7 @@ public class AgentClientManager {
      */
     public static AgentClient getAgentClientInstance(){
 
-        AgentClient agentClient = agentClients.get(0);
+        AgentClient agentClient = agentClients.get(2);
         if (agentClient.channel != null && agentClient.channel.isActive()){
             return agentClient;
         }else {
