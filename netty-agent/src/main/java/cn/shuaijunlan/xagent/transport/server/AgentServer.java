@@ -6,10 +6,7 @@ import cn.shuaijunlan.xagent.transport.support.kryo.KryoDecoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoPoolFactory;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelPipeline;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -31,6 +28,10 @@ public class AgentServer {
             bootstrap
                     .group(bossGroup, workGroup)
                     .channel(EpollServerSocketChannel.class)
+                    //通过NoDelay禁用Nagle,使消息立即发出去，不用等待到一定的数据量才发出去
+                    .option(ChannelOption.TCP_NODELAY, true)
+                    //保持长连接状态
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {

@@ -6,6 +6,8 @@ import cn.shuaijunlan.xagent.registry.IRegistry;
 import cn.shuaijunlan.xagent.transport.server.AgentServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
@@ -30,14 +32,18 @@ public final class HttpSnoopServer {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
                         .channel(EpollServerSocketChannel.class)
+                        //通过NoDelay禁用Nagle,使消息立即发出去，不用等待到一定的数据量才发出去
+                        .option(ChannelOption.TCP_NODELAY, true)
+                        //保持长连接状态
+                        .childOption(ChannelOption.SO_KEEPALIVE, true)
                         .childHandler(new HttpSnoopServerInitializer());
 
-                Channel ch = b.bind(PORT).sync().channel();
+                ChannelFuture ch = b.bind(PORT).sync();
+                if (ch.isSuccess()){
+                    System.out.println("Http server start!");
+                }
 
-                System.err.println("Open your web browser and navigate to " +
-                        "http" + "://127.0.0.1:" + PORT + '/');
-
-                ch.closeFuture().sync();
+                ch.channel().closeFuture().sync();
             } finally {
                 bossGroup.shutdownGracefully();
                 workerGroup.shutdownGracefully();
