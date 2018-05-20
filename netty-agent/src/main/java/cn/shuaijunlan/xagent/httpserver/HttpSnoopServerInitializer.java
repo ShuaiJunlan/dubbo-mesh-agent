@@ -29,12 +29,7 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
         // Uncomment the following line if you don't want to handle HttpChunks.
         p.addLast(new HttpObjectAggregator(2048));
         p.addLast(new HttpResponseEncoder());
-        // Remove the following line if you don't want automatic content compression.
-        //p.addLast(new HttpContentCompressor());
-//        p.addLast(new HttpSnoopServerHandler());
 
-//        EventExecutorGroup ex = new DefaultEventExecutorGroup(64);
-//        p.addLast(ex, new HttpServerHandler());
         p.addLast(new HttpServerHandler());
     }
 }

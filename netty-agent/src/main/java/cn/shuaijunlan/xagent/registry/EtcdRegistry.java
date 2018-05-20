@@ -58,10 +58,12 @@ public class EtcdRegistry implements IRegistry {
     public void register(String serviceName, int port) throws Exception {
         // 服务注册的key为:    /dubbomesh/com.some.package.IHelloService/192.168.100.100:2000
         String strKey = MessageFormat.format("/{0}/{1}/{2}:{3}",rootPath,serviceName,IpHelper.getHostIp(),String.valueOf(port));
+        System.out.println("Register service:" + strKey);
         ByteSequence key = ByteSequence.fromString(strKey);
         ByteSequence val = ByteSequence.fromString("");     // 目前只需要创建这个key,对应的value暂不使用,先留空
         kv.put(key,val, PutOption.newBuilder().withLeaseId(leaseId).build()).get();
         logger.info("Register a new service at:" + strKey);
+        System.out.println("Register a new service at:" + strKey);
     }
 
     // 发送心跳到ETCD,表明该host是活着的
