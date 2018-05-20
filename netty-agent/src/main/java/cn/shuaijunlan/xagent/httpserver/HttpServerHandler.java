@@ -32,36 +32,41 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             FullHttpRequest req = (FullHttpRequest) msg;
             ByteBuf content = req.content();
             if (content.isReadable()) {
-                //执行远程调用
-                String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
-                content.release();
-                String str = "";
-                if (tmp.length > 1){
-                    str = tmp[1];
-                }
+
 //                AgentClient client = AgentClientManager.getAgentClientInstance();
 //                Integer integer = client.sendData(str);
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Integer integer = str.hashCode();
-                FullHttpResponse response = new DefaultFullHttpResponse(
-                        HTTP_1_1,
-                        OK,
-                        Unpooled.copiedBuffer(integer.toString(), CharsetUtil.UTF_8)
-                );
 
-                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                boolean keepAlive = HttpUtil.isKeepAlive(req);
-                if (keepAlive) {
-                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                    ctx.writeAndFlush(response);
-                } else {
-                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                }
+                ctx.executor().execute(() -> {
+                    //执行远程调用
+                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+                    content.release();
+                    String str = "";
+                    if (tmp.length > 1){
+                        str = tmp[1];
+                    }
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Integer integer = str.hashCode();
+                    FullHttpResponse response = new DefaultFullHttpResponse(
+                            HTTP_1_1,
+                            OK,
+                            Unpooled.copiedBuffer(integer.toString(), CharsetUtil.UTF_8)
+                    );
+
+                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                    boolean keepAlive = HttpUtil.isKeepAlive(req);
+                    if (keepAlive) {
+                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                        ctx.writeAndFlush(response);
+                    } else {
+                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                    }
+                });
+
             }
         }else {
             FullHttpResponse response = new DefaultFullHttpResponse(

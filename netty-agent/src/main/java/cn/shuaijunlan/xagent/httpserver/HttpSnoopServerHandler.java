@@ -61,9 +61,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 stringBuffer.append(content.toString(CharsetUtil.UTF_8));
             }
             if (msg instanceof LastHttpContent) {
-//                Test.channelHandlerContexts.add(ctx);
-//                System.out.println("channelHandlerContexts:" + Test.channelHandlerContexts.size());
-//                ctx.executor().execute(() -> {
+
                     LastHttpContent trailer = (LastHttpContent) msg;
 
                     //执行远程调用
@@ -75,8 +73,6 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                     AgentClient client = AgentClientManager.getAgentClientInstance();
                     Integer integer = client.sendData(str);
                     writeResponse(trailer, ctx, integer.toString(), request);
-
-//                });
 
             }
         }
