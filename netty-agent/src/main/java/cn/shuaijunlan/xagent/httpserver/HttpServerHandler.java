@@ -32,10 +32,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             FullHttpRequest req = (FullHttpRequest) msg;
             ByteBuf content = req.content();
             if (content.isReadable()) {
-
-//                AgentClient client = AgentClientManager.getAgentClientInstance();
-//                Integer integer = client.sendData(str);
-
+                // 将耗时任务交给任务线程池处理
                 ctx.executor().execute(() -> {
                     //执行远程调用
                     String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
@@ -49,7 +46,11 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    Integer integer = str.hashCode();
+
+                    AgentClient client = AgentClientManager.getAgentClientInstance();
+                    Integer integer = client.sendData(str);
+
+//                    Integer integer = str.hashCode();
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
                             OK,
