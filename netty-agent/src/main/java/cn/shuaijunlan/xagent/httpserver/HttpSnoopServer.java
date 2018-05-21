@@ -56,8 +56,6 @@ public class HttpSnoopServer {
                 ChannelFuture ch = b.bind(PORT).sync();
                 if (ch.isSuccess()){
                     logger.info("Http server start on port :{}", PORT );
-                    //初始化channel
-                    AgentClientManager.add();
                 }
 
                 ch.channel().closeFuture().sync();
