@@ -52,7 +52,7 @@ elif [[ "$1" == "provider-large" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=30000 \
-       /root/dist/smesh-agent-provider.jar
+       /root/dists/mesh-agent-provider.jar
 else
   echo "Unrecognized arguments, exit."
   exit 1
