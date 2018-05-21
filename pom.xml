@@ -11,6 +11,7 @@
 
     <modules>
         <module>netty-agent</module>
+        <module>agent-provider</module>
     </modules>
 
     <dependencyManagement>
