@@ -62,13 +62,7 @@ public class HttpSnoopServer {
                 bossGroup.shutdownGracefully();
                 workerGroup.shutdownGracefully();
             }
-        }else if (type != null && type.equals("server")) {
-            //register and start agent server
-            IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
-            int port = Integer.valueOf(System.getProperty("agent.port"));
-            AgentServer server = new AgentServer();
-            server.start(port);
-        } else {
+        }else {
             // Configure the server.
             EventLoopGroup bossGroup = new NioEventLoopGroup(4);
             EventLoopGroup workerGroup = new NioEventLoopGroup(8);
