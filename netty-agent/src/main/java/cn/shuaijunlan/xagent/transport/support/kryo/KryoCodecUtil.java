@@ -29,10 +29,9 @@ public class KryoCodecUtil implements MessageCodecUtil {
 
     @Override
     public void encode(final ByteBuf out, final Object message) throws IOException {
-        synchronized (lock1){
+//        synchronized (lock1){
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {
-//                closer.register(byteArrayOutputStream);
                 KryoSerialize kryoSerialization = new KryoSerialize(pool);
                 kryoSerialization.serialize(byteArrayOutputStream, message);
                 byte[] body = byteArrayOutputStream.toByteArray();
@@ -42,24 +41,22 @@ public class KryoCodecUtil implements MessageCodecUtil {
             } finally {
                 byteArrayOutputStream.close();
             }
-        }
+//        }
 
     }
 
     @Override
     public Object decode(byte[] body) throws IOException {
-        synchronized (lock2){
+//        synchronized (lock2){
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body);
 
             try {
-//                closer.register(byteArrayInputStream);
                 KryoSerialize kryoSerialization = new KryoSerialize(pool);
                 Object obj = kryoSerialization.deserialize(byteArrayInputStream);
                 return obj;
             } finally {
-//                closer.close();
                 byteArrayInputStream.close();
             }
-        }
+//        }
     }
 }
