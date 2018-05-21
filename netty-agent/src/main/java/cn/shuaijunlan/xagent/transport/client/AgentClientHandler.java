@@ -34,9 +34,6 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
-        synchronized (lock){
-            value = messageResponse.getHash();
-            lock.notify();
-        }
+        ResultMap.RESULT_MAP.put(messageResponse.getId(), messageResponse.getHash());
     }
 }

@@ -3,9 +3,11 @@ package cn.shuaijunlan.xagent.transport.client;
 import cn.shuaijunlan.xagent.registry.Endpoint;
 import cn.shuaijunlan.xagent.registry.EtcdRegistry;
 import cn.shuaijunlan.xagent.registry.IRegistry;
+import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,6 +21,7 @@ public class AgentClientManager {
     //考虑优先级队列
 
     private static ConcurrentHashMap<Integer, AgentClient> agentClients = new ConcurrentHashMap<>();
+    private static ArrayList<Channel> channels = new ArrayList<>(256);
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private static List<Endpoint> endpoints = null;
     private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
@@ -26,10 +29,10 @@ public class AgentClientManager {
     static{
         try {
             endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+            add();
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        add();
     }
 
     /**
@@ -52,24 +55,16 @@ public class AgentClientManager {
      * 获取连接实例
      * @return
      */
-    public static AgentClient getChannel(){
+    public static Channel getChannel(){
 
-        AgentClient agentClient = new AgentClient(endpoints.get(2).getHost(), endpoints.get(2).getPort());
-        agentClient.start();
-        if (agentClient.channel != null && agentClient.channel.isActive()){
-            logger.info("get agentClient channel successfully:" + atomicInteger.incrementAndGet());
-            return agentClient;
-        }else {
-            logger.info("channel isn't avaliable");
-            return null;
-        }
+        return channels.get(atomicInteger.getAndIncrement() % 256);
     }
 
-    private static void add(){
-        for (int i = 0; i < 3; i++){
-            AgentClient client1 = new AgentClient(endpoints.get(i).getHost(), endpoints.get(i).getPort());
-            client1.start();
-            agentClients.put(i, client1);
+    private static void add() throws InterruptedException {
+        AgentClient client1 = new AgentClient();
+
+        for (int i = 0; i < 256; i++){
+            channels.add(client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort()));
         }
     }
 

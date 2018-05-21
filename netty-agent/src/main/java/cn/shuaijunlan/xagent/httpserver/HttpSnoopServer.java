@@ -32,8 +32,6 @@ public final class HttpSnoopServer {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
                         .channel(EpollServerSocketChannel.class)
-                        //通过NoDelay禁用Nagle,使消息立即发出去，不用等待到一定的数据量才发出去
-                        .option(ChannelOption.TCP_NODELAY, true)
                         //保持长连接状态
                         .childOption(ChannelOption.SO_KEEPALIVE, true)
                         .childHandler(new HttpSnoopServerInitializer());

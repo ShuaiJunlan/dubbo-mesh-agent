@@ -39,6 +39,7 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
 
 //        messageResponse.setHash(JSON.parseObject(result.getBytes(), Integer.class));
             messageResponse.setHash(messageRequest.getParameter().hashCode());
+            messageResponse.setId(messageRequest.getId());
 
             channelHandlerContext.writeAndFlush(messageResponse);
         });

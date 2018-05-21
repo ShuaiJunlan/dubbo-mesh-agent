@@ -4,11 +4,14 @@ import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
@@ -20,9 +23,10 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @date Created on 14:27 2018/5/6.
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
-    public AgentClient agentClient;
+    private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
+    public Channel channel;
     public HttpServerHandler(){
-        agentClient = AgentClientManager.getChannel();
+        channel = AgentClientManager.getChannel();
     }
 
     @Override
@@ -31,7 +35,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     }
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        if (msg instanceof FullHttpRequest){
+        if (msg instanceof FullHttpRequest && channel != null){
             FullHttpRequest req = (FullHttpRequest) msg;
             ByteBuf content = req.content();
             if (content.isReadable()) {
@@ -53,7 +57,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 //                    }
 
 //                    AgentClient client = AgentClientManager.getAgentClientInstance();
-                    Integer integer = agentClient.sendData(str);
+                    Integer integer = AgentClient.sendData(str, channel);
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
@@ -79,7 +83,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     BAD_REQUEST
             );
             ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-            System.out.println("Wrong response!");
+            logger.info("Wrong response!");
         }
     }
     @Override
