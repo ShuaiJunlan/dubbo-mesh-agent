@@ -38,7 +38,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
     private AtomicInteger atomicInteger = new AtomicInteger(0);
-    private String url = Constants.URLS[atomicInteger.getAndIncrement() % 3];
+    private String url = Constants.URLS[2];
 
 
     public HttpServerHandler(){
