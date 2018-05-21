@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -36,6 +37,9 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
+    private String url = Constants.URLS[atomicInteger.getAndIncrement() % 3];
+
 
     public HttpServerHandler(){
     }
@@ -85,7 +89,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     /////////////////////////////////////////////////////////////
 
                     ////////////////////////////////////////////////////////////////////////////
-                    String url = "http://10.10.10.5:30000";
 //                    logger.info("Request url:{}", url);
 //                    Result result = new Result();
 
@@ -99,9 +102,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
                     Runnable callback = () -> {
                         try {
+                            // 获取远程结果
                             String value = responseFuture.get().getResponseBody();
-//                            result.setHash(Integer.valueOf(value));
-//                            logger.info("Get result from agent provider:{}", value);
 
                             FullHttpResponse response = new DefaultFullHttpResponse(
                                     HTTP_1_1,
@@ -126,8 +128,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     };
                     responseFuture.addListener(callback, null);
                     ////////////////////////////////////////////////////////////////////////////
-
-
                 });
 
             }
