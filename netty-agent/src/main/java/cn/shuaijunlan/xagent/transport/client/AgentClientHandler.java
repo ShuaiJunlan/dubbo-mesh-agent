@@ -4,6 +4,8 @@ import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
@@ -18,6 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 //@ChannelHandler.Sharable
 public class AgentClientHandler extends SimpleChannelInboundHandler<MessageResponse> {
+    private Logger logger = LoggerFactory.getLogger(AgentClientHandler.class);
 
     public Object lock;
     public Integer value;

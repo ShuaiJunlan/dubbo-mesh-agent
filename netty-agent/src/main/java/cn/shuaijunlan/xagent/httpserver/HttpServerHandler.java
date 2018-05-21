@@ -2,6 +2,8 @@ package cn.shuaijunlan.xagent.httpserver;
 
 import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
+import cn.shuaijunlan.xagent.transport.client.ResultMap;
+import cn.shuaijunlan.xagent.transport.support.MessageRequest;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -57,7 +59,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 //                    }
 
 //                    AgentClient client = AgentClientManager.getAgentClientInstance();
-                    Integer integer = AgentClient.sendData(str, channel);
+                    Integer integer = sendData(str, channel);
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
@@ -90,5 +92,26 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
+    }
+
+    public Integer sendData(String param, Channel channel) {
+        Long num;
+        if (channel == null || (!channel.isActive())){
+            System.out.println("channel get error");
+            return 0;
+        }else {
+            num = ResultMap.COUNT.getAndIncrement();
+            MessageRequest messageRequest = new MessageRequest();
+            messageRequest.setId(num);
+            messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
+            messageRequest.setMethod("hash");
+            messageRequest.setParameterTypesString("Ljava/lang/String;");
+            messageRequest.setParameter(param);
+            channel.writeAndFlush(messageRequest);
+        }
+        while (ResultMap.RESULT_MAP.get(num) == null){
+
+        }
+        return ResultMap.RESULT_MAP.remove(num);
     }
 }
