@@ -8,7 +8,9 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
+import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
@@ -19,15 +21,15 @@ import io.netty.util.concurrent.EventExecutorGroup;
  */
 public class AgentServer {
     public void start(int port) {
-        EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
-        EventLoopGroup workGroup = new EpollEventLoopGroup(8);
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workGroup = new NioEventLoopGroup(8);
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
         EventExecutorGroup group = new DefaultEventExecutorGroup(16);
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap
                     .group(bossGroup, workGroup)
-                    .channel(EpollServerSocketChannel.class)
+                    .channel(NioServerSocketChannel.class)
                     //通过NoDelay禁用Nagle,使消息立即发出去，不用等待到一定的数据量才发出去
                     .option(ChannelOption.TCP_NODELAY, true)
                     //保持长连接状态

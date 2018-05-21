@@ -55,12 +55,13 @@ public class AgentClientManager {
     public static AgentClient getChannel(){
 
         AgentClient agentClient = new AgentClient(endpoints.get(2).getHost(), endpoints.get(2).getPort());
+        agentClient.start();
         if (agentClient.channel != null && agentClient.channel.isActive()){
-            logger.info("get channel successfully");
+            logger.info("get agentClient channel successfully:" + atomicInteger.incrementAndGet());
             return agentClient;
         }else {
             logger.info("channel isn't avaliable");
-            return  getChannel();
+            return null;
         }
     }
 

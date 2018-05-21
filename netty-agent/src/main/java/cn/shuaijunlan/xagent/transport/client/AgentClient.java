@@ -24,7 +24,7 @@ import java.util.LinkedList;
  * @date Created on 21:48 2018/4/28.
  */
 public class AgentClient {
-    private EventLoopGroup workGroup = new EpollEventLoopGroup();
+    private EventLoopGroup workGroup = new NioEventLoopGroup();
     public Channel channel;
     private Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;
@@ -45,7 +45,7 @@ public class AgentClient {
             bootstrap = new Bootstrap();
             bootstrap
                     .group(workGroup)
-                    .channel(EpollSocketChannel.class)
+                    .channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.SO_KEEPALIVE,true)
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
