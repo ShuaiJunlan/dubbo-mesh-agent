@@ -4,5 +4,6 @@
   {"token": "******", "taskid": 2000, "daemonid": "test.master[P3RBYrY]", "status": 0, "isvalid": 1, "message": "Success", "rank": 3963.38, "scoreJson": {"qps": 3963.38}, "time": "2018.05.06", "branch": "dev-1", "commit": "fd74e5d3bcc3c12bad70eb27bf53bc1d4b5736d2"},
   {"token": "non-dubbo", "taskid": 2000, "daemonid": "test.master[5MrxiXb]", "status": 0, "isvalid": 1, "message": "Success", "rank": 4204.7, "scoreJson": {"qps": 4204.7}, "time": "2018.05.07/12.45", "branch": "dev-1", "commit": "5ac67361c7c3784d982d3d75bfaca0d9b1802061"},
   {"token": "******", "taskid": 2000, "daemonid": "test.master[9mLmWD5]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2416.93, "scoreJson": {"qps": 2416.93}, "time": "2018.05.21/20.16", "branch": "dev-3"},
-  {"token": "******", "taskid": 2000, "daemonid": "test.master[5y5Qsok]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2722.83, "scoreJson": {"qps": 2722.83}, "time": "2018.05.21/20.37", "branch": "dev-3"}
+  {"token": "******", "taskid": 2000, "daemonid": "test.master[5y5Qsok]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2722.83, "scoreJson": {"qps": 2722.83}, "time": "2018.05.21/20.37", "branch": "dev-3"},
+  {"token": "******", "taskid": 2000, "daemonid": "test.master[zGExPGm]", "status": 0, "isvalid": 1, "message": "Success", "rank": 3037.23, "scoreJson": {"qps": 3037.23}, "time": "2018.05.21/22.03", "branch": "dev-3"}
 ]
