@@ -109,7 +109,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             channel.writeAndFlush(messageRequest).addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
-                    
+
                 }
             });
         }
