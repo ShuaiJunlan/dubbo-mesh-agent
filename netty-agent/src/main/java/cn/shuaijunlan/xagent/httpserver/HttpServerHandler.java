@@ -85,7 +85,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     /////////////////////////////////////////////////////////////
 
                     ////////////////////////////////////////////////////////////////////////////
-                    String url = "http://" + HttpSnoopServer.endpoints.get(2).getHost() + ":" + HttpSnoopServer.endpoints.get(2).getPort();
+                    String url = "http://" + "10.10.10.5" + ":" + 30000;
                     logger.info("Request url:{}", url);
                     Result result = new Result();
 
