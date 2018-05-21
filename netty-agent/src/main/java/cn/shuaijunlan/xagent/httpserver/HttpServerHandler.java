@@ -9,6 +9,8 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import io.netty.util.concurrent.DefaultEventExecutor;
+import io.netty.util.concurrent.Promise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,16 +49,16 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-//                    Integer integer = str.hashCode();
-//
-//                    try {
-//                        Thread.sleep(50);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
+                    Integer integer = str.hashCode();
 
-                    Integer integer = sendData(str, channel);
-                    AgentClientManager.addChannel(channel);
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+//                    Integer integer = sendData(str, channel);
+//                    AgentClientManager.addChannel(channel);
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
@@ -105,12 +107,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             messageRequest.setMethod("hash");
             messageRequest.setParameterTypesString("Ljava/lang/String;");
             messageRequest.setParameter(param);
-            channel.writeAndFlush(messageRequest).addListener(new ChannelFutureListener() {
-                @Override
-                public void operationComplete(ChannelFuture future) throws Exception {
 
-                }
-            });
+            channel.writeAndFlush(messageRequest);
         }
         while (ResultMap.RESULT_MAP.get(num) == null){
 
