@@ -65,63 +65,66 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
 //                    Integer integer = sendData(str, channel);
 //                    AgentClientManager.addChannel(channel);
-                    FullHttpResponse response = new DefaultFullHttpResponse(
-                            HTTP_1_1,
-                            OK,
-                            Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
-                    );
 
-                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                    boolean keepAlive = HttpUtil.isKeepAlive(req);
-                    if (keepAlive) {
-                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                        ctx.writeAndFlush(response);
-                    } else {
-                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                    }
+                    /////////////////////////////////////////////////////////////
+//                    FullHttpResponse response = new DefaultFullHttpResponse(
+//                            HTTP_1_1,
+//                            OK,
+//                            Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
+//                    );
+//
+//                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+//                    boolean keepAlive = HttpUtil.isKeepAlive(req);
+//                    if (keepAlive) {
+//                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+//                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+//                        ctx.writeAndFlush(response);
+//                    } else {
+//                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+//                    }
+                    /////////////////////////////////////////////////////////////
 
                     ////////////////////////////////////////////////////////////////////////////
-//                    String url = "http://" + HttpSnoopServer.endpoints.get(2).getHost() + ":" + HttpSnoopServer.endpoints.get(2).getPort();
-//                    logger.info("Request url:{}", url);
-//                    Result result = new Result();
-//
-//                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
-//                            .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")
-//                            .addFormParam("method", "hash")
-//                            .addFormParam("parameterTypesString", "Ljava/lang/String;")
-//                            .addFormParam("parameter", str)
-//                            .build();
-//                    ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
-//
-//                    Runnable callback = () -> {
-//                        try {
-//                            String value = responseFuture.get().getResponseBody();
-//                            result.setHash(Integer.valueOf(value));
-//                            logger.info("Get result from agent provider:{}", value);
-//
-//                            FullHttpResponse response = new DefaultFullHttpResponse(
-//                                    HTTP_1_1,
-//                                    OK,
-//                                    Unpooled.copiedBuffer(String.valueOf(result.getHash()), CharsetUtil.UTF_8)
-//                            );
-//
-//                            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-//                            boolean keepAlive = HttpUtil.isKeepAlive(req);
-//                            if (keepAlive) {
-//                                response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-//                                response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-//                                ctx.writeAndFlush(response);
-//                            } else {
-//                                ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-//                            }
-//
-//
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    };
-//                    responseFuture.addListener(callback, null);
+                    String url = "http://" + HttpSnoopServer.endpoints.get(2).getHost() + ":" + HttpSnoopServer.endpoints.get(2).getPort();
+                    logger.info("Request url:{}", url);
+                    Result result = new Result();
+
+                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
+                            .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")
+                            .addFormParam("method", "hash")
+                            .addFormParam("parameterTypesString", "Ljava/lang/String;")
+                            .addFormParam("parameter", str)
+                            .build();
+                    ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
+
+                    Runnable callback = () -> {
+                        try {
+                            String value = responseFuture.get().getResponseBody();
+                            result.setHash(Integer.valueOf(value));
+                            logger.info("Get result from agent provider:{}", value);
+
+                            FullHttpResponse response = new DefaultFullHttpResponse(
+                                    HTTP_1_1,
+                                    OK,
+                                    Unpooled.copiedBuffer(String.valueOf(result.getHash()), CharsetUtil.UTF_8)
+                            );
+
+                            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                            boolean keepAlive = HttpUtil.isKeepAlive(req);
+                            if (keepAlive) {
+                                response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                                response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                                ctx.writeAndFlush(response);
+                            } else {
+                                ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                            }
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    };
+                    responseFuture.addListener(callback, null);
                     ////////////////////////////////////////////////////////////////////////////
 
 
