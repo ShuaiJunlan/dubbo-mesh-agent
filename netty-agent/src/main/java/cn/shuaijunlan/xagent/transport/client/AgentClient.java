@@ -92,7 +92,7 @@ public class AgentClient {
         return agentClientHandler.value;
     }
 
-    public static Integer sendData(String param, Channel channel) {
+    public static synchronized Integer sendData(String param, Channel channel) {
         Long num;
         if (channel == null || (!channel.isActive())){
             System.out.println("channel get error");
@@ -101,7 +101,6 @@ public class AgentClient {
             num = ResultMap.COUNT.getAndIncrement();
             MessageRequest messageRequest = new MessageRequest();
             messageRequest.setId(num);
-            ResultMap.RESULT_MAP.put(num, null);
             messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
             messageRequest.setMethod("hash");
             messageRequest.setParameterTypesString("Ljava/lang/String;");

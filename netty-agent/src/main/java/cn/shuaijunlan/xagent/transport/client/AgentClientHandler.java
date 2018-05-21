@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 21:46 2018/4/28.
  */
-@ChannelHandler.Sharable
+//@ChannelHandler.Sharable
 public class AgentClientHandler extends SimpleChannelInboundHandler<MessageResponse> {
 
     public Object lock;
