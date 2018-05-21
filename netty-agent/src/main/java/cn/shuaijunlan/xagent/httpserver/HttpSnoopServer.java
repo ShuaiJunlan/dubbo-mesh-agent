@@ -1,6 +1,7 @@
 package cn.shuaijunlan.xagent.httpserver;
 
 import cn.shuaijunlan.xagent.httpserver.HttpSnoopServerInitializer;
+import cn.shuaijunlan.xagent.registry.Endpoint;
 import cn.shuaijunlan.xagent.registry.EtcdRegistry;
 import cn.shuaijunlan.xagent.registry.IRegistry;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
@@ -15,13 +16,25 @@ import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+import java.util.List;
+
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 21:14 2018/4/30.
  */
-public final class HttpSnoopServer {
+public class HttpSnoopServer {
 
     static final int PORT = 20000;
+    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
+    public static List<Endpoint> endpoints;
+
+    static {
+        try {
+            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         String type = System.getProperty("agent.type");

@@ -1,0 +1,7 @@
+cn\shuaijunlan\agent\provider\registry\IpHelper.class
+cn\shuaijunlan\agent\provider\registry\EtcdRegistry.class
+cn\shuaijunlan\agent\provider\registry\IRegistry.class
+cn\shuaijunlan\agent\provider\httpserver\HttpServerHandler.class
+cn\shuaijunlan\agent\provider\httpserver\HttpSnoopServer.class
+cn\shuaijunlan\agent\provider\registry\Endpoint.class
+cn\shuaijunlan\agent\provider\httpserver\HttpSnoopServerInitializer.class

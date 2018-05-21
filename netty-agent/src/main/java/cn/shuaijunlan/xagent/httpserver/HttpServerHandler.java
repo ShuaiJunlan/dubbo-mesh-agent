@@ -36,20 +36,8 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
-    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
-    private static List<Endpoint> endpoints;
 
-    static {
-        try {
-            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //    public Channel channel;
     public HttpServerHandler(){
-//        channel = AgentClientManager.getChannel();
     }
 
     @Override
@@ -79,7 +67,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 //                    AgentClientManager.addChannel(channel);
 
                     ////////////////////////////////////////////////////////////////////////////
-                    String url = "http://" + endpoints.get(2).getHost() + ":" + endpoints.get(2).getPort();
+                    String url = "http://" + HttpSnoopServer.endpoints.get(2).getHost() + ":" + HttpSnoopServer.endpoints.get(2).getPort();
 //                    String url = "http://" + "127.0.0.1" + ":" + 10000;
                     logger.info("Request url:{}", url);
                     Result result = new Result();
