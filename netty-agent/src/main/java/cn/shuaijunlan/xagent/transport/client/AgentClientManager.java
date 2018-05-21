@@ -50,7 +50,6 @@ public class AgentClientManager {
             logger.info("channel isn't avaliable");
             return  getAgentClientInstance();
         }
-
     }
 
     /**
@@ -67,7 +66,6 @@ public class AgentClientManager {
             e.printStackTrace();
         }
         return channels.pollFirst();
-//        return channels.get(atomicInteger.getAndIncrement() % channels.size());
     }
 
     /**
@@ -95,6 +93,4 @@ public class AgentClientManager {
         AgentClient.sendData("", channel);
         channels.add(channel);
     }
-
-
 }

@@ -6,10 +6,7 @@ import cn.shuaijunlan.xagent.transport.client.ResultMap;
 import cn.shuaijunlan.xagent.transport.support.MessageRequest;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
@@ -109,7 +106,12 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             messageRequest.setMethod("hash");
             messageRequest.setParameterTypesString("Ljava/lang/String;");
             messageRequest.setParameter(param);
-            channel.writeAndFlush(messageRequest);
+            channel.writeAndFlush(messageRequest).addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture future) throws Exception {
+                    
+                }
+            });
         }
         while (ResultMap.RESULT_MAP.get(num) == null){
 
