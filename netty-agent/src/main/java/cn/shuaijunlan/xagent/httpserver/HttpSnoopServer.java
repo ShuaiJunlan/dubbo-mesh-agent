@@ -44,7 +44,7 @@ public class HttpSnoopServer {
         if (type != null && type.equals("client")){
             // Configure the server.
             EventLoopGroup bossGroup = new EpollEventLoopGroup();
-            EventLoopGroup workerGroup = new EpollEventLoopGroup(4);
+            EventLoopGroup workerGroup = new EpollEventLoopGroup();
             try {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
