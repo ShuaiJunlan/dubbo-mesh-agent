@@ -15,6 +15,8 @@ import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ import java.util.List;
  * @date Created on 21:14 2018/4/30.
  */
 public class HttpSnoopServer {
+    private static Logger logger = LoggerFactory.getLogger(HttpSnoopServer.class);
 
     static final int PORT = 20000;
 //    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
@@ -52,7 +55,7 @@ public class HttpSnoopServer {
 
                 ChannelFuture ch = b.bind(PORT).sync();
                 if (ch.isSuccess()){
-                    System.out.println("Http server start!");
+                    logger.info("Http server start on port :{}", PORT );
                     //初始化channel
                     AgentClientManager.add();
                 }
