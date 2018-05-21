@@ -25,12 +25,12 @@ import java.util.List;
 public class HttpSnoopServer {
 
     static final int PORT = 20000;
-    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
-    public static List<Endpoint> endpoints;
+//    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
+//    public static List<Endpoint> endpoints;
 
     static {
         try {
-            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+//            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
         } catch (Exception e) {
             e.printStackTrace();
         }
