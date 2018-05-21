@@ -1,5 +1,8 @@
 package cn.shuaijunlan.xagent.httpserver;
 
+import cn.shuaijunlan.xagent.registry.Endpoint;
+import cn.shuaijunlan.xagent.registry.EtcdRegistry;
+import cn.shuaijunlan.xagent.registry.IRegistry;
 import cn.shuaijunlan.xagent.transport.client.AgentClient;
 import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import cn.shuaijunlan.xagent.transport.client.ResultMap;
@@ -11,9 +14,16 @@ import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 import io.netty.util.concurrent.DefaultEventExecutor;
 import io.netty.util.concurrent.Promise;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.ListenableFuture;
+import org.asynchttpclient.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+import java.util.List;
+import java.util.Random;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -25,9 +35,21 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
-    public Channel channel;
+    private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
+    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
+    private static List<Endpoint> endpoints;
+
+    static {
+        try {
+            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //    public Channel channel;
     public HttpServerHandler(){
-        channel = AgentClientManager.getChannel();
+//        channel = AgentClientManager.getChannel();
     }
 
     @Override
@@ -49,13 +71,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-                    Integer integer = str.hashCode();
-
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    Integer integer = getHash(str, endpoints.get(2).getHost(), endpoints.get(2).getPort()).getHash();
 
 //                    Integer integer = sendData(str, channel);
 //                    AgentClientManager.addChannel(channel);
@@ -116,5 +132,44 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         Long end = System.currentTimeMillis();
         logger.info("Send data:{} spending time {}ms",num, end-begin);
         return ResultMap.RESULT_MAP.remove(num);
+    }
+
+    public Result getHash(String str, String host, Integer port){
+
+        String url = host + ":" + port;
+
+        Result result = new Result();
+
+        org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
+                .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")
+                .addFormParam("method", "hash")
+                .addFormParam("parameterTypesString", "Ljava/lang/String;")
+                .addFormParam("parameter", str)
+                .build();
+
+        ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
+
+        Runnable callback = () -> {
+            try {
+                String value = responseFuture.get().getResponseBody();
+                result.setHash(Integer.valueOf(value));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        };
+        responseFuture.addListener(callback, null);
+        return result;
+    }
+
+    class Result{
+        private int hash;
+
+        public int getHash() {
+            return hash;
+        }
+
+        public void setHash(int hash) {
+            this.hash = hash;
+        }
     }
 }

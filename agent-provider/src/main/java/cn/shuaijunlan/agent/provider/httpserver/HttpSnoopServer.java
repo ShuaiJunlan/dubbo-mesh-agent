@@ -24,12 +24,12 @@ public final class HttpSnoopServer {
         //register and start agent server
         IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
         // Configure the server.
-        EventLoopGroup bossGroup = new EpollEventLoopGroup();
-        EventLoopGroup workerGroup = new EpollEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(EpollServerSocketChannel.class)
+                    .channel(NioServerSocketChannel.class)
                     //保持长连接状态
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childHandler(new HttpSnoopServerInitializer());

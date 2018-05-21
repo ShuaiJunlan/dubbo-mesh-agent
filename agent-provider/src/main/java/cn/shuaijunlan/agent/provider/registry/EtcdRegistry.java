@@ -1,6 +1,5 @@
 package cn.shuaijunlan.agent.provider.registry;
 
-import cn.shuaijunlan.xagent.registry.Endpoint;
 import com.coreos.jetcd.Client;
 import com.coreos.jetcd.KV;
 import com.coreos.jetcd.Lease;
@@ -78,13 +77,13 @@ public class EtcdRegistry implements IRegistry {
     }
 
     @Override
-    public List<cn.shuaijunlan.xagent.registry.Endpoint> find(String serviceName) throws Exception {
+    public List<Endpoint> find(String serviceName) throws Exception {
 
         String strKey = MessageFormat.format("/{0}/{1}",rootPath,serviceName);
         ByteSequence key  = ByteSequence.fromString(strKey);
         GetResponse response = kv.get(key, GetOption.newBuilder().withPrefix(key).build()).get();
 
-        List<cn.shuaijunlan.xagent.registry.Endpoint> endpoints = new ArrayList<>();
+        List<Endpoint> endpoints = new ArrayList<>();
 
         for (com.coreos.jetcd.data.KeyValue kv : response.getKvs()){
             String s = kv.getKey().toStringUtf8();

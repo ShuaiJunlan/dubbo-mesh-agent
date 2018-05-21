@@ -22,7 +22,6 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 
     @Override
     public void initChannel(SocketChannel ch) {
-//        EventExecutorGroup group = new DefaultEventExecutorGroup(4);
         EventExecutorGroup group = new DefaultEventExecutorGroup(8);
         ChannelPipeline p = ch.pipeline();
         p.addLast(new HttpRequestDecoder());

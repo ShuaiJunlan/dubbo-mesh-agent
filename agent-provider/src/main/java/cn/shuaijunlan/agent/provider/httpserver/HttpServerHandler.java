@@ -45,6 +45,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
+
                     Integer integer = str.hashCode();
 
                     try {
