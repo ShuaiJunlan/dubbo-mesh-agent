@@ -1,5 +1,6 @@
 package cn.shuaijunlan.agent.provider.httpserver;
 
+import cn.shuaijunlan.agent.provider.dubbo.RpcClient;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -46,13 +47,18 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                         str = tmp[1];
                     }
 
-                    Integer integer = str.hashCode();
-
+                    RpcClient rpcClient = new RpcClient();
+                    Object result = null;
                     try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
+                        result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
+                                "hash",
+                                "Ljava/lang/String;",
+                                str);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    Integer integer = Integer.valueOf(new String((byte[]) result));
 
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
