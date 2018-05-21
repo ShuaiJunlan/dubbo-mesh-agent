@@ -22,15 +22,14 @@ public final class HttpSnoopServer {
 //    static final Integer PORT = 10000;
 
     public static void main(String[] args) throws Exception {
-        //register and start agent server
-        IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
+
         // Configure the server.
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new EpollEventLoopGroup();
+        EventLoopGroup workerGroup = new EpollEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
+                    .channel(EpollServerSocketChannel.class)
                     //保持长连接状态
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childHandler(new HttpSnoopServerInitializer());
@@ -38,6 +37,8 @@ public final class HttpSnoopServer {
             ChannelFuture ch = b.bind(PORT).sync();
             if (ch.isSuccess()){
                 System.out.println("agent server start!");
+                //register service
+                IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
             }
 
             ch.channel().closeFuture().sync();

@@ -85,9 +85,9 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     /////////////////////////////////////////////////////////////
 
                     ////////////////////////////////////////////////////////////////////////////
-                    String url = "http://" + "10.10.10.5" + ":" + 30000;
-                    logger.info("Request url:{}", url);
-                    Result result = new Result();
+                    String url = "http://10.10.10.5:3000";
+//                    logger.info("Request url:{}", url);
+//                    Result result = new Result();
 
                     org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
                             .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")
@@ -100,13 +100,13 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     Runnable callback = () -> {
                         try {
                             String value = responseFuture.get().getResponseBody();
-                            result.setHash(Integer.valueOf(value));
-                            logger.info("Get result from agent provider:{}", value);
+//                            result.setHash(Integer.valueOf(value));
+//                            logger.info("Get result from agent provider:{}", value);
 
                             FullHttpResponse response = new DefaultFullHttpResponse(
                                     HTTP_1_1,
                                     OK,
-                                    Unpooled.copiedBuffer(String.valueOf(result.getHash()), CharsetUtil.UTF_8)
+                                    Unpooled.copiedBuffer(value, CharsetUtil.UTF_8)
                             );
 
                             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
