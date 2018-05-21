@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,20 +22,20 @@ public class AgentClientManager {
     //考虑优先级队列
 
     private static ConcurrentHashMap<Integer, AgentClient> agentClients = new ConcurrentHashMap<>();
-    private static ArrayList<Channel> channels = new ArrayList<>(256);
+    private static LinkedList<Channel> channels = new LinkedList<>();
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private static List<Endpoint> endpoints = null;
     private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
     private static Object object = new Object();
-//    static{
-//        try {
-//            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
-//            logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
-//            add();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private static AgentClient client1 = new AgentClient();
+
+    static{
+        try {
+            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 获取连接实例
@@ -56,21 +57,43 @@ public class AgentClientManager {
      * 获取连接实例
      * @return
      */
-    public static Channel getChannel(){
+    public static Channel getChannel() {
 
-        return channels.get(atomicInteger.getAndIncrement() % channels.size());
+        try {
+            while (channels.isEmpty()) {
+                addOne();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return channels.pollFirst();
+//        return channels.get(atomicInteger.getAndIncrement() % channels.size());
+    }
+
+    /**
+     * 添加channel
+     * @param channel
+     */
+    public static void addChannel(Channel channel){
+        channels.add(channel);
     }
 
     public static void add() throws Exception {
-        endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
         logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
-        AgentClient client1 = new AgentClient();
 
         for (int i = 0; i < 256; i++){
             Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
             AgentClient.sendData("", channel);
             channels.add(channel);
         }
+    }
+
+    public static void addOne() throws Exception {
+        logger.info("addOne -- Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
+
+        Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
+        AgentClient.sendData("", channel);
+        channels.add(channel);
     }
 
 

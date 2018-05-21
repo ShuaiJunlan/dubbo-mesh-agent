@@ -60,6 +60,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
 //                    AgentClient client = AgentClientManager.getAgentClientInstance();
                     Integer integer = sendData(str, channel);
+                    AgentClientManager.addChannel(channel);
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
