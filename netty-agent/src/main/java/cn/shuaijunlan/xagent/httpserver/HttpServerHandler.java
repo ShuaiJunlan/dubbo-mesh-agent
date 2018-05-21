@@ -34,7 +34,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     }
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        if (msg instanceof FullHttpRequest && channel != null){
+        if (msg instanceof FullHttpRequest){
             FullHttpRequest req = (FullHttpRequest) msg;
             ByteBuf content = req.content();
             if (content.isReadable()) {
@@ -55,7 +55,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 //                        e.printStackTrace();
 //                    }
 
-//                    AgentClient client = AgentClientManager.getAgentClientInstance();
                     Integer integer = sendData(str, channel);
                     AgentClientManager.addChannel(channel);
 
