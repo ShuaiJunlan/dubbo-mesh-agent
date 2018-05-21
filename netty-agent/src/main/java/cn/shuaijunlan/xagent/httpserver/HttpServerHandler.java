@@ -95,9 +95,10 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     }
 
     public Integer sendData(String param, Channel channel) {
+        Long begin = System.currentTimeMillis();
         Long num;
         if (channel == null || (!channel.isActive())){
-            System.out.println("channel get error");
+            logger.info("channel get error");
             return 0;
         }else {
             num = ResultMap.COUNT.getAndIncrement();
@@ -112,6 +113,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         while (ResultMap.RESULT_MAP.get(num) == null){
 
         }
+        Long end = System.currentTimeMillis();
+        logger.info("Send date spending time {}ms", end-begin);
         return ResultMap.RESULT_MAP.remove(num);
     }
 }
