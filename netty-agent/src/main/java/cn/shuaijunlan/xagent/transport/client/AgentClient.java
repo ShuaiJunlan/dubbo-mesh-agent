@@ -38,7 +38,7 @@ public class AgentClient {
 
     public void start() {
         try {
-            agentClientHandler = new AgentClientHandler();
+//            agentClientHandler = new AgentClientHandler();
             bootstrap = new Bootstrap();
             bootstrap
                     .group(workGroup)
@@ -51,7 +51,7 @@ public class AgentClient {
                             ChannelPipeline p = socketChannel.pipeline();
                             p.addLast(new KryoEncoder(util));
                             p.addLast(new KryoDecoder(util));
-                            p.addLast(agentClientHandler);
+                            p.addLast(new AgentClientHandler());
                         }
                     });
 //            doConnect(this.host, this.port);
