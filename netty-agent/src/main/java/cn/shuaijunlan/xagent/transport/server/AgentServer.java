@@ -36,7 +36,7 @@ public class AgentServer {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline p = socketChannel.pipeline();
-                            p.addLast(new IdleStateHandler(10, 0, 0));
+//                            p.addLast(new IdleStateHandler(10, 0, 0));
 ///                            p.addLast(new LengthFieldBasedFrameDecoder(1024, 0, 4, -4, 0));
                             p.addLast(new KryoDecoder(util));
                             p.addLast(new KryoEncoder(util));

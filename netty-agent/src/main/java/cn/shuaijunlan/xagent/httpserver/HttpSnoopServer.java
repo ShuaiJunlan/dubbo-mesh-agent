@@ -3,6 +3,7 @@ package cn.shuaijunlan.xagent.httpserver;
 import cn.shuaijunlan.xagent.httpserver.HttpSnoopServerInitializer;
 import cn.shuaijunlan.xagent.registry.EtcdRegistry;
 import cn.shuaijunlan.xagent.registry.IRegistry;
+import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
 import cn.shuaijunlan.xagent.transport.server.AgentServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -39,6 +40,8 @@ public final class HttpSnoopServer {
                 ChannelFuture ch = b.bind(PORT).sync();
                 if (ch.isSuccess()){
                     System.out.println("Http server start!");
+                    //初始化channel
+                    AgentClientManager.add();
                 }
 
                 ch.channel().closeFuture().sync();

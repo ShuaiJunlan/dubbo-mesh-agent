@@ -26,15 +26,15 @@ public class AgentClientManager {
     private static List<Endpoint> endpoints = null;
     private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
     private static Object object = new Object();
-    static{
-        try {
-            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
-            logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
-            add();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    static{
+//        try {
+//            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+//            logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
+//            add();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * 获取连接实例
@@ -61,7 +61,9 @@ public class AgentClientManager {
         return channels.get(atomicInteger.getAndIncrement() % 256);
     }
 
-    private static void add() throws InterruptedException {
+    public static void add() throws Exception {
+        endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+        logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
         AgentClient client1 = new AgentClient();
 
         for (int i = 0; i < 256; i++){

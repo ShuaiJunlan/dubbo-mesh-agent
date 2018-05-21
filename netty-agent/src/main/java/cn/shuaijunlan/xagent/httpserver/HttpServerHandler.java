@@ -114,7 +114,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
         }
         Long end = System.currentTimeMillis();
-        logger.info("Send date spending time {}ms", end-begin);
+        logger.info("Send data:{} spending time {}ms",num, end-begin);
         return ResultMap.RESULT_MAP.remove(num);
     }
 }
