@@ -29,6 +29,7 @@ public class AgentClientManager {
     static{
         try {
             endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+            logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
             add();
         } catch (Exception e) {
             e.printStackTrace();
