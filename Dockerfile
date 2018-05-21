@@ -13,6 +13,7 @@ COPY --from=builder /root/workspace/services/mesh-consumer/target/mesh-consumer-
 COPY --from=builder /root/workspace/agent/netty-agent/target/netty-agent-1.0.0.jar /root/dists/mesh-agent.jar
 COPY --from=builder /root/workspace/agent/agent-provider/target/agent-provider-1.0.0.jar /root/dists/mesh-agent-provider.jar
 COPY --from=builder /root/workspace/agent/netty-agent/target/lib /root/dists/lib
+COPY --from=builder /root/workspace/agent/agent-provider/target/lib /root/dists/lib1
 
 COPY --from=builder /usr/local/bin/docker-entrypoint.sh /usr/local/bin
 COPY start-agent.sh /usr/local/bin
