@@ -19,6 +19,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public final class HttpSnoopServer {
 
     static final Integer PORT = Integer.valueOf(System.getProperty("agent.port"));
+//    static final Integer PORT = 10000;
 
     public static void main(String[] args) throws Exception {
         //register and start agent server
