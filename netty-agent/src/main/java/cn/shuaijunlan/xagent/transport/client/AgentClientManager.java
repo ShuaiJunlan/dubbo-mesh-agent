@@ -67,7 +67,9 @@ public class AgentClientManager {
         AgentClient client1 = new AgentClient();
 
         for (int i = 0; i < 256; i++){
-            channels.add(client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort()));
+            Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
+            AgentClient.sendData("", channel);
+            channels.add(channel);
         }
     }
 
