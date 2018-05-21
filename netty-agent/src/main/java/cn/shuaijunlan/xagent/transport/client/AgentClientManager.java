@@ -58,7 +58,7 @@ public class AgentClientManager {
      */
     public static Channel getChannel(){
 
-        return channels.get(atomicInteger.getAndIncrement() % 256);
+        return channels.get(atomicInteger.getAndIncrement() % channels.size());
     }
 
     public static void add() throws Exception {
