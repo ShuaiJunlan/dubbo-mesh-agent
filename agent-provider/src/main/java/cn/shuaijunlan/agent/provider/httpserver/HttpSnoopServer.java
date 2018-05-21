@@ -24,7 +24,7 @@ public final class HttpSnoopServer {
     public static void main(String[] args) throws Exception {
 
         // Configure the server.
-        EventLoopGroup bossGroup = new EpollEventLoopGroup();
+        EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
         EventLoopGroup workerGroup = new EpollEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
