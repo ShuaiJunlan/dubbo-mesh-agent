@@ -29,7 +29,7 @@ public class AgentClientManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        add();
+//        add();
     }
 
     /**
@@ -48,6 +48,22 @@ public class AgentClientManager {
 
     }
 
+    /**
+     * 获取连接实例
+     * @return
+     */
+    public static AgentClient getChannel(){
+
+        AgentClient agentClient = new AgentClient(endpoints.get(2).getHost(), endpoints.get(2).getPort());
+        if (agentClient.channel != null && agentClient.channel.isActive()){
+            logger.info("get channel successfully");
+            return agentClient;
+        }else {
+            logger.info("channel isn't avaliable");
+            return  getChannel();
+        }
+    }
+
     private static void add(){
         for (int i = 0; i < 3; i++){
             AgentClient client1 = new AgentClient(endpoints.get(i).getHost(), endpoints.get(i).getPort());
@@ -55,5 +71,6 @@ public class AgentClientManager {
             agentClients.put(i, client1);
         }
     }
+
 
 }

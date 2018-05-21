@@ -10,7 +10,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
-import java.util.concurrent.*;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -21,6 +20,10 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @date Created on 14:27 2018/5/6.
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
+    public AgentClient agentClient;
+    public HttpServerHandler(){
+        agentClient = AgentClientManager.getChannel();
+    }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
@@ -41,16 +44,16 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-                    Integer integer = str.hashCode();
-
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+//                    Integer integer = str.hashCode();
+//
+//                    try {
+//                        Thread.sleep(50);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
 
 //                    AgentClient client = AgentClientManager.getAgentClientInstance();
-//                    Integer integer = client.sendData(str);
+                    Integer integer = agentClient.sendData(str);
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
@@ -76,6 +79,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     BAD_REQUEST
             );
             ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+            System.out.println("Wrong response!");
         }
     }
     @Override
