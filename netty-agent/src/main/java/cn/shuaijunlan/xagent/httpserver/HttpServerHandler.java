@@ -80,7 +80,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
                     ////////////////////////////////////////////////////////////////////////////
                     String url = "http://" + endpoints.get(2).getHost() + ":" + endpoints.get(2).getPort();
-
+//                    String url = "http://" + "127.0.0.1" + ":" + 10000;
+                    logger.info("Request url:{}", url);
                     Result result = new Result();
 
                     org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
@@ -95,7 +96,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                         try {
                             String value = responseFuture.get().getResponseBody();
                             result.setHash(Integer.valueOf(value));
-                            System.out.println(result.getHash());
+                            logger.info("Get result from agent provider:{}", value);
 
                             FullHttpResponse response = new DefaultFullHttpResponse(
                                     HTTP_1_1,

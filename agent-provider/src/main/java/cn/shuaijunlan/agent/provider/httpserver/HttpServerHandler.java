@@ -89,8 +89,4 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
-
-    public Integer sendData(String param, Channel channel) {
-        return 1;
-    }
 }
