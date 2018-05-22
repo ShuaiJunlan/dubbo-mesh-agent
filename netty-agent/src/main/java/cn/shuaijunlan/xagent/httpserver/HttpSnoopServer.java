@@ -48,8 +48,8 @@ public class HttpSnoopServer {
                 b.group(bossGroup, workerGroup)
                         .channel(EpollServerSocketChannel.class)
                         //保持长连接状态
-                        .option(ChannelOption.SO_KEEPALIVE, true)
-                        .option(ChannelOption.TCP_NODELAY, true)
+                        .childOption(ChannelOption.SO_KEEPALIVE, true)
+                        .childOption(ChannelOption.TCP_NODELAY, true)
                         .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                         .childHandler(new HttpSnoopServerInitializer());
 

@@ -24,13 +24,13 @@ public final class HttpSnoopServer {
 
         // Configure the server.
         EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
-        EventLoopGroup workerGroup = new EpollEventLoopGroup(16);
+        EventLoopGroup workerGroup = new EpollEventLoopGroup(8);
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
                     .channel(EpollServerSocketChannel.class)
-                    .option(ChannelOption.SO_KEEPALIVE, true)
-                    .option(ChannelOption.TCP_NODELAY, true)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                     .childHandler(new HttpSnoopServerInitializer());
 
