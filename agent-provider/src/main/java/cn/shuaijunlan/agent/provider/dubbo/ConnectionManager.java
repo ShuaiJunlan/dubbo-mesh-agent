@@ -14,7 +14,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @author Junlan
  */
 public class ConnectionManager {
-    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
+    private EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(4);
 //    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
     private Bootstrap bootstrap;
@@ -58,7 +58,7 @@ public class ConnectionManager {
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
-                .channel(NioSocketChannel.class)
+                .channel(EpollSocketChannel.class)
                 .handler(new RpcClientInitializer());
     }
 }
