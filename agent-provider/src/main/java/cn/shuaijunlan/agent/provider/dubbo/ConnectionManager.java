@@ -5,10 +5,15 @@ import io.netty.buffer.UnpooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class ConnecManager {
+/**
+ * @author Junlan
+ */
+public class ConnectionManager {
     private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
     private Bootstrap bootstrap;
@@ -16,7 +21,7 @@ public class ConnecManager {
     private Channel channel;
     private Object lock = new Object();
 
-    public ConnecManager() {
+    public ConnectionManager() {
     }
 
     public Channel getChannel() throws Exception {
@@ -35,7 +40,8 @@ public class ConnecManager {
         if (null == channel) {
             synchronized (lock){
                 if (null == channel){
-                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
+//                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
+                    int port = 20880;
                     channel = bootstrap.connect("127.0.0.1", port).sync().channel();
                 }
             }

@@ -2,6 +2,9 @@ package cn.shuaijunlan.agent.provider.dubbo.model;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author Junlan
+ */
 public class RpcRequestHolder {
 
     // key: requestId     value: RpcFuture

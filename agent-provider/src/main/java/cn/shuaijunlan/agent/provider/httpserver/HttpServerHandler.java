@@ -1,6 +1,7 @@
 package cn.shuaijunlan.agent.provider.httpserver;
 
 import cn.shuaijunlan.agent.provider.dubbo.RpcClient;
+import com.alibaba.fastjson.JSON;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -22,6 +23,8 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
+    private RpcClient rpcClient = new RpcClient();
+
 
     public HttpServerHandler(){
 
@@ -46,25 +49,24 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-                    Integer integer = str.hashCode();
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-//                    RpcClient rpcClient = new RpcClient();
-//                    Object result = null;
+//                    Integer integer = str.hashCode();
 //                    try {
-//                        result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
-//                                "hash",
-//                                "Ljava/lang/String;",
-//                                str);
-//                    } catch (Exception e) {
+//                        Thread.sleep(50);
+//                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }
 
-//                    Integer integer = Integer.valueOf(new String((byte[]) result));
+                    Object result = null;
+                    try {
+                        result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
+                                "hash",
+                                "Ljava/lang/String;",
+                                str);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    Integer integer = JSON.parseObject(new String((byte[]) result) ,Integer.class);
 
 
                     FullHttpResponse response = new DefaultFullHttpResponse(

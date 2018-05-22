@@ -20,13 +20,10 @@ import java.io.PrintWriter;
 public class RpcClient {
     private Logger logger = LoggerFactory.getLogger(RpcClient.class);
 
-    private ConnecManager connectManager;
+    private ConnectionManager connectManager;
 
-    public RpcClient(IRegistry registry){
-        this.connectManager = new ConnecManager();
-    }
     public RpcClient(){
-        this.connectManager = new ConnecManager();
+        this.connectManager = new ConnectionManager();
     }
 
     public Object invoke(String interfaceName, String method, String parameterTypesString, String parameter) throws Exception {

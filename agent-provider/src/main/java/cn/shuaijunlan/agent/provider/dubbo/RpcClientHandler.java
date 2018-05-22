@@ -7,6 +7,9 @@ import cn.shuaijunlan.agent.provider.dubbo.model.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
+/**
+ * @author Junlan
+ */
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 
     @Override
