@@ -9,12 +9,18 @@ import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Junlan
  */
 public class ConnectionManager {
+    private Logger logger = LoggerFactory.getLogger(ConnectionManager.class);
     private EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(4);
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
 //    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
     private Bootstrap bootstrap;
@@ -39,11 +45,13 @@ public class ConnectionManager {
         }
 
         if (null == channel) {
+
             synchronized (lock){
                 if (null == channel){
 //                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
                     int port = 20880;
                     channel = bootstrap.connect("127.0.0.1", port).sync().channel();
+                    logger.info("Create a new channel, the {}th one!", atomicInteger.incrementAndGet());
                 }
             }
         }
