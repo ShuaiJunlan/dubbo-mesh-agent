@@ -11,6 +11,9 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Junlan
+ */
 public class DubboRpcDecoder extends ByteToMessageDecoder {
     // header length.
     protected static final int HEADER_LENGTH = 16;

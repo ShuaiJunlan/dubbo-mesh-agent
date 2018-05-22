@@ -60,13 +60,13 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                         e.printStackTrace();
                     }
 
-                    Integer integer = JSON.parseObject(new String((byte[]) result) ,Integer.class);
+                    int integer = JSON.parseObject(new String((byte[]) result) ,Integer.class);
 
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
                             OK,
-                            Unpooled.copiedBuffer(integer.toString(), CharsetUtil.UTF_8)
+                            Unpooled.copiedBuffer(String.valueOf(integer), CharsetUtil.UTF_8)
                     );
 
                     response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
