@@ -43,9 +43,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
     private AtomicInteger atomicInteger = new AtomicInteger(0);
     private String url = Constants.URLS[2];
-    Executor executor = Executors.newFixedThreadPool(16);
-
-
 
     public HttpServerHandler(){
     }
@@ -102,7 +99,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                             e.printStackTrace();
                         }
                     };
-                    responseFuture.addListener(callback, executor);
+                    responseFuture.addListener(callback, null);
                     ////////////////////////////////////////////////////////////////////////////
                 });
 
