@@ -46,17 +46,17 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-//                Object result = null;
-//                try {
-//                    result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
-//                            "hash",
-//                            "Ljava/lang/String;",
-//                            str);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                String integer = new String((byte[]) result).replaceFirst("\r\n", "");
-                String integer = String.valueOf(str.hashCode());
+                Object result = null;
+                try {
+                    result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
+                            "hash",
+                            "Ljava/lang/String;",
+                            str);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String integer = new String((byte[]) result).replaceFirst("\r\n", "");
+//                String integer = String.valueOf(str.hashCode());
 
                 FullHttpResponse response = new DefaultFullHttpResponse(
                         HTTP_1_1,
