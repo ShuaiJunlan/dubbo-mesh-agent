@@ -22,8 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
@@ -39,6 +43,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
     private AtomicInteger atomicInteger = new AtomicInteger(0);
     private String url = Constants.URLS[2];
+    Executor executor = Executors.newFixedThreadPool(16);
+
 
 
     public HttpServerHandler(){
@@ -92,13 +98,11 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                             } else {
                                 ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                             }
-
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     };
-                    responseFuture.addListener(callback, null);
+                    responseFuture.addListener(callback, executor);
                     ////////////////////////////////////////////////////////////////////////////
                 });
 
@@ -113,73 +117,9 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         }
     }
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws IOException {
         cause.printStackTrace();
+        asyncHttpClient.close();
         ctx.close();
-    }
-
-    public Integer sendData(String param, Channel channel) {
-        Long begin = System.currentTimeMillis();
-        Long num;
-        if (channel == null || (!channel.isActive())){
-            logger.info("channel get error");
-            return 0;
-        }else {
-            num = ResultMap.COUNT.getAndIncrement();
-            MessageRequest messageRequest = new MessageRequest();
-            messageRequest.setId(num);
-            messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
-            messageRequest.setMethod("hash");
-            messageRequest.setParameterTypesString("Ljava/lang/String;");
-            messageRequest.setParameter(param);
-
-            channel.writeAndFlush(messageRequest);
-        }
-        while (ResultMap.RESULT_MAP.get(num) == null){
-
-        }
-        Long end = System.currentTimeMillis();
-        logger.info("Send data:{} spending time {}ms",num, end-begin);
-        return ResultMap.RESULT_MAP.remove(num);
-    }
-
-    public Result getHash(String str, String host, Integer port){
-
-        String url = "http://" + host + ":" + port;
-
-        Result result = new Result();
-
-        org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
-                .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")
-                .addFormParam("method", "hash")
-                .addFormParam("parameterTypesString", "Ljava/lang/String;")
-                .addFormParam("parameter", str)
-                .build();
-        ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
-
-        Runnable callback = () -> {
-            try {
-                String value = responseFuture.get().getResponseBody();
-                result.setHash(Integer.valueOf(value));
-                System.out.println(result.getHash());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        };
-        responseFuture.addListener(callback, null);
-        return result;
-    }
-
-    class Result{
-        private int hash;
-
-        public int getHash() {
-            return hash;
-        }
-
-        public void setHash(int hash) {
-            this.hash = hash;
-        }
     }
 }

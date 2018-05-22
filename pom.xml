@@ -86,6 +86,12 @@
                 </exclusions>
             </dependency>
 
+            <dependency>
+                <groupId>org.asynchttpclient</groupId>
+                <artifactId>async-http-client</artifactId>
+                <version>2.4.7</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
