@@ -14,8 +14,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @author Junlan
  */
 public class ConnectionManager {
-//    private EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(4);
-    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
+    private EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(4);
+//    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
     private Bootstrap bootstrap;
 
@@ -41,8 +41,7 @@ public class ConnectionManager {
         if (null == channel) {
             synchronized (lock){
                 if (null == channel){
-//                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
-                    int port = 20880;
+                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
                     channel = bootstrap.connect("127.0.0.1", port).sync().channel();
                 }
             }
@@ -58,7 +57,7 @@ public class ConnectionManager {
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
-                .channel(NioSocketChannel.class)
+                .channel(EpollSocketChannel.class)
                 .handler(new RpcClientInitializer());
     }
 }

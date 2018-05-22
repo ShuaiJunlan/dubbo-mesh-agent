@@ -9,5 +9,6 @@
   {"token": "******", "taskid": 2000, "daemonid": "test.master[wGOE6zU]", "status": 0, "isvalid": 1, "message": "Success", "rank": 1958.69, "scoreJson": {"qps": 1958.69}, "time": "2018.05.22/11.35", "branch": "dev-3", "all": true},
   {"token": "******", "taskid": 2000, "daemonid": "test.master[UEZzF5I]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2151.17, "scoreJson": {"qps": 2151.17}, "time": "2018.05.22/11.48", "branch": "dev-3", "all": true},
   {"token": "******", "taskid": 2000, "daemonid": "test.master[IOXlSpv]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2362.38, "scoreJson": {"qps": 2362.38}, "time": "2018.05.22/12.15", "branch": "dev-3", "all": true},
-  {"token": "******", "taskid": 2000, "daemonid": "test.master[x19vPLA]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2486.53, "scoreJson": {"qps": 2486.53}, "time": "2018.05.22/12.34", "branch": "dev-3", "all": true}
+  {"token": "******", "taskid": 2000, "daemonid": "test.master[x19vPLA]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2486.53, "scoreJson": {"qps": 2486.53}, "time": "2018.05.22/12.34", "branch": "dev-3", "all": true},
+  {"token": "******", "taskid": 2000, "daemonid": "test.master[k9HaXKV]", "status": 0, "isvalid": 1, "message": "Success", "rank": 2506.93, "scoreJson": {"qps": 2506.93}, "time": "2018.05.22/13.12", "branch": "dev-3", "all": true}
 ]
