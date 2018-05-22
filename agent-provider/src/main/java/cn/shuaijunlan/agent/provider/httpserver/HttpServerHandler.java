@@ -59,15 +59,16 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Integer integer = 0;
+                    String integer = "";
+
                     if (result != null){
-                        integer = JSON.parseObject(new String((byte[]) result) ,Integer.class);
+                        integer = new String((byte[]) result).replaceFirst("\n", "");
                     }
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
                             OK,
-                            Unpooled.copiedBuffer(integer.toString(), CharsetUtil.UTF_8)
+                            Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
                     );
 
                     response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
