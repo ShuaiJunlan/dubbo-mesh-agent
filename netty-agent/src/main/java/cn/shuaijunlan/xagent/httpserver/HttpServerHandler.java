@@ -85,6 +85,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
 
                     ///////////////////////////////////////////////////////////////////////////////
+                    long start = System.currentTimeMillis();
                     String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
                     content.release();
                     org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
@@ -114,6 +115,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                         }
                     };
                     responseFuture.addListener(callback, null);
+                    long end = System.currentTimeMillis();
+                    logger.info("Get response from provider agent spending {}ms!", end-start);
                     ////////////////////////////////////////////////////////////////////////////
                 });
 
