@@ -6,6 +6,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +21,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 14:27 2018/5/6.
  */
-public class HttpServerHandler extends ChannelInboundHandlerAdapter {
+public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private RpcClient rpcClient = new RpcClient();
 
@@ -33,8 +34,9 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
+
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof FullHttpRequest){
             FullHttpRequest req = (FullHttpRequest) msg;
             // 将耗时任务交给任务线程池处理
@@ -81,6 +83,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             logger.error("Wrong response!");
         }
     }
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();

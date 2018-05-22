@@ -38,7 +38,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 14:27 2018/5/6.
  */
-public class HttpServerHandler extends ChannelInboundHandlerAdapter {
+public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
     private AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -51,8 +51,9 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
+
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         if (msg instanceof FullHttpRequest){
             FullHttpRequest req = (FullHttpRequest) msg;
             ByteBuf content = req.content();
@@ -127,6 +128,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             logger.info("Wrong response!");
         }
     }
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws IOException {
         cause.printStackTrace();
