@@ -45,8 +45,6 @@ public class DubboRpcDecoder extends ByteToMessageDecoder {
             }
         }
 
-
-        //list.add(decode2(byteBuf));
     }
 
     enum DecodeResult {
@@ -91,8 +89,6 @@ public class DubboRpcDecoder extends ByteToMessageDecoder {
         // HEADER_LENGTH + 1，忽略header & Response value type的读取，直接读取实际Return value
         // dubbo返回的body中，前后各有一个换行，去掉
         byte[] subArray = Arrays.copyOfRange(data,HEADER_LENGTH + 2, data.length -1 );
-
-        String s = new String(subArray);
 
         byte[] requestIdBytes = Arrays.copyOfRange(data,4,12);
         long requestId = Bytes.bytes2long(requestIdBytes,0);
