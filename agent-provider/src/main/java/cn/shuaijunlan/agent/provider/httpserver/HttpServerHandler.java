@@ -37,43 +37,41 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof FullHttpRequest){
             FullHttpRequest req = (FullHttpRequest) msg;
-                // 将耗时任务交给任务线程池处理
-                ctx.executor().execute(() -> {
-                    //执行远程调用
-                    String[] tmp = req.uri().split("&parameter=");
-                    String str = "";
-                    if (tmp.length > 1){
-                        str = tmp[1];
-                    }
-                    logger.info(str);
-                    Object result = null;
-                    try {
-                        result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
-                                "hash",
-                                "Ljava/lang/String;",
-                                str);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    String integer = new String((byte[]) result).replaceFirst("\r\n", "");
+            // 将耗时任务交给任务线程池处理
+            ctx.executor().execute(() -> {
+                //执行远程调用
+                String[] tmp = req.uri().split("&parameter=");
+                String str = "";
+                if (tmp.length > 1){
+                    str = tmp[1];
+                }
+                Object result = null;
+                try {
+                    result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
+                            "hash",
+                            "Ljava/lang/String;",
+                            str);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                String integer = new String((byte[]) result).replaceFirst("\r\n", "");
 
-                    FullHttpResponse response = new DefaultFullHttpResponse(
-                            HTTP_1_1,
-                            OK,
-                            Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
-                    );
+                FullHttpResponse response = new DefaultFullHttpResponse(
+                        HTTP_1_1,
+                        OK,
+                        Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
+                );
 
-                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                    boolean keepAlive = HttpUtil.isKeepAlive(req);
-                    if (keepAlive) {
-                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                        ctx.writeAndFlush(response);
-                    } else {
-                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                    }
-                });
-
+                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                boolean keepAlive = HttpUtil.isKeepAlive(req);
+                if (keepAlive) {
+                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                    ctx.writeAndFlush(response);
+                } else {
+                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                }
+            });
         }else {
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HTTP_1_1,

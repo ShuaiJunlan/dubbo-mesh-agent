@@ -86,7 +86,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
                     ///////////////////////////////////////////////////////////////////////////////
                     String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
-                    logger.info(requestUrl);
                     content.release();
                     org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
                     ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
