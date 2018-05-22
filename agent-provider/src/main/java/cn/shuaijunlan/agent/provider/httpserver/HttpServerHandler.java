@@ -37,18 +37,15 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof FullHttpRequest){
             FullHttpRequest req = (FullHttpRequest) msg;
-            ByteBuf content = req.content();
-            if (content.isReadable()) {
                 // 将耗时任务交给任务线程池处理
                 ctx.executor().execute(() -> {
                     //执行远程调用
-                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
-                    content.release();
+                    String[] tmp = req.uri().split("&parameter=");
                     String str = "";
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-
+                    logger.info(str);
                     Object result = null;
                     try {
                         result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
@@ -77,7 +74,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     }
                 });
 
-            }
         }else {
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HTTP_1_1,

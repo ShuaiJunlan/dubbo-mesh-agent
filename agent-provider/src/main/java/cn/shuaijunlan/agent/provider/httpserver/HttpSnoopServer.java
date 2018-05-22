@@ -18,7 +18,6 @@ import io.netty.channel.epoll.EpollServerSocketChannel;
 public final class HttpSnoopServer {
 
     static final Integer PORT = Integer.valueOf(System.getProperty("agent.port"));
-//    static final Integer PORT = 10000;
 
     public static void main(String[] args) throws Exception {
 

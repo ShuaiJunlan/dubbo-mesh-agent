@@ -66,6 +66,25 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 //                    if (tmp.length > 1){
 //                        str = tmp[1];
 //                    }
+//                    ///////////////////////////////////////////////////////////////////////////////
+//                    FullHttpResponse response = new DefaultFullHttpResponse(
+//                            HTTP_1_1,
+//                            OK,
+//                            Unpooled.copiedBuffer(str, CharsetUtil.UTF_8)
+//                    );
+//                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+//                    boolean keepAlive = HttpUtil.isKeepAlive(req);
+//                    if (keepAlive) {
+//                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+//                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+//                        ctx.writeAndFlush(response);
+//                    } else {
+//                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+//                    }
+                    ///////////////////////////////////////////////////////////////////////////////
+
+
+                    ///////////////////////////////////////////////////////////////////////////////
                     String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
                     logger.info(requestUrl);
                     content.release();
