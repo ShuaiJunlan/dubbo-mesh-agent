@@ -24,6 +24,7 @@ import java.util.Map;
 /**
  * RPC Invocation.
  *
+ * @author Junlan
  * @serial Don't change the class name and properties.
  */
 public class RpcInvocation implements Serializable {

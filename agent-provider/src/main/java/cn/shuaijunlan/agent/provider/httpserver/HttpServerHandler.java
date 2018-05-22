@@ -58,13 +58,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    String integer = "";
-
-                    if (result != null){
-                        integer = new String((byte[]) result).replaceFirst("\n", "");
-                    }else {
-                        logger.info("The return value of provider service is null!");
-                    }
+                    String integer = new String((byte[]) result).replaceFirst("\n", "");
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
@@ -90,7 +84,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     BAD_REQUEST
             );
             ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-            logger.info("Wrong response!");
+            logger.error("Wrong response!");
         }
     }
     @Override
