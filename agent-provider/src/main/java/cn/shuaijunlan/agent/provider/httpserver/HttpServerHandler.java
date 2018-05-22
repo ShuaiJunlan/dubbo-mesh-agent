@@ -61,9 +61,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
 
                     if (result != null){
                         integer = new String((byte[]) result).replaceFirst("\n", "");
-                        if (Integer.valueOf(integer) != str.hashCode()){
-                            logger.info("The hashcode is not equal. Expected:{}, Actual:{}", str.hashCode(), integer);
-                        }
                     }else {
                         logger.info("The return value of provider service is null!");
                     }
