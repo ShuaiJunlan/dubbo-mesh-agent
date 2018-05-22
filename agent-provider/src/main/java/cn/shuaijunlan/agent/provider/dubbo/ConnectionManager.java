@@ -57,6 +57,7 @@ public class ConnectionManager {
                 .group(eventLoopGroup)
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(ChannelOption.TCP_NODELAY, true)
+                .option(ChannelOption.SO_BACKLOG, 1024)
                 .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                 .channel(EpollSocketChannel.class)
                 .handler(new RpcClientInitializer());

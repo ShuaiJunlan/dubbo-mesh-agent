@@ -42,7 +42,7 @@ public class HttpSnoopServer {
         if (type != null && type.equals("client")){
             // Configure the server.
             EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
-            EventLoopGroup workerGroup = new EpollEventLoopGroup(4);
+            EventLoopGroup workerGroup = new EpollEventLoopGroup(8);
             try {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
@@ -50,6 +50,7 @@ public class HttpSnoopServer {
                         //保持长连接状态
                         .childOption(ChannelOption.SO_KEEPALIVE, true)
                         .childOption(ChannelOption.TCP_NODELAY, true)
+                        .childOption(ChannelOption.SO_BACKLOG, 1024)
                         .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                         .childHandler(new HttpSnoopServerInitializer());
 

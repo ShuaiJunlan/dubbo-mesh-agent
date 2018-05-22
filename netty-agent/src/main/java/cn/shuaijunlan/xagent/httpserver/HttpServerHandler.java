@@ -133,4 +133,14 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         asyncHttpClient.close();
         ctx.close();
     }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelInactive();
+    }
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        ctx.fireChannelUnregistered();
+    }
 }
