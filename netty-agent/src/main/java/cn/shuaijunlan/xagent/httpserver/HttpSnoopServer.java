@@ -1,12 +1,10 @@
 package cn.shuaijunlan.xagent.httpserver;
 
-import cn.shuaijunlan.xagent.httpserver.HttpSnoopServerInitializer;
 import cn.shuaijunlan.xagent.registry.Endpoint;
 import cn.shuaijunlan.xagent.registry.EtcdRegistry;
 import cn.shuaijunlan.xagent.registry.IRegistry;
-import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
-import cn.shuaijunlan.xagent.transport.server.AgentServer;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.UnpooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -50,7 +48,9 @@ public class HttpSnoopServer {
                 b.group(bossGroup, workerGroup)
                         .channel(EpollServerSocketChannel.class)
                         //保持长连接状态
-                        .childOption(ChannelOption.SO_KEEPALIVE, true)
+                        .option(ChannelOption.SO_KEEPALIVE, true)
+                        .option(ChannelOption.TCP_NODELAY, true)
+                        .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
                         .childHandler(new HttpSnoopServerInitializer());
 
                 ChannelFuture ch = b.bind(PORT).sync();

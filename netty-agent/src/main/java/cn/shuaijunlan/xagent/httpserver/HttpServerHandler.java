@@ -63,34 +63,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-//                    Integer integer = getHash(str, endpoints.get(2).getHost(), endpoints.get(2).getPort()).getHash();
-//                    Integer integer = getHash(str, "127.0.0.1", 10000).getHash();
-//                    System.out.println("Integer:" + integer);
-
-//                    Integer integer = sendData(str, channel);
-//                    AgentClientManager.addChannel(channel);
-
-                    /////////////////////////////////////////////////////////////
-//                    FullHttpResponse response = new DefaultFullHttpResponse(
-//                            HTTP_1_1,
-//                            OK,
-//                            Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
-//                    );
-//
-//                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-//                    boolean keepAlive = HttpUtil.isKeepAlive(req);
-//                    if (keepAlive) {
-//                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-//                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-//                        ctx.writeAndFlush(response);
-//                    } else {
-//                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-//                    }
-                    /////////////////////////////////////////////////////////////
-
-                    ////////////////////////////////////////////////////////////////////////////
-//                    logger.info("Request url:{}", url);
-//                    Result result = new Result();
 
                     org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
                             .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")

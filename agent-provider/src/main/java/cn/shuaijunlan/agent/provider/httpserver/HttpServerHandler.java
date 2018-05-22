@@ -49,12 +49,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     if (tmp.length > 1){
                         str = tmp[1];
                     }
-//                    Integer integer = str.hashCode();
-//                    try {
-//                        Thread.sleep(50);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
 
                     Object result = null;
                     try {
