@@ -37,7 +37,8 @@ public class RpcClient {
         invocation.setParameterTypes(parameterTypesString);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out);
+        PrintWriter writer = new PrintWriter(outputStreamWriter);
         JsonUtils.writeObject(parameter, writer);
         invocation.setArguments(out.toByteArray());
 
@@ -46,8 +47,6 @@ public class RpcClient {
         request.setTwoWay(true);
         request.setData(invocation);
 
-//        logger.info("requestId=" + request.getId());
-
         RpcFuture future = new RpcFuture();
         RpcRequestHolder.put(String.valueOf(request.getId()),future);
 
@@ -55,6 +54,9 @@ public class RpcClient {
 
         Object result = null;
         try {
+            out.close();
+            outputStreamWriter.close();
+            writer.close();
             result = future.get();
         }catch (Exception e){
             e.printStackTrace();
