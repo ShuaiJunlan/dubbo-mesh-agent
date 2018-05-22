@@ -3,6 +3,9 @@ package cn.shuaijunlan.agent.provider.dubbo.model;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * @author Junlan
+ */
 public class Request {
     private static AtomicLong atomicLong = new AtomicLong();
     private long id;

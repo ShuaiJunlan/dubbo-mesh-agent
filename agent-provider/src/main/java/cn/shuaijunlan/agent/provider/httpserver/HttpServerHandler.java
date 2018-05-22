@@ -58,7 +58,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    String integer = new String((byte[]) result).replaceFirst("\n", "");
+                    String integer = new String((byte[]) result).replaceFirst("\n", "").replaceFirst("\r", "");
 
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
