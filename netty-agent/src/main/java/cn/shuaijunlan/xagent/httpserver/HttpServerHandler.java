@@ -60,19 +60,16 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 // 将耗时任务交给任务线程池处理
                 ctx.executor().execute(() -> {
                     //执行远程调用
-                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+//                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+//                    content.release();
+//                    String str = "";
+//                    if (tmp.length > 1){
+//                        str = tmp[1];
+//                    }
+                    String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
+                    logger.info(requestUrl);
                     content.release();
-                    String str = "";
-                    if (tmp.length > 1){
-                        str = tmp[1];
-                    }
-
-                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.post(url)
-                            .addFormParam("interface", "com.alibaba.dubbo.performance.demo.provider.IHelloService")
-                            .addFormParam("method", "hash")
-                            .addFormParam("parameterTypesString", "Ljava/lang/String;")
-                            .addFormParam("parameter", str)
-                            .build();
+                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
                     ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
 
                     Runnable callback = () -> {
@@ -85,7 +82,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                                     OK,
                                     Unpooled.copiedBuffer(value, CharsetUtil.UTF_8)
                             );
-
                             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
                             boolean keepAlive = HttpUtil.isKeepAlive(req);
                             if (keepAlive) {

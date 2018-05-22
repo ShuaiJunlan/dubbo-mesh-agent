@@ -14,6 +14,9 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
+/**
+ * @author Junlan
+ */
 public class DubboRpcEncoder extends MessageToByteEncoder{
     // header length.
     protected static final int HEADER_LENGTH = 16;
