@@ -15,7 +15,7 @@ import io.netty.util.concurrent.EventExecutorGroup;
  * @date Created on 21:15 2018/4/30.
  */
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
-    private static EventExecutorGroup group = new DefaultEventExecutorGroup(24);
+    private static EventExecutorGroup group = new DefaultEventExecutorGroup(256);
 
 
 
