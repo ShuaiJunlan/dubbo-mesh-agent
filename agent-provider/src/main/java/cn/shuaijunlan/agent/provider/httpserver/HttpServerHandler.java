@@ -39,7 +39,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             FullHttpRequest req = (FullHttpRequest) msg;
             // 将耗时任务交给任务线程池处理
             ctx.executor().execute(() -> {
-                long start = System.currentTimeMillis();
+//                long start = System.currentTimeMillis();
                 //执行远程调用
                 String[] tmp = req.uri().split("&parameter=");
                 String str = "";
@@ -73,8 +73,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 } else {
                     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 }
-                long end = System.currentTimeMillis();
-                logger.info("Get response from provider service spending {}ms!", end-start);
+//                long end = System.currentTimeMillis();
+//                logger.info("Get response from provider service spending {}ms!", end-start);
             });
         }else {
             FullHttpResponse response = new DefaultFullHttpResponse(
