@@ -12,6 +12,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import io.netty.util.ReferenceCountUtil;
 import io.netty.util.concurrent.DefaultEventExecutor;
 import io.netty.util.concurrent.Promise;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -87,7 +88,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     ///////////////////////////////////////////////////////////////////////////////
 //                    long start = System.currentTimeMillis();
                     String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
-                    content.release();
                     org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
                     ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
 
@@ -129,6 +129,8 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             ctx.write(response).addListener(ChannelFutureListener.CLOSE);
             logger.info("Wrong response!");
         }
+        //释放内存
+        ReferenceCountUtil.release(msg);
     }
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws IOException {
