@@ -15,7 +15,6 @@ import io.netty.util.concurrent.EventExecutorGroup;
  * @date Created on 21:15 2018/4/30.
  */
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
-    private static EventExecutorGroup group = new DefaultEventExecutorGroup(256);
 
 
 
@@ -24,6 +23,8 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 
     @Override
     public void initChannel(SocketChannel ch) {
+        EventExecutorGroup group = new DefaultEventExecutorGroup(16);
+
         ChannelPipeline p = ch.pipeline();
         p.addLast(new HttpRequestDecoder());
         // Uncomment the following line if you don't want to handle HttpChunks.

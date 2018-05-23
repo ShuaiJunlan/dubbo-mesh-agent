@@ -8,6 +8,10 @@ import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -15,7 +19,8 @@ import io.netty.util.concurrent.EventExecutorGroup;
  * @date Created on 21:15 2018/4/30.
  */
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
-    private static EventExecutorGroup group = new DefaultEventExecutorGroup(256);
+    Logger logger = LoggerFactory.getLogger(HttpSnoopServerInitializer.class);
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
 
 
     public HttpSnoopServerInitializer( ) {
@@ -23,6 +28,8 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 
     @Override
     public void initChannel(SocketChannel ch) {
+        logger.info("Create a new HttpSnoopServerInitializer instance: {}!", atomicInteger.incrementAndGet());
+        EventExecutorGroup group = new DefaultEventExecutorGroup(16);
 
         ChannelPipeline p = ch.pipeline();
         p.addLast(new HttpRequestDecoder());
