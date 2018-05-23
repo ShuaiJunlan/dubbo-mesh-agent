@@ -112,6 +112,9 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
+                        }finally {
+                            //释放内存
+                            ReferenceCountUtil.release(msg);
                         }
                     };
                     responseFuture.addListener(callback, null);
@@ -128,9 +131,10 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             );
             ctx.write(response).addListener(ChannelFutureListener.CLOSE);
             logger.info("Wrong response!");
+            //释放内存
+            ReferenceCountUtil.release(msg);
         }
-        //释放内存
-        ReferenceCountUtil.release(msg);
+
     }
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws IOException {
