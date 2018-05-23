@@ -51,7 +51,7 @@ public class ConnectionManager {
 //                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
                     int port = 20880;
                     channel = bootstrap.connect("127.0.0.1", port).sync().channel();
-                    logger.info("Create a new channel, the {}th one!", atomicInteger.incrementAndGet());
+//                    logger.info("Create a new channel, the {}th one!", atomicInteger.incrementAndGet());
                 }
             }
         }
