@@ -19,8 +19,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date Created on 21:15 2018/4/30.
  */
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
-    Logger logger = LoggerFactory.getLogger(HttpSnoopServerInitializer.class);
+    private Logger logger = LoggerFactory.getLogger(HttpSnoopServerInitializer.class);
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
+    private static EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(256);
 
 
 
@@ -30,7 +31,7 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
     @Override
     public void initChannel(SocketChannel ch) {
         logger.info("Create a new HttpSnoopServerInitializer instance: {}!", atomicInteger.incrementAndGet());
-        EventExecutorGroup group = new DefaultEventExecutorGroup(1);
+//        EventExecutorGroup group = new DefaultEventExecutorGroup(1);
 
         ChannelPipeline p = ch.pipeline();
         p.addLast(new HttpRequestDecoder());
@@ -38,6 +39,6 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
         p.addLast(new HttpObjectAggregator(2048));
         p.addLast(new HttpResponseEncoder());
 
-        p.addLast(group, "handler", new HttpServerHandler());
+        p.addLast(longTaskGroup, "handler", new HttpServerHandler());
     }
 }
