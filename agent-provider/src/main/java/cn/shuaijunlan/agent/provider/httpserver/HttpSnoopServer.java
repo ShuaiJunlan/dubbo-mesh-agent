@@ -23,7 +23,7 @@ public final class HttpSnoopServer {
     public static void main(String[] args) throws Exception {
 
         // Configure the server.
-        int threads = Integer.valueOf(System.getProperty("agent.provider.threads"));
+        int threads = Integer.valueOf(System.getProperty("agent.provider.epoll.threads"));
         EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
         EventLoopGroup workerGroup = new EpollEventLoopGroup(threads);
         try {
