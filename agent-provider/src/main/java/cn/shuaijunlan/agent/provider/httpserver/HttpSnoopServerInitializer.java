@@ -37,7 +37,7 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 
         ChannelPipeline pipeline = ch.pipeline();
         //设置连接空闲时间
-        pipeline.addLast(new IdleStateHandler(60, 0, 0, TimeUnit.SECONDS));
+        pipeline.addLast(new IdleStateHandler(20, 0, 0, TimeUnit.SECONDS));
         pipeline.addLast(new HttpRequestDecoder());
         // Uncomment the following line if you don't want to handle HttpChunks.
         pipeline.addLast(new HttpObjectAggregator(2048));
