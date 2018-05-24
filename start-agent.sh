@@ -44,8 +44,12 @@ elif [[ "$1" == "provider-medium" ]]; then
 elif [[ "$1" == "provider-large" ]]; then
   echo "Starting large provider agent..."
   java -jar \
+       -server \
        -Xms2560M \
        -Xmx2560M \
+       -XX:+UseParallelGC \
+       -XX:+AggressiveOpts \
+       -XX:+UseFastAccessorMethods \
        -Dtype=provider \
        -Ddubbo.protocol.port=20880 \
        -Detcd.url=$ETCD_URL \
