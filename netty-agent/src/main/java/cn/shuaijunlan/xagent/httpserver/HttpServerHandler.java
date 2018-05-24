@@ -45,7 +45,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
 //    private static AtomicInteger atomicInteger = new AtomicInteger(0);
-    private String url = Constants.URLS[Constants.CONNECTION_COUNT.getAndIncrement()%6];
+    private String url = Constants.URLS[Constants.CONNECTION_COUNT.getAndIncrement()%7];
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
