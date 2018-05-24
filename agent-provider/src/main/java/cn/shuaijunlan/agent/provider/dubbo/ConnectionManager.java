@@ -24,7 +24,7 @@ public class ConnectionManager {
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
 //    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
-    private Bootstrap bootstrap;
+    private static Bootstrap bootstrap;
 
     private Channel channel;
     private Object lock = new Object();

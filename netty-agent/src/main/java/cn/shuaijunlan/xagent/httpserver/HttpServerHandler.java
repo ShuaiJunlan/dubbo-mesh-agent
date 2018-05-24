@@ -51,7 +51,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
-            if (IdleState.WRITER_IDLE.equals(event.state())) {
+            if (IdleState.READER_IDLE.equals(event.state())) {
                 logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
                 ctx.channel().close();
             }
