@@ -23,8 +23,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
 //    Logger logger = LoggerFactory.getLogger(HttpSnoopServerInitializer.class);
 //    private static AtomicInteger atomicInteger = new AtomicInteger(0);
-    private static int executors = Integer.valueOf(System.getProperty("agent.consumer.executors"));
-    private static EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(executors);
+//    private static int executors = Integer.valueOf(System.getProperty("agent.consumer.executors"));
+    private static EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(256);
 
 
     public HttpSnoopServerInitializer( ) {
