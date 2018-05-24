@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ConnectionManager {
     private Logger logger = LoggerFactory.getLogger(ConnectionManager.class);
-    private EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(4);
+    private static EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(256);
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
 //    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
