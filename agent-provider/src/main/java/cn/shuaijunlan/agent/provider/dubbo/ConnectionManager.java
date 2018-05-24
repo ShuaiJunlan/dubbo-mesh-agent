@@ -61,6 +61,7 @@ public class ConnectionManager {
     }
 
     public void initBootstrap() {
+        logger.info("ConnectionManager initBootstrap");
 
         bootstrap = new Bootstrap()
                 .group(eventLoopGroup)
