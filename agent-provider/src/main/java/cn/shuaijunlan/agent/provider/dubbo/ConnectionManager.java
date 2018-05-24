@@ -27,7 +27,10 @@ public class ConnectionManager {
     private static Bootstrap bootstrap;
 
     private Channel channel;
-    private Object lock = new Object();
+    /**
+     * must be static
+     */
+    private static Object lock = new Object();
 
     public ConnectionManager() {
     }
