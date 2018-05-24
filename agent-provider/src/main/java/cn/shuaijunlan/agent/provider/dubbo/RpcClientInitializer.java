@@ -14,11 +14,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Junlan
  */
 public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
-    private static AtomicInteger atomicInteger = new AtomicInteger(0);
-    private Logger logger = LoggerFactory.getLogger(RpcClientInitializer.class);
+//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+//    private Logger logger = LoggerFactory.getLogger(RpcClientInitializer.class);
     @Override
     protected void initChannel(SocketChannel socketChannel) {
-        logger.info("RpcClientInitializer initChannel {}!", atomicInteger.incrementAndGet());
+//        logger.info("RpcClientInitializer initChannel {}!", atomicInteger.incrementAndGet());
         ChannelPipeline pipeline = socketChannel.pipeline();
         //设置连接空闲时间
         pipeline.addLast(new IdleStateHandler(0, 20, 0, TimeUnit.SECONDS));

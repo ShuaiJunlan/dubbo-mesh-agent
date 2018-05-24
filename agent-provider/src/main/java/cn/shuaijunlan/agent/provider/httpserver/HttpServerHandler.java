@@ -30,13 +30,13 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private RpcClient rpcClient = new RpcClient();
 
-    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
             if (IdleState.READER_IDLE.equals(event.state())) {
-                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
+//                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
                 ctx.channel().close();
             }
         } else {

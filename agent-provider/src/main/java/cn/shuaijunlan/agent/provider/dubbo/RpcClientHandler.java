@@ -17,14 +17,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Junlan
  */
 public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
-    private Logger logger = LoggerFactory.getLogger(RpcClientHandler.class);
-    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+//    private Logger logger = LoggerFactory.getLogger(RpcClientHandler.class);
+//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
             if (IdleState.WRITER_IDLE.equals(event.state())) {
-                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
+//                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
                 ctx.channel().close();
             }
         } else {

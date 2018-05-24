@@ -44,7 +44,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
-    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private String url = Constants.URLS[2];
 
     @Override
@@ -52,7 +52,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
             if (IdleState.READER_IDLE.equals(event.state())) {
-                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
+//                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
                 ctx.channel().close();
             }
         } else {
