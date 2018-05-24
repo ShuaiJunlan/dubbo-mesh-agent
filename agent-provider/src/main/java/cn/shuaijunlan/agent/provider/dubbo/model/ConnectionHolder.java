@@ -5,8 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
-import java.util.concurrent.ConcurrentLinkedDeque;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -16,19 +14,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ConnectionHolder {
     private static Logger logger = LoggerFactory.getLogger(ConnectionHolder.class);
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
-    private static Object object = new Object();
-    private static ConcurrentLinkedQueue<ConnectionManager> connectionManagers = new ConcurrentLinkedQueue<>();
-    public static ConnectionManager getConnectionManager(){
-        if (connectionManagers.isEmpty()){
-            synchronized (object){
-                while (connectionManagers.isEmpty()){
-                    newConnectionManager();
-                }
-            }
+    private static LinkedList<ConnectionManager> connectionManagers = new LinkedList<>();
+    public static synchronized ConnectionManager getConnectionManager(){
+        while (connectionManagers.isEmpty()){
+            newConnectionManager();
         }
-        return connectionManagers.remove();
+        return connectionManagers.pop();
     }
-    public static void release(ConnectionManager c){
+    public static synchronized void release(ConnectionManager c){
         connectionManagers.add(c);
     }
 
