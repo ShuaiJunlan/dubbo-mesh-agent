@@ -24,7 +24,6 @@ cn\shuaijunlan\xagent\transport\Server.class
 cn\shuaijunlan\xagent\transport\support\msgpack\DeviceValue.class
 cn\shuaijunlan\xagent\transport\support\MessageRequest.class
 cn\shuaijunlan\xagent\transport\client\AgentClient$1.class
-cn\shuaijunlan\xagent\testnum\Test.class
 cn\shuaijunlan\xagent\httpserver\HttpSnoopServer.class
 cn\shuaijunlan\xagent\transport\client\AgentClientManager.class
 cn\shuaijunlan\xagent\transport\support\kryo\KryoDecoder.class
@@ -33,7 +32,6 @@ cn\shuaijunlan\xagent\transport\client\AgentClientHandler.class
 cn\shuaijunlan\xagent\transport\support\kryo\KryoSerialize.class
 cn\shuaijunlan\xagent\transport\support\RpcSerializeFrame.class
 cn\shuaijunlan\xagent\registry\IpHelper.class
-cn\shuaijunlan\xagent\httpserver\HttpServerHandler$Result.class
 cn\shuaijunlan\xagent\transport\support\kryo\KryoPoolFactory.class
 cn\shuaijunlan\xagent\registry\EtcdRegistry.class
 cn\shuaijunlan\xagent\transport\support\RpcSerialize.class
