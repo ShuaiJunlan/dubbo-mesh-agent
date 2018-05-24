@@ -20,7 +20,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ConnectionManager {
     private Logger logger = LoggerFactory.getLogger(ConnectionManager.class);
-    private static EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(256);
+    private static int threads = Integer.valueOf(System.getProperty("dubbo.client.threads"));
+    private static EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(threads);
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
 //    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 

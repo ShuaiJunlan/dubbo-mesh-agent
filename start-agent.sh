@@ -20,9 +20,15 @@ if [[ "$1" == "consumer" ]]; then
 elif [[ "$1" == "provider-small" ]]; then
   echo "Starting small provider agent..."
   java -jar \
+       -server \
        -Xms512M \
        -Xmx512M \
+       -XX:+UseParallelGC \
+       -XX:+AggressiveOpts \
+       -XX:+UseFastAccessorMethods \
        -Dtype=provider \
+       -Dprovider.threads= 3 \
+       -Ddubbo.client.threads= 50 \
        -Ddubbo.protocol.port=20880 \
        -Detcd.url=$ETCD_URL \
        -Dagent.type=server \
@@ -32,9 +38,15 @@ elif [[ "$1" == "provider-small" ]]; then
 elif [[ "$1" == "provider-medium" ]]; then
   echo "Starting medium provider agent..."
   java -jar \
+       -server \
        -Xms1536M \
        -Xmx1536M \
+       -XX:+UseParallelGC \
+       -XX:+AggressiveOpts \
+       -XX:+UseFastAccessorMethods \
        -Dtype=provider \
+       -Dprovider.threads= 6 \
+       -Ddubbo.client.threads= 100 \
        -Ddubbo.protocol.port=20880 \
        -Detcd.url=$ETCD_URL \
        -Dlogs.dir=/root/logs \
@@ -51,6 +63,8 @@ elif [[ "$1" == "provider-large" ]]; then
        -XX:+AggressiveOpts \
        -XX:+UseFastAccessorMethods \
        -Dtype=provider \
+       -Dprovider.threads= 9 \
+       -Ddubbo.client.threads= 150 \
        -Ddubbo.protocol.port=20880 \
        -Detcd.url=$ETCD_URL \
        -Dlogs.dir=/root/logs \
