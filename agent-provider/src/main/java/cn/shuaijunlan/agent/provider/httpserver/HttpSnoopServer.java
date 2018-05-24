@@ -3,6 +3,7 @@ package cn.shuaijunlan.agent.provider.httpserver;
 import cn.shuaijunlan.agent.provider.registry.EtcdRegistry;
 import cn.shuaijunlan.agent.provider.registry.IRegistry;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -30,7 +31,7 @@ public final class HttpSnoopServer {
                     .channel(EpollServerSocketChannel.class)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.TCP_NODELAY, true)
-                    .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
+                    .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                     .childHandler(new HttpSnoopServerInitializer());
 
             ChannelFuture ch = b.bind(PORT).sync();

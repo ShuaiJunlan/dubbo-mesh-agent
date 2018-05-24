@@ -4,6 +4,7 @@ import cn.shuaijunlan.xagent.registry.Endpoint;
 import cn.shuaijunlan.xagent.registry.EtcdRegistry;
 import cn.shuaijunlan.xagent.registry.IRegistry;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -50,7 +51,7 @@ public class HttpSnoopServer {
                         //保持长连接状态
                         .childOption(ChannelOption.SO_KEEPALIVE, true)
                         .childOption(ChannelOption.TCP_NODELAY, true)
-                        .option(ChannelOption.ALLOCATOR, UnpooledByteBufAllocator.DEFAULT)
+                        .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                         .childHandler(new HttpSnoopServerInitializer());
 
                 ChannelFuture ch = b.bind(PORT).sync();
