@@ -21,7 +21,8 @@ public class RpcClientInitializer extends ChannelInitializer<SocketChannel> {
 //        logger.info("RpcClientInitializer initChannel {}!", atomicInteger.incrementAndGet());
         ChannelPipeline pipeline = socketChannel.pipeline();
         //设置连接空闲时间
-        pipeline.addLast(new IdleStateHandler(0, 20, 0, TimeUnit.SECONDS));
+        //使用连接池
+        ///pipeline.addLast(new IdleStateHandler(0, 20, 0, TimeUnit.SECONDS));
         pipeline.addLast(new DubboRpcEncoder());
         pipeline.addLast(new DubboRpcDecoder());
         pipeline.addLast(new RpcClientHandler());

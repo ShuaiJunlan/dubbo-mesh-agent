@@ -22,10 +22,10 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 //            if (IdleState.WRITER_IDLE.equals(event.state())) {
 ////                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
 //                ctx.channel().close();
-//            }
-//        } else {
-//            super.userEventTriggered(ctx, obj);
-//        }
+////            }
+////        } else {
+////            super.userEventTriggered(ctx, obj);
+////        }
     }
 
     @Override
