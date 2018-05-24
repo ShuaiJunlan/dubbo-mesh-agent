@@ -35,6 +35,7 @@ elif [[ "$1" == "provider-small" ]]; then
        -Detcd.url=$ETCD_URL \
        -Dagent.type=server \
        -Dagent.port=30000 \
+       -Dagent.dubbo.client.threads=50 \
        -Dlogs.dir=/root/logs \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-medium" ]]; then
@@ -52,6 +53,7 @@ elif [[ "$1" == "provider-medium" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=30000 \
+       -Dagent.dubbo.client.threads=100 \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-large" ]]; then
   echo "Starting large provider agent..."
@@ -68,6 +70,7 @@ elif [[ "$1" == "provider-large" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=30000 \
+       -Dagent.dubbo.client.threads=150 \
        /root/dists/mesh-agent-provider.jar
 else
   echo "Unrecognized arguments, exit."
