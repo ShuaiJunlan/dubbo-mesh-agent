@@ -41,6 +41,7 @@ public class HttpSnoopServer {
     public static void main(String[] args) throws Exception {
         String type = System.getProperty("agent.type");
         if (type != null && type.equals("client")){
+            
             // Configure the server.
             EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
             EventLoopGroup workerGroup = new EpollEventLoopGroup(16);
