@@ -6,11 +6,13 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -33,6 +35,8 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 //        EventExecutorGroup group = new DefaultEventExecutorGroup(1);
 
         ChannelPipeline p = ch.pipeline();
+        //设置连接空闲时间
+        p.addLast(new IdleStateHandler(60, 0, 0, TimeUnit.SECONDS));
         p.addLast(new HttpRequestDecoder());
         // Uncomment the following line if you don't want to handle HttpChunks.
         p.addLast(new HttpObjectAggregator(2048));

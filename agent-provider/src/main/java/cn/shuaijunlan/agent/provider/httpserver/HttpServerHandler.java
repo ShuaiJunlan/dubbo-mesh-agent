@@ -1,17 +1,22 @@
 package cn.shuaijunlan.agent.provider.httpserver;
 
 import cn.shuaijunlan.agent.provider.dubbo.RpcClient;
+import cn.shuaijunlan.agent.provider.dubbo.RpcClientHandler;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -25,9 +30,18 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private RpcClient rpcClient = new RpcClient();
 
-
-    public HttpServerHandler(){
-
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
+        if (obj instanceof IdleStateEvent) {
+            IdleStateEvent event = (IdleStateEvent) obj;
+            if (IdleState.WRITER_IDLE.equals(event.state())) {
+                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
+                ctx.channel().close();
+            }
+        } else {
+            super.userEventTriggered(ctx, obj);
+        }
     }
 
     @Override

@@ -11,6 +11,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
 import io.netty.util.concurrent.DefaultEventExecutor;
@@ -45,7 +47,17 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private AtomicInteger atomicInteger = new AtomicInteger(0);
     private String url = Constants.URLS[2];
 
-    public HttpServerHandler(){
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
+        if (obj instanceof IdleStateEvent) {
+            IdleStateEvent event = (IdleStateEvent) obj;
+            if (IdleState.WRITER_IDLE.equals(event.state())) {
+                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
+                ctx.channel().close();
+            }
+        } else {
+            super.userEventTriggered(ctx, obj);
+        }
     }
 
     @Override
