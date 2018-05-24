@@ -56,7 +56,7 @@ elif [[ "$1" == "provider-medium" ]]; then
        -Dagent.type=server \
        -Dagent.port=30000 \
        -Dagent.dubbo.client.threads=100 \
-       -Dagent.provider.epoll.threads=6 \
+       -Dagent.provider.epoll.threads=8 \
        -Dagent.provider.executors=100 \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-large" ]]; then

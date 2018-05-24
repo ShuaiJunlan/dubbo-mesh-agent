@@ -23,7 +23,6 @@ public class ConnectionManager {
     private static int threads = Integer.valueOf(System.getProperty("agent.dubbo.client.threads"));
     private static EventLoopGroup eventLoopGroup = new EpollEventLoopGroup(threads);
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
-//    private EventLoopGroup eventLoopGroup = new NioEventLoopGroup(4);
 
     private static Bootstrap bootstrap;
 
@@ -53,7 +52,7 @@ public class ConnectionManager {
 
             synchronized (lock){
                 if (null == channel){
-//                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
+///                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
                     int port = 20880;
                     channel = bootstrap.connect("127.0.0.1", port).sync().channel();
 //                    logger.info("Create a new channel, the {}th one!", atomicInteger.incrementAndGet());

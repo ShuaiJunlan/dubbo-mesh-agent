@@ -19,11 +19,10 @@ public class RpcClient {
     private ConnectionManager connectManager;
 
     public RpcClient(){
-        this.connectManager = new ConnectionManager();
     }
 
     public Object invoke(String interfaceName, String method, String parameterTypesString, String parameter) throws Exception {
-
+        connectManager = ConnectionHolder.getConnectionManager();
         Channel channel = connectManager.getChannel();
 
         RpcInvocation invocation = new RpcInvocation();
@@ -49,6 +48,8 @@ public class RpcClient {
             result = future.get();
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            ConnectionHolder.release(connectManager);
         }
         return result;
     }

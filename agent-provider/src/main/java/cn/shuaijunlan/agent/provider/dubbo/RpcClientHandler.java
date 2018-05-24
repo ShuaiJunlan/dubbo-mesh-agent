@@ -17,15 +17,15 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
 //    private static AtomicInteger atomicInteger = new AtomicInteger(0);
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
-        if (obj instanceof IdleStateEvent) {
-            IdleStateEvent event = (IdleStateEvent) obj;
-            if (IdleState.WRITER_IDLE.equals(event.state())) {
-//                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
-                ctx.channel().close();
-            }
-        } else {
-            super.userEventTriggered(ctx, obj);
-        }
+//        if (obj instanceof IdleStateEvent) {
+//            IdleStateEvent event = (IdleStateEvent) obj;
+//            if (IdleState.WRITER_IDLE.equals(event.state())) {
+////                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
+//                ctx.channel().close();
+//            }
+//        } else {
+//            super.userEventTriggered(ctx, obj);
+//        }
     }
 
     @Override
