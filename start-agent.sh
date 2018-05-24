@@ -36,6 +36,7 @@ elif [[ "$1" == "provider-small" ]]; then
        -Dagent.type=server \
        -Dagent.port=30000 \
        -Dagent.dubbo.client.threads=50 \
+       -Dagent.provider.threads=4 \
        -Dlogs.dir=/root/logs \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-medium" ]]; then
@@ -54,6 +55,7 @@ elif [[ "$1" == "provider-medium" ]]; then
        -Dagent.type=server \
        -Dagent.port=30000 \
        -Dagent.dubbo.client.threads=100 \
+       -Dagent.provider.threads=4 \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-large" ]]; then
   echo "Starting large provider agent..."
@@ -71,6 +73,7 @@ elif [[ "$1" == "provider-large" ]]; then
        -Dagent.type=server \
        -Dagent.port=30000 \
        -Dagent.dubbo.client.threads=150 \
+       -Dagent.provider.threads=8 \
        /root/dists/mesh-agent-provider.jar
 else
   echo "Unrecognized arguments, exit."
