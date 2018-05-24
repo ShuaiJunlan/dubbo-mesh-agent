@@ -67,7 +67,7 @@ public class HttpSnoopServer {
             }
         }else {
             // Configure the server.
-            EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+            EventLoopGroup bossGroup = new NioEventLoopGroup(1);
             EventLoopGroup workerGroup = new NioEventLoopGroup(8);
             try {
                 ServerBootstrap b = new ServerBootstrap();
