@@ -49,8 +49,6 @@ public class RpcClient {
             result = future.get(1, TimeUnit.SECONDS);
         }catch (Exception e){
             e.printStackTrace();
-        }finally {
-            ConnectionHolder.release(connectManager);
         }
         return result;
     }
