@@ -35,9 +35,9 @@ elif [[ "$1" == "provider-small" ]]; then
        -Detcd.url=$ETCD_URL \
        -Dagent.type=server \
        -Dagent.port=30000 \
-       -Dagent.dubbo.client.threads=50 \
-       -Dagent.provider.epoll.threads=6 \
-       -Dagent.provider.executors=50 \
+       -Dagent.dubbo.client.threads=32 \
+       -Dagent.provider.epoll.threads=4 \
+       -Dagent.provider.executors=32 \
        -Dlogs.dir=/root/logs \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-medium" ]]; then
@@ -55,9 +55,9 @@ elif [[ "$1" == "provider-medium" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=30000 \
-       -Dagent.dubbo.client.threads=100 \
+       -Dagent.dubbo.client.threads=64 \
        -Dagent.provider.epoll.threads=8 \
-       -Dagent.provider.executors=100 \
+       -Dagent.provider.executors=64 \
        /root/dists/mesh-agent-provider.jar
 elif [[ "$1" == "provider-large" ]]; then
   echo "Starting large provider agent..."
@@ -74,9 +74,9 @@ elif [[ "$1" == "provider-large" ]]; then
        -Dlogs.dir=/root/logs \
        -Dagent.type=server \
        -Dagent.port=30000 \
-       -Dagent.dubbo.client.threads=150 \
-       -Dagent.provider.epoll.threads=8 \
-       -Dagent.provider.executors=150 \
+       -Dagent.dubbo.client.threads=160 \
+       -Dagent.provider.epoll.threads=12 \
+       -Dagent.provider.executors=160 \
        /root/dists/mesh-agent-provider.jar
 else
   echo "Unrecognized arguments, exit."

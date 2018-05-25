@@ -17,6 +17,7 @@ public class RpcClient {
     private Logger logger = LoggerFactory.getLogger(RpcClient.class);
 
     private ConnectionManager connectManager;
+    private RpcInvocation invocation = new RpcInvocation();
 
     public RpcClient(){
     }
@@ -25,7 +26,6 @@ public class RpcClient {
         connectManager = ConnectionHolder.getConnectionManager();
         Channel channel = connectManager.getChannel();
 
-        RpcInvocation invocation = new RpcInvocation();
         invocation.setMethodName(method);
         invocation.setAttachment("path", interfaceName);
         // Dubbo内部用"Ljava/lang/String"来表示参数类型是String
