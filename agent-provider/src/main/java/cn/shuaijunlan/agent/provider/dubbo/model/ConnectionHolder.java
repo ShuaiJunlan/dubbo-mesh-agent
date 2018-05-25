@@ -37,7 +37,7 @@ public class ConnectionHolder {
 
     private static boolean newConnectionManager(){
         ConnectionManager c = new ConnectionManager();
-        logger.info("Creating a new connection: {}!", atomicInteger.get());
+//        logger.info("Creating a new connection: {}!", atomicInteger.get());
         return connectionManagers.add(c);
     }
 

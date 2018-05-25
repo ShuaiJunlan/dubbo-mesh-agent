@@ -11,15 +11,15 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ChannelContextHolder {
 
-    private static ConcurrentHashMap<String,Channel> contextConcurrentHashMap = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String,ChannelHandlerContext> contextConcurrentHashMap = new ConcurrentHashMap<>();
 
-    public static void put(String requestId,Channel c){
+    public static void put(String requestId,ChannelHandlerContext c){
         if (!contextConcurrentHashMap.containsKey(requestId)){
             contextConcurrentHashMap.put(requestId,c);
         }
     }
 
-    public static Channel get(String requestId){
+    public static ChannelHandlerContext get(String requestId){
         return contextConcurrentHashMap.get(requestId);
     }
 
