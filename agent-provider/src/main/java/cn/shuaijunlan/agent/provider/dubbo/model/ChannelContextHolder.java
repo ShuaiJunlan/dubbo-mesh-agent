@@ -1,5 +1,6 @@
 package cn.shuaijunlan.agent.provider.dubbo.model;
 
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,13 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ChannelContextHolder {
 
-    private static ConcurrentHashMap<String,ChannelHandlerContext> contextConcurrentHashMap = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String,Channel> contextConcurrentHashMap = new ConcurrentHashMap<>();
 
-    public static void put(String requestId,ChannelHandlerContext c){
+    public static void put(String requestId,Channel c){
         contextConcurrentHashMap.put(requestId,c);
     }
 
-    public static ChannelHandlerContext get(String requestId){
+    public static Channel get(String requestId){
         return contextConcurrentHashMap.get(requestId);
     }
 

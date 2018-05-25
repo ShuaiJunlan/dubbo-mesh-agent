@@ -52,10 +52,10 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
                 OK,
                 Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
         );
-
         httpResponse.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
         httpResponse.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, httpResponse.content().readableBytes());
         httpResponse.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+
         ChannelContextHolder.get(String.valueOf(requestId)).writeAndFlush(httpResponse);
 //        RpcFuture future = RpcRequestHolder.get(requestId);
 //        if(null != future){

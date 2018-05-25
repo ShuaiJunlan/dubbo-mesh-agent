@@ -26,7 +26,7 @@ public class RpcClient {
         connectManager = ConnectionHolder.getConnectionManager();
     }
 
-    public Object invoke(String interfaceName, String method, String parameterTypesString, String parameter, ChannelHandlerContext ctx) throws Exception {
+    public void invoke(String interfaceName, String method, String parameterTypesString, String parameter, Channel ctx) throws Exception {
 
         Channel channel = connectManager.getChannel();
         RpcInvocation invocation = new RpcInvocation();
@@ -48,12 +48,12 @@ public class RpcClient {
 
         channel.writeAndFlush(request);
 //
-        Object result = null;
+//        Object result = null;
 ////        try {
 //            result = future.get();
 //        }catch (Exception e){
 //            e.printStackTrace();
 //        }
-        return result;
+//        return result;
     }
 }
