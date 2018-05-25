@@ -8,6 +8,7 @@ import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -45,7 +46,7 @@ public class RpcClient {
 
         Object result = null;
         try {
-            result = future.get();
+            result = future.get(1, TimeUnit.SECONDS);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
