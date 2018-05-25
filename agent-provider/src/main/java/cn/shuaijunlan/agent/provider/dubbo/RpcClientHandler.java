@@ -43,7 +43,7 @@ public class RpcClientHandler extends SimpleChannelInboundHandler<RpcResponse> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, RpcResponse response) {
         String requestId = response.getRequestId();
-        logger.info("Get response ID: {}!", requestId);
+//        logger.info("Get response ID: {}!", requestId);
         String integer = new String(response.getBytes()).replaceFirst("\r\n", "");
 //                String integer = String.valueOf(str.hashCode());
 
