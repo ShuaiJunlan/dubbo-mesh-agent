@@ -63,7 +63,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     str = tmp[1];
                 }
                 try {
-                    logger.info("HttpServerHandler");
+//                    logger.info("HttpServerHandler");
                     result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
                             "hash",
                             "Ljava/lang/String;",

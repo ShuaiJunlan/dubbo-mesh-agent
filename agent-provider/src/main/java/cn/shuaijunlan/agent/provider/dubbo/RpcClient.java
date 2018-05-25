@@ -23,9 +23,9 @@ public class RpcClient {
 
     private ConnectionManager connectManager;
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
-    public Integer num;
+//    public Integer num;
     public RpcClient(){
-        num = atomicInteger.getAndIncrement();
+//        num = atomicInteger.getAndIncrement();
         connectManager = ConnectionHolder.getConnectionManager();
     }
 
