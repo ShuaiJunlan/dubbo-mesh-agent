@@ -48,8 +48,6 @@ public class RpcClient {
             result = future.get();
         }catch (Exception e){
             e.printStackTrace();
-        }finally {
-            ConnectionHolder.release(connectManager);
         }
         return result;
     }
