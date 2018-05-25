@@ -14,7 +14,9 @@ public class ChannelContextHolder {
     private static ConcurrentHashMap<String,Channel> contextConcurrentHashMap = new ConcurrentHashMap<>();
 
     public static void put(String requestId,Channel c){
-        contextConcurrentHashMap.put(requestId,c);
+        if (!contextConcurrentHashMap.containsKey(requestId)){
+            contextConcurrentHashMap.put(requestId,c);
+        }
     }
 
     public static Channel get(String requestId){

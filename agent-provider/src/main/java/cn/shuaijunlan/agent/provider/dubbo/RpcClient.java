@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -21,8 +22,10 @@ public class RpcClient {
     private Logger logger = LoggerFactory.getLogger(RpcClient.class);
 
     private ConnectionManager connectManager;
-
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
+    public Integer num;
     public RpcClient(){
+        num = atomicInteger.getAndIncrement();
         connectManager = ConnectionHolder.getConnectionManager();
     }
 
@@ -38,6 +41,7 @@ public class RpcClient {
         invocation.setArguments(parameter.getBytes());
 
         Request request = new Request();
+        request.setId(num);
         request.setVersion("2.0.0");
         request.setTwoWay(true);
         request.setData(invocation);
