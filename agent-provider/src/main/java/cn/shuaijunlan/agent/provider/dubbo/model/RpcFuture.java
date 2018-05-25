@@ -36,7 +36,12 @@ public class RpcFuture implements Future<Object> {
     @Override
     public Object get(long timeout, TimeUnit unit) throws InterruptedException {
         boolean b = latch.await(timeout,unit);
-        return response.getBytes();
+        try {
+            return response.getBytes();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "Error";
     }
 
     public void done(RpcResponse response){
