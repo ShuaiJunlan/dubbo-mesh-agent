@@ -49,10 +49,10 @@ public class HttpSnoopServer {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
                         .channel(EpollServerSocketChannel.class)
+                        //保持长连接状态
                         .childOption(ChannelOption.SO_KEEPALIVE, true)
                         .childOption(ChannelOption.TCP_NODELAY, true)
                         .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
-                        .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                         .childHandler(new HttpSnoopServerInitializer());
 
                 ChannelFuture ch = b.bind(PORT).sync();

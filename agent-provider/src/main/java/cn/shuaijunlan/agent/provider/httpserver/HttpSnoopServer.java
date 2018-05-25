@@ -33,7 +33,6 @@ public final class HttpSnoopServer {
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.TCP_NODELAY, true)
                     .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
-                    .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                     .childHandler(new HttpSnoopServerInitializer());
 
             ChannelFuture ch = b.bind(PORT).sync();

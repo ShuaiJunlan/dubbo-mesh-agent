@@ -58,12 +58,11 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 //执行远程调用
                 String[] tmp = req.uri().split("&parameter=");
                 String str = "";
-                Object result = new Object();
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
+                Object result = null;
                 try {
-//                    logger.info("HttpServerHandler");
                     result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
                             "hash",
                             "Ljava/lang/String;",
@@ -71,8 +70,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-//                String integer = new String((byte[]) result).replaceFirst("\r\n", "");
                 String integer = new String((byte[]) result);
 //                String integer = String.valueOf(str.hashCode());
 
