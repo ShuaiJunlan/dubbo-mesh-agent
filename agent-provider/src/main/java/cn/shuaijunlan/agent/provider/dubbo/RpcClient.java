@@ -19,12 +19,12 @@ public class RpcClient {
     private ConnectionManager connectManager;
 
     public RpcClient(){
+        connectManager = ConnectionHolder.getConnectionManager();
     }
 
     public Object invoke(String interfaceName, String method, String parameterTypesString, String parameter) throws Exception {
-        connectManager = ConnectionHolder.getConnectionManager();
-        Channel channel = connectManager.getChannel();
 
+        Channel channel = connectManager.getChannel();
         RpcInvocation invocation = new RpcInvocation();
         invocation.setMethodName(method);
         invocation.setAttachment("path", interfaceName);
