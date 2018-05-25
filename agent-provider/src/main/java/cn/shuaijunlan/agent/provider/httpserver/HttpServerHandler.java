@@ -58,12 +58,13 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 //执行远程调用
                 String[] tmp = req.uri().split("&parameter=");
                 String str = "";
+                Object result = new Object();
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
                 try {
                     logger.info("HttpServerHandler");
-                    rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
+                    result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
                             "hash",
                             "Ljava/lang/String;",
                             str, ctx);
@@ -71,24 +72,24 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     e.printStackTrace();
                 }
 
-//                String integer = new String((byte[]) result).replaceFirst("\r\n", "");
-////                String integer = String.valueOf(str.hashCode());
-//
-//                FullHttpResponse response = new DefaultFullHttpResponse(
-//                        HTTP_1_1,
-//                        OK,
-//                        Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
-//                );
-//
-//                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-//                boolean keepAlive = HttpUtil.isKeepAlive(req);
-//                if (keepAlive) {
-//                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-//                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-//                    ctx.writeAndFlush(response);
-//                } else {
-//                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-//                }
+                String integer = new String((byte[]) result).replaceFirst("\r\n", "");
+//                String integer = String.valueOf(str.hashCode());
+
+                FullHttpResponse response = new DefaultFullHttpResponse(
+                        HTTP_1_1,
+                        OK,
+                        Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
+                );
+
+                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                boolean keepAlive = HttpUtil.isKeepAlive(req);
+                if (keepAlive) {
+                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                    ctx.writeAndFlush(response);
+                } else {
+                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                }
 //                long end = System.currentTimeMillis();
 //                logger.info("Get response from provider service spending {}ms!", end-start);
             });

@@ -21,7 +21,7 @@ public class Request {
     private Object mData;
 
     public Request(){
-//        id = atomicLong.getAndIncrement();
+        id = atomicLong.getAndIncrement();
     }
 
     public long getId() {
