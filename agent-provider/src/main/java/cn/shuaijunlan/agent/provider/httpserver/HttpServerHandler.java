@@ -67,7 +67,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
                             "hash",
                             "Ljava/lang/String;",
-                            str, ctx);
+                            str);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

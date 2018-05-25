@@ -29,7 +29,7 @@ public class RpcClient {
         connectManager = ConnectionHolder.getConnectionManager();
     }
 
-    public Object invoke(String interfaceName, String method, String parameterTypesString, String parameter, ChannelHandlerContext ctx) throws Exception {
+    public Object invoke(String interfaceName, String method, String parameterTypesString, String parameter) throws Exception {
 
         Channel channel = connectManager.getChannel();
         RpcInvocation invocation = new RpcInvocation();
