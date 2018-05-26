@@ -72,11 +72,11 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 }
                 String integer = new String((byte[]) result);
 //                String integer = String.valueOf(str.hashCode());
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(50);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
 
                 FullHttpResponse response = new DefaultFullHttpResponse(
                         HTTP_1_1,
