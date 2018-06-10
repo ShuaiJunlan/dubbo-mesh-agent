@@ -61,16 +61,16 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 if (tmp.length > 1){
                     str = tmp[1];
                 }
-                Object result = null;
+                String integer = "";
                 try {
-                    result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
+                    Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
                             "hash",
                             "Ljava/lang/String;",
                             str);
+                     integer = new String((byte[]) result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                String integer = new String((byte[]) result);
 
                 FullHttpResponse response = new DefaultFullHttpResponse(
                         HTTP_1_1,

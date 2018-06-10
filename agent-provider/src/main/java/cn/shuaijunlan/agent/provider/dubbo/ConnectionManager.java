@@ -49,7 +49,6 @@ public class ConnectionManager {
         }
 
         if (null == channel) {
-
             synchronized (lock){
                 if (null == channel){
 ///                    int port = Integer.valueOf(System.getProperty("dubbo.protocol.port"));
