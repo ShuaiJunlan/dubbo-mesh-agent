@@ -10,10 +10,13 @@ F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\htt
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\model\RpcRequestHolder.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\registry\Endpoint.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\RpcClientInitializer.java
+F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\RpcClientHandlerT.java
+F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\model\ChannelContextHolder.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\httpserver\HttpServerHandler.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\DubboRpcDecoder.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\RpcClient.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\RpcClientHandler.java
+F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\model\ConnectionHolder.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\model\Request.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\model\JsonUtils.java
 F:\Aliyun\X-Agent\agent-provider\src\main\java\cn\shuaijunlan\agent\provider\dubbo\ConnectionManager.java
