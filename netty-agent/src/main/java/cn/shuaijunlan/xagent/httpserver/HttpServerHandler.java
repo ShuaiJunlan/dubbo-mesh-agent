@@ -73,12 +73,19 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 // 将耗时任务交给任务线程池处理
                 ctx.executor().execute(() -> {
                     //执行远程调用
+
+
                     ///////////////////////////////////////////////////////////////////////////////
                     String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
                     content.release();
                     String str = "";
                     if (tmp.length > 1){
                         str = tmp[1];
+                    }
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                     FullHttpResponse response = new DefaultFullHttpResponse(
                             HTTP_1_1,
