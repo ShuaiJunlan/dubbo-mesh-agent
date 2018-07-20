@@ -1,5 +1,6 @@
 package cn.shuaijunlan.xagent.httpserver;
 
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
