@@ -9,8 +9,10 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
+import io.netty.channel.nio.NioEventLoopGroup;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
@@ -24,7 +26,7 @@ public final class HttpSnoopServer {
 
         // Configure the server.
         int threads = Integer.valueOf(System.getProperty("agent.provider.epoll.threads"));
-        EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
+        EventLoopGroup bossGroup = Epoll.isAvailable() ? new EpollEventLoopGroup(1) : new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new EpollEventLoopGroup(threads);
         try {
             ServerBootstrap b = new ServerBootstrap();
