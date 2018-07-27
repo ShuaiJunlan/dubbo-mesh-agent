@@ -10,6 +10,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -40,7 +41,7 @@ public class HttpSnoopServer {
 
     public static void main(String[] args) throws Exception {
         String type = System.getProperty("agent.type");
-        if (type != null && type.equals("client")){
+        if (type != null && "client".equals(type)){
 
             // Configure the server.
             EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
@@ -67,12 +68,12 @@ public class HttpSnoopServer {
             }
         }else {
             // Configure the server.
-            EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-            EventLoopGroup workerGroup = new NioEventLoopGroup(8);
+            EventLoopGroup bossGroup = Epoll.isAvailable() ? new EpollEventLoopGroup(1) : new NioEventLoopGroup(1);
+            EventLoopGroup workerGroup = Epoll.isAvailable() ? new EpollEventLoopGroup(8) : new NioEventLoopGroup(8);
             try {
                 ServerBootstrap b = new ServerBootstrap();
                 b.group(bossGroup, workerGroup)
-                        .channel(NioServerSocketChannel.class)
+                        .channel(Epoll.isAvailable() ? EpollServerSocketChannel.class : NioServerSocketChannel.class)
                         .childHandler(new HttpSnoopServerInitializer());
 
                 Channel ch = b.bind(PORT).sync().channel();

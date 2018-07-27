@@ -1,12 +1,6 @@
 package cn.shuaijunlan.xagent.httpserver;
 
-import cn.shuaijunlan.xagent.registry.Endpoint;
-import cn.shuaijunlan.xagent.registry.EtcdRegistry;
-import cn.shuaijunlan.xagent.registry.IRegistry;
-import cn.shuaijunlan.xagent.transport.client.AgentClient;
-import cn.shuaijunlan.xagent.transport.client.AgentClientManager;
-import cn.shuaijunlan.xagent.transport.client.ResultMap;
-import cn.shuaijunlan.xagent.transport.support.MessageRequest;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
@@ -15,23 +9,11 @@ import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
-import io.netty.util.concurrent.DefaultEventExecutor;
-import io.netty.util.concurrent.Promise;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.asynchttpclient.AsyncHttpClient;
-import org.asynchttpclient.ListenableFuture;
-import org.asynchttpclient.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.io.IOException;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
