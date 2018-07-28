@@ -36,6 +36,8 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 //        logger.info("Create a new HttpSnoopServerInitializer instance: {}!", atomicInteger.incrementAndGet());
 //        EventExecutorGroup group = new DefaultEventExecutorGroup(1);
 
+//        EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(1);
+
         ChannelPipeline p = ch.pipeline();
         //设置连接空闲时间
         p.addLast(new IdleStateHandler(20, 0, 0, TimeUnit.SECONDS));

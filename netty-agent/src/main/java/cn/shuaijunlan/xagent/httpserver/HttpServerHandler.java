@@ -25,9 +25,9 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
-    private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
+//    private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
 //    private static AtomicInteger atomicInteger = new AtomicInteger(0);
-    private String url = Constants.URLS[Constants.CONNECTION_COUNT.getAndIncrement()%Constants.URLS.length];
+//    private String url = Constants.URLS[Constants.CONNECTION_COUNT.getAndIncrement()%Constants.URLS.length];
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
@@ -49,83 +49,131 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof FullHttpRequest){
-            FullHttpRequest req = (FullHttpRequest) msg;
-            ByteBuf content = req.content();
-            if (content.isReadable()) {
-                // 将耗时任务交给任务线程池处理
-                ctx.executor().execute(() -> {
-                    //执行远程调用
 
-
-                    ///////////////////////////////////////////////////////////////////////////////
-                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+            ctx.executor().execute(() -> {
+                FullHttpRequest request = (FullHttpRequest) msg;
+                String[] tmp = null;
+                if (request.method().name().equals("GET")){
+                    tmp = request.uri().split("&parameter=");
+                }else if (request.method().name().equals("POST")){
+                    ByteBuf content = request.content();
+                    if (content.isReadable()){
+                        tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+                    }
                     content.release();
-                    String str = "";
-                    if (tmp.length > 1){
-                        str = tmp[1];
-                    }
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    FullHttpResponse response = new DefaultFullHttpResponse(
-                            HTTP_1_1,
-                            OK,
-                            Unpooled.copiedBuffer(str, CharsetUtil.UTF_8)
-                    );
-                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                    boolean keepAlive = HttpUtil.isKeepAlive(req);
-                    if (keepAlive) {
-                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                        ctx.writeAndFlush(response);
-                    } else {
-                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                    }
-                    ///////////////////////////////////////////////////////////////////////////////
+                }
+                String str = "";
+                if (tmp != null && tmp.length > 1) {
+                    str = tmp[1];
+                }
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                FullHttpResponse response = new DefaultFullHttpResponse(
+                        HTTP_1_1,
+                        OK,
+                        Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
+                );
+                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                boolean keepAlive = HttpUtil.isKeepAlive(request);
+                if (keepAlive) {
+                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                    ctx.writeAndFlush(response);
+                } else {
+                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                }
+            });
 
-
-                    ///////////////////////////////////////////////////////////////////////////////
-//                    long start = System.currentTimeMillis();
-//                    String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
-//                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
-//                    ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
+        }
+//        if (msg instanceof FullHttpRequest){
+//            FullHttpRequest req = (FullHttpRequest) msg;
+//            ByteBuf content = req.content();
+//            if (content.isReadable()) {
+//                // 将耗时任务交给任务线程池处理
+//                ctx.executor().execute(() -> {
+//                    //执行远程调用
 //
-//                    Runnable callback = () -> {
-//                        try {
-//                            // 获取远程结果
-//                            String value = responseFuture.get().getResponseBody();
 //
-//                            FullHttpResponse response = new DefaultFullHttpResponse(
-//                                    HTTP_1_1,
-//                                    OK,
-//                                    Unpooled.copiedBuffer(value, CharsetUtil.UTF_8)
-//                            );
-//                            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-//                            boolean keepAlive = HttpUtil.isKeepAlive(req);
-//                            if (keepAlive) {
-//                                response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-//                                response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-//                                ctx.writeAndFlush(response);
-//                            } else {
-//                                ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-//                            }
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }finally {
-//                            //释放内存
-//                            ReferenceCountUtil.release(msg);
-//                        }
-//                    };
-//                    responseFuture.addListener(callback, null);
-//                    long end = System.currentTimeMillis();
-//                    logger.info("Get response from provider agent spending {}ms!", end-start);
-                    ////////////////////////////////////////////////////////////////////////////
-                });
+//                    ///////////////////////////////////////////////////////////////////////////////
+//                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
+//                    content.release();
+//                    String str = "";
+//                    if (tmp.length > 1){
+//                        str = tmp[1];
+//                    }
+//                    try {
+//                        Thread.sleep(50);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    FullHttpResponse response = new DefaultFullHttpResponse(
+//                            HTTP_1_1,
+//                            OK,
+//                            Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
+//                    );
+//                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+//                    boolean keepAlive = HttpUtil.isKeepAlive(req);
+//                    if (keepAlive) {
+//                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+//                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+//                        ctx.writeAndFlush(response);
+//                    } else {
+//                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+//                    }
+//                    ///////////////////////////////////////////////////////////////////////////////
+//
+//
+//                    ///////////////////////////////////////////////////////////////////////////////
+////                    long start = System.currentTimeMillis();
+////                    String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
+////                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
+////                    ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
+////
+////                    Runnable callback = () -> {
+////                        try {
+////                            // 获取远程结果
+////                            String value = responseFuture.get().getResponseBody();
+////
+////                            FullHttpResponse response = new DefaultFullHttpResponse(
+////                                    HTTP_1_1,
+////                                    OK,
+////                                    Unpooled.copiedBuffer(value, CharsetUtil.UTF_8)
+////                            );
+////                            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+////                            boolean keepAlive = HttpUtil.isKeepAlive(req);
+////                            if (keepAlive) {
+////                                response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+////                                response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+////                                ctx.writeAndFlush(response);
+////                            } else {
+////                                ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+////                            }
+////                        } catch (Exception e) {
+////                            e.printStackTrace();
+////                        }finally {
+////                            //释放内存
+////                            ReferenceCountUtil.release(msg);
+////                        }
+////                    };
+////                    responseFuture.addListener(callback, null);
+////                    long end = System.currentTimeMillis();
+////                    logger.info("Get response from provider agent spending {}ms!", end-start);
+//                    ////////////////////////////////////////////////////////////////////////////
+//                });
+//
+//            }else {
+//                FullHttpResponse response = new DefaultFullHttpResponse(
+//                        HTTP_1_1,
+//                        BAD_REQUEST
+//                );
+//                ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+//            }
+//        }
 
-            }
-        }else {
+        else {
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HTTP_1_1,
                     BAD_REQUEST
@@ -140,7 +188,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws IOException {
         cause.printStackTrace();
-        asyncHttpClient.close();
+//        asyncHttpClient.close();
         ctx.close();
     }
 
