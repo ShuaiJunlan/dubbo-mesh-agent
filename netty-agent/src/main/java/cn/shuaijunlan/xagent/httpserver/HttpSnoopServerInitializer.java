@@ -22,9 +22,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date Created on 21:15 2018/4/30.
  */
 public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel> {
-//    Logger logger = LoggerFactory.getLogger(HttpSnoopServerInitializer.class);
-//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
-//    private static int executors = Integer.valueOf(System.getProperty("agent.consumer.executors"));
+   // Logger logger = LoggerFactory.getLogger(HttpSnoopServerInitializer.class);
+   // private static AtomicInteger atomicInteger = new AtomicInteger(0);
+   // private static int executors = Integer.valueOf(System.getProperty("agent.consumer.executors"));
     private static EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(512);
 
 
@@ -33,10 +33,10 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 
     @Override
     public void initChannel(SocketChannel ch) {
-//        logger.info("Create a new HttpSnoopServerInitializer instance: {}!", atomicInteger.incrementAndGet());
-//        EventExecutorGroup group = new DefaultEventExecutorGroup(1);
-
-//        EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(1);
+       // logger.info("Create a new HttpSnoopServerInitializer instance: {}!", atomicInteger.incrementAndGet());
+       // EventExecutorGroup group = new DefaultEventExecutorGroup(1);
+       //
+       // EventExecutorGroup longTaskGroup = new DefaultEventExecutorGroup(1);
 
         ChannelPipeline p = ch.pipeline();
         //设置连接空闲时间

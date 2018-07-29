@@ -78,7 +78,7 @@ public class HttpSnoopServer {
 
                 Channel ch = b.bind(PORT).sync().channel();
 
-                System.err.println("Open your web browser and navigate to " +
+                System.out.println("Open your web browser and navigate to " +
                         "http" + "://127.0.0.1:" + PORT + '/');
 
                 ch.closeFuture().sync();
