@@ -5,6 +5,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -22,17 +23,15 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 14:27 2018/5/6.
  */
-public class HttpServerHandler extends ChannelInboundHandlerAdapter {
+public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
     private RpcClient rpcClient = new RpcClient();
 
-//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
             if (IdleState.READER_IDLE.equals(event.state())) {
-//                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
                 ctx.channel().close();
             }
         } else {
@@ -44,59 +43,19 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
+
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        if (msg instanceof FullHttpRequest){
-            FullHttpRequest req = (FullHttpRequest) msg;
-            // 将耗时任务交给任务线程池处理
-            ctx.executor().execute(() -> {
-//                long start = System.currentTimeMillis();
-                //执行远程调用
-                String[] tmp = req.uri().split("&parameter=");
-                String str = "";
-                if (tmp.length > 1){
-                    str = tmp[1];
-                }
-                String integer = "";
-                try {
-                    Object result = rpcClient.invoke("com.alibaba.dubbo.performance.demo.provider.IHelloService",
-                            "hash",
-                            "Ljava/lang/String;",
-                            str);
-                     integer = new String((byte[]) result);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                FullHttpResponse response = new DefaultFullHttpResponse(
-                        HTTP_1_1,
-                        OK,
-                        Unpooled.copiedBuffer(integer, CharsetUtil.UTF_8)
-                );
-
-                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                boolean keepAlive = HttpUtil.isKeepAlive(req);
-                if (keepAlive) {
-                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                    ctx.writeAndFlush(response);
-                } else {
-                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                }
-//                long end = System.currentTimeMillis();
-//                logger.info("Get response from provider service spending {}ms!", end-start);
-            });
-        }else {
-            FullHttpResponse response = new DefaultFullHttpResponse(
-                    HTTP_1_1,
-                    BAD_REQUEST
-            );
-            ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-            logger.error("Wrong response!");
-        }
-        //释放内存
-        ReferenceCountUtil.release(msg);
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+        ctx.executor().execute(() -> {
+            // String[] tmp = ((String) msg).split("&parameter=");
+            // String str = "";
+            // if (tmp.length > 1){
+            //     str = tmp[1];
+            // }
+            ctx.writeAndFlush(msg.hashCode());
+        });
     }
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();

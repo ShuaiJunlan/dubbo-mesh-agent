@@ -124,7 +124,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib1/</classpathPrefix>
-                            <mainClass>cn.shuaijunlan.agent.provider.httpserver.HttpSnoopServer</mainClass>
+                            <mainClass>cn.shuaijunlan.agent.provider.httpserver.AgentProviderServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

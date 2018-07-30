@@ -6,6 +6,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
@@ -33,16 +36,10 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
 
     @Override
     public void initChannel(SocketChannel ch) {
-//        logger.info("Create a new HttpSnoopServerInitializer instance: {}!", atomicInteger.incrementAndGet());
-//        EventExecutorGroup group = new DefaultEventExecutorGroup(1);
 
-        ChannelPipeline pipeline = ch.pipeline();
-        //设置连接空闲时间
-        pipeline.addLast(new IdleStateHandler(20, 0, 0, TimeUnit.SECONDS));
-        pipeline.addLast(new HttpRequestDecoder());
-        // Uncomment the following line if you don't want to handle HttpChunks.
-        pipeline.addLast(new HttpObjectAggregator(2048));
-        pipeline.addLast(new HttpResponseEncoder());
+        ChannelPipeline pipeline = ch.pipeline()
+                .addLast(new ObjectDecoder(1024*1024, ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())) )
+                .addLast(new ObjectEncoder());
 
         pipeline.addLast(longTaskGroup, "handler", new HttpServerHandler());
     }

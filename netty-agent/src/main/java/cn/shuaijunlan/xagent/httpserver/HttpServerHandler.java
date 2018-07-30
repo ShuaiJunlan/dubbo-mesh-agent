@@ -5,11 +5,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.timeout.IdleState;
-import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
-import org.asynchttpclient.AsyncHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,39 +22,34 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
-//    private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
-//    private static AtomicInteger atomicInteger = new AtomicInteger(0);
-//    private String url = Constants.URLS[Constants.CONNECTION_COUNT.getAndIncrement()%Constants.URLS.length];
+
+    // private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
+    // private static AtomicInteger atomicInteger = new AtomicInteger(0);
+    // private String url = Constants.URLS[Constants.CONNECTION_COUNT.getAndIncrement()%Constants.URLS.length];
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
-        if (obj instanceof IdleStateEvent) {
-            IdleStateEvent event = (IdleStateEvent) obj;
-            if (IdleState.READER_IDLE.equals(event.state())) {
-//                logger.info("Closing an idle channel: {}!", atomicInteger.incrementAndGet());
-                ctx.channel().close();
-            }
-        } else {
-            super.userEventTriggered(ctx, obj);
-        }
+
+        super.userEventTriggered(ctx, obj);
     }
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
     }
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        if (msg instanceof FullHttpRequest){
+        if (msg instanceof FullHttpRequest) {
 
             ctx.executor().execute(() -> {
                 FullHttpRequest request = (FullHttpRequest) msg;
                 String[] tmp = null;
-                if (request.method().name().equals("GET")){
+                if (request.method().name().equals("GET")) {
                     tmp = request.uri().split("&parameter=");
-                }else if (request.method().name().equals("POST")){
+                } else if (request.method().name().equals("POST")) {
                     ByteBuf content = request.content();
-                    if (content.isReadable()){
+                    if (content.isReadable()) {
                         tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
                     }
                     content.release();
@@ -66,15 +58,11 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 if (tmp != null && tmp.length > 1) {
                     str = tmp[1];
                 }
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 FullHttpResponse response = new DefaultFullHttpResponse(
                         HTTP_1_1,
                         OK,
-                        Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
+                        Unpooled.copiedBuffer(msg.toString(), CharsetUtil.UTF_8)
                 );
                 response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
                 boolean keepAlive = HttpUtil.isKeepAlive(request);
@@ -85,95 +73,51 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 } else {
                     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 }
+
+                // Bootstrap bootstrap = new Bootstrap();
+                //
+                // bootstrap.group(ctx.channel().eventLoop())
+                //         .channel(Epoll.isAvailable() ? EpollSocketChannel.class : NioSocketChannel.class)
+                //         .option(ChannelOption.TCP_NODELAY, true)
+                //         .option(ChannelOption.SO_KEEPALIVE, true)
+                //         .handler(new ChannelInitializer<SocketChannel>() {
+                //             @Override
+                //             protected void initChannel(SocketChannel ch) throws Exception {
+                //                 ch.pipeline()
+                //                         .addLast(new ObjectDecoder(1024 * 1024,
+                //                                 ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())))
+                //                         .addLast(new ObjectEncoder())
+                //                         .addLast(new SimpleChannelInboundHandler<Object>() {
+                //                             @Override
+                //                             protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+                //                                 FullHttpResponse response = new DefaultFullHttpResponse(
+                //                                         HTTP_1_1,
+                //                                         OK,
+                //                                         Unpooled.copiedBuffer(msg.toString(), CharsetUtil.UTF_8)
+                //                                 );
+                //                                 response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                //                                 boolean keepAlive = HttpUtil.isKeepAlive(request);
+                //                                 if (keepAlive) {
+                //                                     response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                //                                     response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                //                                     ctx.writeAndFlush(response);
+                //                                 } else {
+                //                                     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                //                                 }
+                //                                 ctx.close();
+                //                             }
+                //                         });
+                //             }
+                //         });
+                // try {
+                //     Channel channel = bootstrap.connect("127.0.0.1", 20001).sync().channel();
+                //     channel.writeAndFlush(str);
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
             });
 
-        }
-//        if (msg instanceof FullHttpRequest){
-//            FullHttpRequest req = (FullHttpRequest) msg;
-//            ByteBuf content = req.content();
-//            if (content.isReadable()) {
-//                // 将耗时任务交给任务线程池处理
-//                ctx.executor().execute(() -> {
-//                    //执行远程调用
-//
-//
-//                    ///////////////////////////////////////////////////////////////////////////////
-//                    String[] tmp = content.toString(CharsetUtil.UTF_8).split("&parameter=");
-//                    content.release();
-//                    String str = "";
-//                    if (tmp.length > 1){
-//                        str = tmp[1];
-//                    }
-//                    try {
-//                        Thread.sleep(50);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    FullHttpResponse response = new DefaultFullHttpResponse(
-//                            HTTP_1_1,
-//                            OK,
-//                            Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
-//                    );
-//                    response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-//                    boolean keepAlive = HttpUtil.isKeepAlive(req);
-//                    if (keepAlive) {
-//                        response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-//                        response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-//                        ctx.writeAndFlush(response);
-//                    } else {
-//                        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-//                    }
-//                    ///////////////////////////////////////////////////////////////////////////////
-//
-//
-//                    ///////////////////////////////////////////////////////////////////////////////
-////                    long start = System.currentTimeMillis();
-////                    String requestUrl = new StringBuilder(url).append("?").append(content.toString(CharsetUtil.UTF_8)).toString();
-////                    org.asynchttpclient.Request request = org.asynchttpclient.Dsl.get(requestUrl).build();
-////                    ListenableFuture<Response> responseFuture = asyncHttpClient.executeRequest(request);
-////
-////                    Runnable callback = () -> {
-////                        try {
-////                            // 获取远程结果
-////                            String value = responseFuture.get().getResponseBody();
-////
-////                            FullHttpResponse response = new DefaultFullHttpResponse(
-////                                    HTTP_1_1,
-////                                    OK,
-////                                    Unpooled.copiedBuffer(value, CharsetUtil.UTF_8)
-////                            );
-////                            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-////                            boolean keepAlive = HttpUtil.isKeepAlive(req);
-////                            if (keepAlive) {
-////                                response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-////                                response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-////                                ctx.writeAndFlush(response);
-////                            } else {
-////                                ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-////                            }
-////                        } catch (Exception e) {
-////                            e.printStackTrace();
-////                        }finally {
-////                            //释放内存
-////                            ReferenceCountUtil.release(msg);
-////                        }
-////                    };
-////                    responseFuture.addListener(callback, null);
-////                    long end = System.currentTimeMillis();
-////                    logger.info("Get response from provider agent spending {}ms!", end-start);
-//                    ////////////////////////////////////////////////////////////////////////////
-//                });
-//
-//            }else {
-//                FullHttpResponse response = new DefaultFullHttpResponse(
-//                        HTTP_1_1,
-//                        BAD_REQUEST
-//                );
-//                ctx.write(response).addListener(ChannelFutureListener.CLOSE);
-//            }
-//        }
-
-        else {
+        } else {
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HTTP_1_1,
                     BAD_REQUEST
@@ -185,10 +129,10 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         }
 
     }
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws IOException {
         cause.printStackTrace();
-//        asyncHttpClient.close();
         ctx.close();
     }
 
