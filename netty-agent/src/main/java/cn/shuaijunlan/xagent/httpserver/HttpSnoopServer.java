@@ -28,17 +28,17 @@ public class HttpSnoopServer {
     private static Logger logger = LoggerFactory.getLogger(HttpSnoopServer.class);
 
     static final int PORT = 20000;
-//    private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
-//    public static List<Endpoint> endpoints;
-//
-//    static {
-//        try {
-//            endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
+    // private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
+    // public static List<Endpoint> endpoints;
+    //
+    // static {
+    //     try {
+    //         endpoints = registry.find("com.alibaba.dubbo.performance.demo.provider.IHelloService");
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+    //
     public static void main(String[] args) throws Exception {
         String type = System.getProperty("agent.type");
         if (type != null && "client".equals(type)){

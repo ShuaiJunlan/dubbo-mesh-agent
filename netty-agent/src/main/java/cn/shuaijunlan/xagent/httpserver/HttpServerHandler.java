@@ -73,48 +73,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 } else {
                     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
                 }
-
-                // Bootstrap bootstrap = new Bootstrap();
-                //
-                // bootstrap.group(ctx.channel().eventLoop())
-                //         .channel(Epoll.isAvailable() ? EpollSocketChannel.class : NioSocketChannel.class)
-                //         .option(ChannelOption.TCP_NODELAY, true)
-                //         .option(ChannelOption.SO_KEEPALIVE, true)
-                //         .handler(new ChannelInitializer<SocketChannel>() {
-                //             @Override
-                //             protected void initChannel(SocketChannel ch) throws Exception {
-                //                 ch.pipeline()
-                //                         .addLast(new ObjectDecoder(1024 * 1024,
-                //                                 ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())))
-                //                         .addLast(new ObjectEncoder())
-                //                         .addLast(new SimpleChannelInboundHandler<Object>() {
-                //                             @Override
-                //                             protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-                //                                 FullHttpResponse response = new DefaultFullHttpResponse(
-                //                                         HTTP_1_1,
-                //                                         OK,
-                //                                         Unpooled.copiedBuffer(msg.toString(), CharsetUtil.UTF_8)
-                //                                 );
-                //                                 response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                //                                 boolean keepAlive = HttpUtil.isKeepAlive(request);
-                //                                 if (keepAlive) {
-                //                                     response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                //                                     response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                //                                     ctx.writeAndFlush(response);
-                //                                 } else {
-                //                                     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                //                                 }
-                //                                 ctx.close();
-                //                             }
-                //                         });
-                //             }
-                //         });
-                // try {
-                //     Channel channel = bootstrap.connect("127.0.0.1", 20001).sync().channel();
-                //     channel.writeAndFlush(str);
-                // } catch (InterruptedException e) {
-                //     e.printStackTrace();
-                // }
             });
 
         } else {
