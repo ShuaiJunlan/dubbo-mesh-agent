@@ -30,5 +30,13 @@ PLANS.md
 mvnw
 mvnw.cmd
 
+# extend
+logs.*/
+Agent优化技巧.md
+Dockerfile
+start-agent.*
+*.json
+
+
 
 
