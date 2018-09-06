@@ -52,6 +52,9 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
             // if (tmp.length > 1){
             //     str = tmp[1];
             // }
+            if (logger.isInfoEnabled()){
+                logger.info("Get msg: {}", msg);
+            }
             ctx.writeAndFlush(msg.hashCode());
         });
     }
