@@ -45,7 +45,7 @@ public class HttpSnoopServerInitializer extends ChannelInitializer<SocketChannel
         // Uncomment the following line if you don't want to handle HttpChunks.
         p.addLast(new HttpObjectAggregator(2048));
         p.addLast(new HttpResponseEncoder());
-
-        p.addLast(longTaskGroup, "handler", new HttpServerHandler());
+        // p.addLast(longTaskGroup, "handler", new HttpServerHandler());
+        p.addLast("handler", new HttpServerHandler());
     }
 }

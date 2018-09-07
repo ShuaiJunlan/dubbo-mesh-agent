@@ -7,10 +7,15 @@ import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
+import io.netty.util.concurrent.DefaultPromise;
+import io.netty.util.concurrent.Promise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
@@ -22,6 +27,16 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
  */
 public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     private Logger logger = LoggerFactory.getLogger(ChannelInboundHandlerAdapter.class);
+    private static HashSet<ChannelHandlerContext> handlerContexts = new HashSet<>();
+    private static HashSet<String> hashSet = new HashSet<>();
+    /**
+     * cache promise
+     */
+    public static final ConcurrentHashMap<String, Promise> promiseHolder = new ConcurrentHashMap<>();
+    /**
+     * counting request id
+     */
+    public static final AtomicLong atomicLong = new AtomicLong();
 
     // private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
     // private static AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -62,8 +77,18 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 FullHttpResponse response = new DefaultFullHttpResponse(
                         HTTP_1_1,
                         OK,
-                        Unpooled.copiedBuffer(msg.toString(), CharsetUtil.UTF_8)
+                        Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
                 );
+                //logging test value
+                try {
+                    logger.info(ctx.executor().toString());
+                    handlerContexts.add(ctx);
+                    hashSet.add(ctx.executor().toString());
+                    logger.info(handlerContexts.size() + "---" + hashSet.size());
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
                 boolean keepAlive = HttpUtil.isKeepAlive(request);
                 if (keepAlive) {
@@ -86,6 +111,13 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             ReferenceCountUtil.release(msg);
         }
 
+    }
+    public FullHttpResponse call(String param, ChannelHandlerContext ctx){
+        Promise<Integer> integerPromise = new DefaultPromise<>(ctx.executor());
+        integerPromise.addListener(future -> {
+            // promiseHolder.get()
+        });
+        return null;
     }
 
     @Override
