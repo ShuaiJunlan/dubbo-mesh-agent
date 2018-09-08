@@ -15,12 +15,15 @@ import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 21:14 2018/4/30.
  */
 public final class AgentProviderServer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AgentProviderServer.class);
 
     // static final Integer PORT = Integer.valueOf(System.getProperty("agent.port"));
 
@@ -41,7 +44,7 @@ public final class AgentProviderServer {
 
             ChannelFuture ch = b.bind(20001).sync();
             if (ch.isSuccess()){
-                System.out.println("agent server start!");
+                LOGGER.info("Agent server start host:{}, port:{}!", "127.0.0.1", 20001);
             }
 
             ch.channel().closeFuture().sync();

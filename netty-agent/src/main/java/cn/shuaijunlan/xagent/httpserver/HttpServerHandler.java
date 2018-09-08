@@ -115,6 +115,27 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     public FullHttpResponse call(String param, ChannelHandlerContext ctx){
         Promise<Integer> integerPromise = new DefaultPromise<>(ctx.executor());
         integerPromise.addListener(future -> {
+            FullHttpResponse response = new DefaultFullHttpResponse(
+                    HTTP_1_1,
+                    OK,
+                    Unpooled.copiedBuffer(String.valueOf(param.hashCode()), CharsetUtil.UTF_8)
+            );
+            //logging test value
+            try {
+                logger.info(ctx.executor().toString());
+                handlerContexts.add(ctx);
+                hashSet.add(ctx.executor().toString());
+                logger.info(handlerContexts.size() + "---" + hashSet.size());
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+
+            response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+            response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+            ctx.writeAndFlush(response);
+
             // promiseHolder.get()
         });
         return null;

@@ -60,7 +60,7 @@ public class AgentClientManager {
 
         try {
             while (channels.isEmpty()) {
-                addOne();
+                // addOne();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,21 +76,21 @@ public class AgentClientManager {
         channels.add(channel);
     }
 
-    public static void add() throws Exception {
-        logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
+    // public static void add() throws Exception {
+    //     logger.info("Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
+    //
+    //     for (int i = 0; i < 256; i++){
+    //         Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
+    //         AgentClient.sendData("", channel);
+    //         channels.add(channel);
+    //     }
+    // }
 
-        for (int i = 0; i < 256; i++){
-            Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
-            AgentClient.sendData("", channel);
-            channels.add(channel);
-        }
-    }
-
-    public static void addOne() throws Exception {
-        logger.info("addOne -- Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
-
-        Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
-        AgentClient.sendData("", channel);
-        channels.add(channel);
-    }
+    // public static void addOne() throws Exception {
+    //     logger.info("addOne -- Host:{},Port{}", endpoints.get(2).getHost(), endpoints.get(2).getPort());
+    //
+    //     Channel channel = client1.doConnect(endpoints.get(2).getHost(), endpoints.get(2).getPort());
+    //     AgentClient.sendData("", channel);
+    //     channels.add(channel);
+    // }
 }

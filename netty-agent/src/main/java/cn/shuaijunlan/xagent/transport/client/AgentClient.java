@@ -9,9 +9,14 @@ import cn.shuaijunlan.xagent.transport.support.kryo.KryoEncoder;
 import cn.shuaijunlan.xagent.transport.support.kryo.KryoPoolFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
+import io.netty.channel.epoll.Epoll;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -19,10 +24,12 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  * @date Created on 21:48 2018/4/28.
  */
 public class AgentClient {
-    private EventLoopGroup workGroup = new NioEventLoopGroup();
-    private KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
+    private static final Logger LOGGER = LoggerFactory.getLogger(AgentClient.class);
+
+    private static EventLoopGroup workGroup = Epoll.isAvailable() ? new EpollEventLoopGroup() : new NioEventLoopGroup();
+    private static KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
     public Channel channel;
-    private Bootstrap bootstrap;
+    private static Bootstrap bootstrap;
     private AgentClientHandler agentClientHandler;
 
     private Object lock = new Object();
@@ -36,13 +43,13 @@ public class AgentClient {
 
     }
 
-    public void start() {
+    public static void start() {
         try {
 //            agentClientHandler = new AgentClientHandler();
             bootstrap = new Bootstrap();
             bootstrap
                     .group(workGroup)
-                    .channel(NioSocketChannel.class)
+                    .channel(Epoll.isAvailable() ? EpollSocketChannel.class : NioSocketChannel.class)
                     .option(ChannelOption.SO_KEEPALIVE,true)
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .handler(new ChannelInitializer<SocketChannel>() {
@@ -62,34 +69,49 @@ public class AgentClient {
     }
 
     /**
-     * 连接服务器
+     * Connecting remote server
+     * @param host
+     * @param port
+     * @return
+     * @throws InterruptedException
      */
-    public Channel doConnect(String host, Integer port) throws InterruptedException {
+    private static Channel doConnect(String host, Integer port) throws InterruptedException {
 
         Channel channel = bootstrap.connect(host, port).sync().channel();
         return channel;
     }
 
-
-    public Integer sendData(String param) {
-        synchronized (lock){
-            if (channel == null || (!channel.isActive())){
-                System.out.println("channel get error");
-            }else {
-                MessageRequest messageRequest = new MessageRequest();
-                messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
-                messageRequest.setMethod("hash");
-                messageRequest.setParameterTypesString("Ljava/lang/String;");
-                messageRequest.setParameter(param);
-                channel.writeAndFlush(messageRequest);
-            }
-            try {
-                lock.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    /**
+     * Getting channel by thread name
+     * @param name thread name
+     * @return
+     * @throws InterruptedException
+     */
+    public static Channel getChannel(String name) throws InterruptedException {
+        if (name == null){
+            throw new NullPointerException("Name can't be bull");
         }
-        return agentClientHandler.value;
+        Channel channel = ResultMap.CHANNEL_CONCURRENT_HASH_MAP.get(name);
+        if (channel == null){
+            channel = doConnect(ResultMap.HOST, ResultMap.POST);
+            ResultMap.CHANNEL_CONCURRENT_HASH_MAP.put(name, channel);
+        }
+        return channel;
+    }
+
+
+    public static void sendData(String param, Channel channel, Long id) {
+        if (channel == null || (!channel.isActive())){
+            LOGGER.error("Channel:{} is unavailable!", channel);
+        }else {
+            MessageRequest messageRequest = new MessageRequest();
+            messageRequest.setId(id);
+            messageRequest.setInterfaceName("com.alibaba.performance.dubbomesh.provider.IHelloService");
+            messageRequest.setMethod("hash");
+            messageRequest.setParameterTypesString("Ljava/lang/String;");
+            messageRequest.setParameter(param);
+            channel.writeAndFlush(messageRequest);
+        }
     }
 
     public static synchronized Integer sendData(String param, Channel channel) {
