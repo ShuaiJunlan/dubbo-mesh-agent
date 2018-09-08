@@ -28,11 +28,11 @@ public class AgentServerHandler extends SimpleChannelInboundHandler<MessageReque
 
             //testnum
             // messageResponse.setHash(messageRequest.getParameter().hashCode());
-            // try {
-            //     Thread.sleep(50);
-            // } catch (InterruptedException e) {
-            //     e.printStackTrace();
-            // }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             //get from rpc client
             // RpcClient rpcClient = new RpcClient();

@@ -31,7 +31,7 @@ public class AgentServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workGroup = new NioEventLoopGroup(8);
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
-        EventExecutorGroup group = new DefaultEventExecutorGroup(16);
+        EventExecutorGroup group = new DefaultEventExecutorGroup(256);
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap
