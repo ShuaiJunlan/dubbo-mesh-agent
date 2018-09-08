@@ -1,6 +1,8 @@
 package cn.shuaijunlan.xagent.httpserver;
 
 
+import cn.shuaijunlan.xagent.transport.client.AgentClient;
+import cn.shuaijunlan.xagent.transport.client.ResultMap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
@@ -36,7 +38,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
     /**
      * counting request id
      */
-    public static final AtomicLong atomicLong = new AtomicLong();
+    public static final AtomicLong ATOMIC_LONG = new AtomicLong();
 
     // private AsyncHttpClient asyncHttpClient = org.asynchttpclient.Dsl.asyncHttpClient();
     // private static AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -73,31 +75,22 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 if (tmp != null && tmp.length > 1) {
                     str = tmp[1];
                 }
+                call(str, ctx);
 
-                FullHttpResponse response = new DefaultFullHttpResponse(
-                        HTTP_1_1,
-                        OK,
-                        Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
-                );
-                //logging test value
-                try {
-                    logger.info(ctx.executor().toString());
-                    handlerContexts.add(ctx);
-                    hashSet.add(ctx.executor().toString());
-                    logger.info(handlerContexts.size() + "---" + hashSet.size());
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
-                boolean keepAlive = HttpUtil.isKeepAlive(request);
-                if (keepAlive) {
-                    response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
-                    response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
-                    ctx.writeAndFlush(response);
-                } else {
-                    ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-                }
+                // FullHttpResponse response = new DefaultFullHttpResponse(
+                //         HTTP_1_1,
+                //         OK,
+                //         Unpooled.copiedBuffer(String.valueOf(str.hashCode()), CharsetUtil.UTF_8)
+                // );
+                // response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
+                // boolean keepAlive = HttpUtil.isKeepAlive(request);
+                // if (keepAlive) {
+                //     response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
+                //     response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
+                //     ctx.writeAndFlush(response);
+                // } else {
+                //     ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+                // }
             });
 
         } else {
@@ -112,33 +105,32 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         }
 
     }
-    public FullHttpResponse call(String param, ChannelHandlerContext ctx){
+    public void call(String param, ChannelHandlerContext ctx){
         Promise<Integer> integerPromise = new DefaultPromise<>(ctx.executor());
         integerPromise.addListener(future -> {
+            Integer hashCode = (Integer) future.get();
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HTTP_1_1,
                     OK,
-                    Unpooled.copiedBuffer(String.valueOf(param.hashCode()), CharsetUtil.UTF_8)
+                    Unpooled.copiedBuffer(String.valueOf(hashCode), CharsetUtil.UTF_8)
             );
-            //logging test value
-            try {
-                logger.info(ctx.executor().toString());
-                handlerContexts.add(ctx);
-                hashSet.add(ctx.executor().toString());
-                logger.info(handlerContexts.size() + "---" + hashSet.size());
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
 
             response.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, response.content().readableBytes());
             response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
             ctx.writeAndFlush(response);
 
-            // promiseHolder.get()
         });
-        return null;
+        Channel channel = null;
+        try {
+            channel = AgentClient.getChannel(ctx.executor().toString());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Long id = ATOMIC_LONG.incrementAndGet();
+        AgentClient.sendData(param, channel, id);
+        ResultMap.PROMISE_CONCURRENT_HASH_MAP.put(id, integerPromise);
     }
 
     @Override

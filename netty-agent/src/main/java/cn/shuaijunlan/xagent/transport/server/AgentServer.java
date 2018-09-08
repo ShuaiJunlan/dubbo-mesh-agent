@@ -14,13 +14,20 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Junlan Shuai[shuaijunlan@gmail.com].
  * @date Created on 21:50 2018/4/28.
  */
 public class AgentServer {
-    public void start(int port) {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AgentServer.class);
+    /**
+     * Starting agent server
+     * @param port
+     */
+    public static void start(int port) {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workGroup = new NioEventLoopGroup(8);
         KryoCodecUtil util = new KryoCodecUtil(KryoPoolFactory.getKryoPoolInstance());
@@ -45,15 +52,18 @@ public class AgentServer {
                     });
 
             Channel ch = bootstrap.bind(port).sync().channel();
-
-            System.out.println("------Server Start------");
-
+            if (LOGGER.isInfoEnabled()){
+                LOGGER.info("Server agent is running, listening on port:{}", port);
+            }
             ch.closeFuture().sync();
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
+            if (LOGGER.isInfoEnabled()){
+                LOGGER.info("Agent server shutdown!");
+            }
         }
     }
 }

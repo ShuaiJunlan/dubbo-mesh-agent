@@ -93,8 +93,12 @@ public class AgentClient {
         }
         Channel channel = ResultMap.CHANNEL_CONCURRENT_HASH_MAP.get(name);
         if (channel == null){
+
             channel = doConnect(ResultMap.HOST, ResultMap.POST);
             ResultMap.CHANNEL_CONCURRENT_HASH_MAP.put(name, channel);
+            if (LOGGER.isInfoEnabled()){
+                LOGGER.info("Creating a new channel:{}, binding thread name:{}!", channel, name);
+            }
         }
         return channel;
     }
@@ -102,7 +106,9 @@ public class AgentClient {
 
     public static void sendData(String param, Channel channel, Long id) {
         if (channel == null || (!channel.isActive())){
-            LOGGER.error("Channel:{} is unavailable!", channel);
+            if (LOGGER.isErrorEnabled()){
+                LOGGER.error("Channel:{} is unavailable!", channel);
+            }
         }else {
             MessageRequest messageRequest = new MessageRequest();
             messageRequest.setId(id);

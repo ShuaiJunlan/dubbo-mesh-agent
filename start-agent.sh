@@ -16,7 +16,7 @@ if [[ "$1" == "consumer" ]]; then
        -XX:+AggressiveOpts \
        -XX:+UseFastAccessorMethods \
        -Dtype=consumer \
-       -Dserver.port=20000\
+       -Dserver.port=20000 \
        -Detcd.url=$ETCD_URL \
        -Dlogs.dir=/root/logs \
        -Dagent.type=client \

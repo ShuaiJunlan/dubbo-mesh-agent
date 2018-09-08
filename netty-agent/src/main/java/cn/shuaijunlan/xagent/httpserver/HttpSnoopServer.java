@@ -3,6 +3,8 @@ package cn.shuaijunlan.xagent.httpserver;
 import cn.shuaijunlan.xagent.registry.Endpoint;
 import cn.shuaijunlan.xagent.registry.EtcdRegistry;
 import cn.shuaijunlan.xagent.registry.IRegistry;
+import cn.shuaijunlan.xagent.transport.client.AgentClient;
+import cn.shuaijunlan.xagent.transport.server.AgentServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.UnpooledByteBufAllocator;
@@ -25,7 +27,7 @@ import java.util.List;
  * @date Created on 21:14 2018/4/30.
  */
 public class HttpSnoopServer {
-    private static Logger logger = LoggerFactory.getLogger(HttpSnoopServer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpSnoopServer.class);
 
     static final int PORT = 20000;
     // private static IRegistry registry = new EtcdRegistry(System.getProperty("etcd.url"));
@@ -58,8 +60,9 @@ public class HttpSnoopServer {
 
                 ChannelFuture ch = b.bind(PORT).sync();
                 if (ch.isSuccess()){
-                    logger.info("Http server start on port :{}", PORT );
+                    LOGGER.info("Http server start on port :{}", PORT );
                 }
+
 
                 ch.channel().closeFuture().sync();
             } finally {
@@ -77,9 +80,12 @@ public class HttpSnoopServer {
                         .childHandler(new HttpSnoopServerInitializer());
 
                 Channel ch = b.bind(PORT).sync().channel();
+                if (LOGGER.isInfoEnabled()){
+                    LOGGER.info("Starting http server on port:{}", PORT);
+                }
 
-                System.out.println("Open your web browser and navigate to " +
-                        "http" + "://127.0.0.1:" + PORT + '/');
+                //Initial connection
+                AgentClient.start();
 
                 ch.closeFuture().sync();
             } finally {

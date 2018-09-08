@@ -4,6 +4,7 @@ import cn.shuaijunlan.xagent.transport.support.MessageResponse;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.util.concurrent.Promise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 //@ChannelHandler.Sharable
 public class AgentClientHandler extends SimpleChannelInboundHandler<MessageResponse> {
-    private Logger logger = LoggerFactory.getLogger(AgentClientHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AgentClientHandler.class);
 
     public Object lock;
     public Integer value;
@@ -39,6 +40,13 @@ public class AgentClientHandler extends SimpleChannelInboundHandler<MessageRespo
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageResponse messageResponse) throws Exception {
-        ResultMap.RESULT_MAP.put(messageResponse.getId(), messageResponse.getHash());
+        // if (LOGGER.isInfoEnabled()){
+        //     LOGGER.info(messageResponse.toString());
+        // }
+        Promise<Integer> promise = ResultMap.PROMISE_CONCURRENT_HASH_MAP.remove(messageResponse.getId());
+        if (promise != null){
+            promise.trySuccess(messageResponse.getHash());
+        }
+        // ResultMap.RESULT_MAP.put(messageResponse.getId(), messageResponse.getHash());
     }
 }
