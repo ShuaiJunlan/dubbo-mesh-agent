@@ -9,7 +9,9 @@ import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 import io.netty.util.ReferenceCountUtil;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.DefaultPromise;
+import io.netty.util.concurrent.EventExecutorGroup;
 import io.netty.util.concurrent.Promise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,7 +107,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
         }
 
     }
-    public void call(String param, ChannelHandlerContext ctx){
+    private void call(String param, ChannelHandlerContext ctx){
         Promise<Integer> integerPromise = new DefaultPromise<>(ctx.executor());
         integerPromise.addListener(future -> {
             Integer hashCode = (Integer) future.get();
@@ -114,6 +116,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     OK,
                     Unpooled.copiedBuffer(String.valueOf(hashCode), CharsetUtil.UTF_8)
             );
+            logger.info(Thread.currentThread().getName());
 
             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
 
