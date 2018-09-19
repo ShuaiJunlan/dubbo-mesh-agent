@@ -116,7 +116,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                     OK,
                     Unpooled.copiedBuffer(String.valueOf(hashCode), CharsetUtil.UTF_8)
             );
-            logger.info(Thread.currentThread().getName());
+            // logger.info(Thread.currentThread().getName());
 
             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain; charset=UTF-8");
 
