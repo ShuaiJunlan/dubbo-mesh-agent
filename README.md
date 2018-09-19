@@ -14,4 +14,4 @@
 - [ ] Registry Center
 - [ ] Cluster Fault Tolerance
 - [ ] Routing
-- [ ] Link Tracking
+- [ ] Distributed Link Tracking
